@@ -23,6 +23,36 @@
         .card { border: 1px solid rgba(255,255,255,.10); border-radius: 16px; padding: 16px; background: rgba(255,255,255,.03); }
         footer { border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px; padding: 20px 0; opacity: .85; }
         .muted { opacity: .8; }
+
+
+    .hero-image {
+            border-radius: 20px;
+            overflow: hidden;
+            min-height: 260px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>

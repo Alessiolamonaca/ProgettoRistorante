@@ -9,22 +9,34 @@
                     {{ __('pages.home.subtitle') }}
                 </p>
                 <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                    <a class="pill primary" href="/{{ request()->route('locale') }}/menu">{{ __('pages.home.cta_menu') }}</a>
-                    <a class="pill" href="/{{ request()->route('locale') }}/dove-siamo">{{ __('pages.home.cta_where') }}</a>
+                    <a class="pill primary" href="/{{ request()->route('locale') }}/menu">
+                        {{ __('pages.home.cta_menu') }}
+                    </a>
+                    <a class="pill" href="/{{ request()->route('locale') }}/dove-siamo">
+                        {{ __('pages.home.cta_where') }}
+                    </a>
                 </div>
             </div>
 
             <div class="card">
-                <h3 style="margin:0 0 8px;">{{ __('pages.home.info_title') }}</h3>
-                <p class="muted" style="margin:0;">
-                    {{ __('pages.home.info_text') }}
-                </p>
+                <div class="hero-image" style="background-image: url('/images/hero-sala.jpg');"></div>
+                <div class="gallery">
+                    <img src="/images/piatto-1.jpg" alt="Piatto 1">
+                    <img src="/images/piatto-2.jpg" alt="Piatto 2">
+                    <img src="/images/esterno-1.jpg" alt="Esterno">
+                </div>
             </div>
         </div>
     </section>
 
     <div class="container" style="padding-top: 24px;">
         <div class="grid">
+            <div class="card">
+                <h3 style="margin-top:0;">{{ __('pages.home.info_title') }}</h3>
+                <p class="muted">
+                    {{ __('pages.home.info_text') }}
+                </p>
+            </div>
             <div class="card">
                 <h3 style="margin-top:0;">{{ __('pages.home.style_title') }}</h3>
                 <p class="muted">

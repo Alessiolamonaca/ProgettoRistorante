@@ -3,7 +3,7 @@
         <div class="card">
             <h1 style="margin-top:0;">{{ __('pages.where.title') }}</h1>
             <p class="muted">
-                {{___('pages.where.text')}}
+                {{ __('pages.where.text') }}
             </p>
 
             @php
@@ -13,10 +13,10 @@
 
             <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
                 <a class="pill primary" href="{{ $mapsUrl }}" target="_blank" rel="noopener">
-                    {{__('pages.whare.cta_maps')}}
+                    {{ __('pages.where.cta_maps') }}
                 </a>
                 <a class="pill" href="/{{ request()->route('locale') }}/contatti">
-                    {{__('pages.whare.cta_contact')}}
+                    {{ __('pages.where.cta_contact') }}
                 </a>
             </div>
         </div>
