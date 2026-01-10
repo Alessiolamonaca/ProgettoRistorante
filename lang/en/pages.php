@@ -31,15 +31,43 @@ return [
         'cta_contact'=> 'Contacts',
     ],
 
-    'contacts' => [
-        'title' => 'Contacts',
-        'text'  => 'Here we will add phone, email, WhatsApp and (if you want) a contact form. Everything will be managed from the admin.',
+    'restaurant' => [
+        'title'           => 'The Restaurant',
+        'intro'           => 'A place where cuisine, hospitality and territory meet. An intimate dining room, few tables and attentive service designed to make you feel at home.',
+        'history_title'   => 'Our story',
+        'history_text'    => 'The restaurant was born from the desire to enhance family recipes and the authentic flavors of tradition. Over the years we have combined experience, research and local products to offer an honest, contemporary cuisine.',
+        'kitchen_title'   => 'Our cuisine',
+        'kitchen_text'    => 'We carefully select fresh, seasonal ingredients, giving priority to local producers. The menu changes throughout the year, following the rhythm of the seasons and what the market offers every day.',
+        'room_title'      => 'Dining room and atmosphere',
+        'room_text'       => 'The atmosphere is warm and intimate, with few tables and soft lighting. We want every guest to relax, enjoy the company and take the time to fully experience the meal.',
+        'territory_title' => 'Territory and tradition',
+        'territory_text'  => 'We are closely connected to our territory: we select wines, oils and raw materials that tell the story of our area. In each dish you will find familiar flavors interpreted with respect and lightness.',
     ],
 
-    'restaurant' => [
-        'title' => 'The Restaurant',
-        'text'  => 'Here we will add the story/description of the restaurant. Later this text will be editable by the owner through the panel.',
+    'contacts' => [
+        'title'          => 'Contacts and reservations',
+        'text'           => 'For any information or to book a table you can contact us by phone, email or WhatsApp.',
+
+        'phone_label'    => 'Phone',
+        'email_label'    => 'Email',
+        'whatsapp_label' => 'WhatsApp',
+        'address_label'  => 'Address',
+
+        'booking_title'  => 'Reservations',
+        'booking_text'   => 'We recommend booking in advance, especially at weekends and on public holidays. For special requests (allergies, intolerances, celebrations) please let us know when you book.',
+
+        'note_title'     => 'Notes',
+        'note_text'      => 'If you are running late or unable to come, we kindly ask you to inform us. This helps us manage the available tables in the best way.',
+
+        'form_title'     => 'Write to us',
+        'form_name'      => 'Full name',
+        'form_email'     => 'Email',
+        'form_message'   => 'Message',
+        'form_send'      => 'Send request',
+
+        'success'        => 'Thank you, your request has been sent. We will get back to you as soon as possible.',
     ],
+
 
     'menu_page' => [
         'title' => 'Menu',

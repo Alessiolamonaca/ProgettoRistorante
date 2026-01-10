@@ -31,15 +31,44 @@ return [
         'cta_contact' => 'Kontakt',
     ],
 
-    'contacts' => [
-        'title' => 'Kontakt',
-        'text'  => 'Hier fügen wir Telefon, E-Mail, WhatsApp und (wenn gewünscht) ein Kontaktformular hinzu. Alles wird über das Admin-Panel verwaltet.',
+    'restaurant' => [
+        'title'           => 'Das Restaurant',
+        'intro'           => 'Ein Ort, an dem Küche, Gastfreundschaft und Region zusammenkommen. Ein gemütlicher Gastraum mit wenigen Tischen und aufmerksamem Service, der Sie wie zu Hause fühlen lässt.',
+        'history_title'   => 'Unsere Geschichte',
+        'history_text'    => 'Das Restaurant entstand aus dem Wunsch, Familienrezepte und authentische Aromen der Tradition aufzuwerten. Im Laufe der Jahre haben wir Erfahrung, Recherche und lokale Produkte kombiniert, um eine ehrliche, zeitgemäße Küche anzubieten.',
+        'kitchen_title'   => 'Unsere Küche',
+        'kitchen_text'    => 'Wir wählen frische, saisonale Zutaten und bevorzugen Produzenten aus der Region. Die Gerichte ändern sich im Laufe des Jahres und folgen dem Rhythmus der Jahreszeiten und dem, was der Markt täglich bietet.',
+        'room_title'      => 'Gastraum und Atmosphäre',
+        'room_text'       => 'Die Atmosphäre ist warm und intim, mit wenigen Tischen und gedämpftem Licht. Wir möchten, dass sich jeder Gast entspannen und das Essen in Ruhe genießen kann.',
+        'territory_title' => 'Region und Tradition',
+        'territory_text'  => 'Wir fühlen uns unserer Region sehr verbunden: Wir wählen Weine, Öle und Rohstoffe, die unsere Gegend widerspiegeln. In den Gerichten finden Sie vertraute Aromen, respektvoll und leicht interpretiert.',
     ],
 
-    'restaurant' => [
-        'title' => 'Das Restaurant',
-        'text'  => 'Hier fügen wir die Geschichte/Beschreibung des Restaurants hinzu. Später kann dieser Text vom Besitzer über das Panel bearbeitet werden.',
+    'contacts' => [
+        'title'          => 'Kontakt und Reservierungen',
+        'text'           => 'Für Informationen oder zur Reservierung eines Tisches können Sie uns telefonisch, per E-Mail oder über WhatsApp kontaktieren.',
+
+        'phone_label'    => 'Telefon',
+        'email_label'    => 'E-Mail',
+        'whatsapp_label' => 'WhatsApp',
+        'address_label'  => 'Adresse',
+
+        'booking_title'  => 'Reservierungen',
+        'booking_text'   => 'Wir empfehlen eine frühzeitige Reservierung, besonders an Wochenenden und Feiertagen. Bitte informieren Sie uns bei besonderen Wünschen (Allergien, Unverträglichkeiten, Feierlichkeiten).',
+
+        'note_title'     => 'Hinweise',
+        'note_text'      => 'Wenn Sie sich verspäten oder nicht kommen können, bitten wir Sie, uns kurz zu informieren. So können wir die verfügbaren Plätze im Gastraum besser organisieren.',
+
+        'form_title'     => 'Schreiben Sie uns',
+        'form_name'      => 'Vor- und Nachname',
+        'form_email'     => 'E-Mail',
+        'form_message'   => 'Nachricht',
+        'form_send'      => 'Anfrage senden',
+
+        'success'        => 'Vielen Dank, Ihre Anfrage wurde gesendet. Wir melden uns so bald wie möglich bei Ihnen.',
     ],
+
+
 
     'menu_page' => [
         'title' => 'Menü',
