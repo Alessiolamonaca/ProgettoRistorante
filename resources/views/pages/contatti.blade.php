@@ -1,4 +1,7 @@
-<x-layouts.app title="{{ __('pages.contacts.title') }}">
+<x-layouts.app
+    :title="__('seo.contacts.title')"
+    :meta-description="__('seo.contacts.description')"
+>
     <div class="container" style="padding-top: 24px;">
 
         {{-- Messaggio di successo --}}
@@ -29,12 +32,12 @@
                 </p>
 
                 @php
-                    // Dati di esempio: sostituiscili con quelli reali
-                    $phone    = '+39 000 0000000';
-                    $email    = 'info@torrediblaga.it';
-                    $whatsapp = '+39 000 0000000';
-                    $address  = 'Via Esempio 1, 00000 Città (Provincia)';
+                    $phone    = config('restaurant.phone');
+                    $email    = config('restaurant.email');
+                    $whatsapp = config('restaurant.whatsapp');
+                    $address  = config('restaurant.address_line');
                 @endphp
+
 
                 <div style="margin-top:16px;">
                     <p><strong>{{ __('pages.contacts.phone_label') }}:</strong> {{ $phone }}</p>

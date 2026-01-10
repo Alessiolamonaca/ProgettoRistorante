@@ -68,10 +68,15 @@ return [
         'success'        => 'Merci, votre demande a été envoyée. Nous vous répondrons dès que possible.',
     ],
 
-
-
     'menu_page' => [
         'title' => 'Menu',
         'text'  => 'Ici, nous ajouterons un menu structuré (catégories, plats, prix), géré depuis le panneau d’administration.',
     ],
+
+        'not_found' => [
+        'title'     => 'Page introuvable',
+        'text'      => 'La page que vous avez demandée a peut-être été déplacée ou n’existe plus.',
+        'back_home' => 'Retour à l’accueil',
+    ],
+
 ];

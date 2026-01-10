@@ -1,4 +1,7 @@
-<x-layouts.app title="{{ __('pages.home.title') }}">
+<x-layouts.app
+    :title="__('seo.home.title')"
+    :meta-description="__('seo.home.description')"
+>
     <section class="hero">
         <div class="container grid">
             <div>
@@ -9,12 +12,12 @@
                     {{ __('pages.home.subtitle') }}
                 </p>
                 <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                    <a class="pill primary" href="/{{ request()->route('locale') }}/menu">
+                    {{--<a class="pill primary" href="/{{ request()->route('locale') }}/menu">
                         {{ __('pages.home.cta_menu') }}
                     </a>
                     <a class="pill" href="/{{ request()->route('locale') }}/dove-siamo">
                         {{ __('pages.home.cta_where') }}
-                    </a>
+                    </a>--}}
                 </div>
             </div>
 

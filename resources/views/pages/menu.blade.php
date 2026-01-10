@@ -1,4 +1,7 @@
-<x-layouts.app title="{{ __('pages.menu_page.title') }}">
+<x-layouts.app
+    :title="__('seo.menu.title')"
+    :meta-description="__('seo.menu.description')"
+>
     <div class="container" style="padding-top: 24px;">
         <div class="card" style="margin-bottom: 20px;">
             <h1 style="margin-top:0;">{{ __('pages.menu_page.title') }}</h1>

@@ -68,10 +68,15 @@ return [
         'success'        => 'Grazie, la tua richiesta è stata inviata. Ti risponderemo il prima possibile.',
     ],
 
-
-
     'menu_page' => [
         'title' => 'Il Menu',
         'text'  => 'Qui inseriremo un menu strutturato (categorie, piatti, prezzi), gestibile dal pannello admin.',
     ],
+
+        'not_found' => [
+        'title'     => 'Pagina non trovata',
+        'text'      => 'La pagina che hai richiesto potrebbe essere stata spostata o non esistere più.',
+        'back_home' => 'Torna alla home',
+    ],
+
 ];

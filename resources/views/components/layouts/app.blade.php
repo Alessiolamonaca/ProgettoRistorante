@@ -3,7 +3,41 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'Ristorante' }}</title>
+
+    @php
+        // Titolo di default
+        $pageTitle      = $title ?? config('restaurant.name', 'Ristorante');
+        $currentUrl     = request()->fullUrl();
+        $metaDesc       = $metaDescription ?? null;
+        $ogImage        = config('restaurant.og_image');
+        $siteName       = config('restaurant.site_name', config('restaurant.name', 'Ristorante'));
+        $ogLocale       = str_replace('-', '_', app()->getLocale()) . '_' . strtoupper(app()->getLocale()); // es: it_IT, en_EN (semplificato)
+    @endphp
+
+    <title>{{ $pageTitle }}</title>
+
+    @if($metaDesc)
+        <meta name="description" content="{{ $metaDesc }}">
+    @endif
+
+    <meta name="robots" content="index,follow">
+
+    {{-- Canonical URL --}}
+    <link rel="canonical" href="{{ $currentUrl }}">
+
+    {{-- Open Graph base --}}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    @if($metaDesc)
+        <meta property="og:description" content="{{ $metaDesc }}">
+    @endif
+    <meta property="og:url" content="{{ $currentUrl }}">
+    @if($ogImage)
+        <meta property="og:image" content="{{ $ogImage }}">
+    @endif
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:locale" content="{{ $ogLocale }}">
+
 
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; background: #0b0b0b; color: #f3f3f3; }
@@ -24,8 +58,7 @@
         footer { border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px; padding: 20px 0; opacity: .85; }
         .muted { opacity: .8; }
 
-
-    .hero-image {
+        .hero-image {
             border-radius: 20px;
             overflow: hidden;
             min-height: 260px;
@@ -70,7 +103,7 @@
             <div class="nav-left">
                 <a class="pill" href="/{{ $locale }}">{{ __('pages.brand') }}</a>
 
-                <a href="/{{ $locale }}/ristorante">{{__('pages.nav.restaurant') }}</a>
+                <a href="/{{ $locale }}/ristorante">{{ __('pages.nav.restaurant') }}</a>
                 <a href="/{{ $locale }}/menu">{{ __('pages.nav.menu') }}</a>
                 <a href="/{{ $locale }}/dove-siamo">{{ __('pages.nav.where') }}</a>
                 <a href="/{{ $locale }}/contatti">{{ __('pages.nav.contacts') }}</a>
@@ -100,11 +133,33 @@
 
 <footer>
     <div class="container">
+        @php
+            $restaurantName = config('restaurant.name', 'Ristorante');
+            $addressLine    = config('restaurant.address_line');
+            $phone          = config('restaurant.phone');
+            $email          = config('restaurant.email');
+        @endphp
+
         <div class="muted">
-            <div><strong>Ristorante</strong> — indirizzo, telefono, email (in futuro da pannello).</div>
-            <div style="margin-top:8px;">© {{ date('Y') }} — Tutti i diritti riservati</div>
+            <div>
+                <strong>{{ $restaurantName }}</strong>
+                @if($addressLine)
+                    — {{ $addressLine }}
+                @endif
+                @if($phone)
+                    — Tel: {{ $phone }}
+                @endif
+                @if($email)
+                    — Email: {{ $email }}
+                @endif
+            </div>
+
+            <div style="margin-top:8px;">
+                © {{ date('Y') }} — Tutti i diritti riservati
+            </div>
         </div>
     </div>
 </footer>
 </body>
 </html>
+
