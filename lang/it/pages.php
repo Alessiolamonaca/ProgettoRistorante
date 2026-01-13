@@ -12,17 +12,22 @@ return [
     ],
 
     'home' => [
-        'title'       => 'Esperienza, cucina e territorio',
-        'subtitle'    => 'Base multilingua (IT/EN/DE/ES/FR), semplice e responsive. In seguito collegheremo i contenuti al pannello di gestione.',
-        'info_title'  => 'Info rapide',
-        'info_text'   => 'Orari, giorni di chiusura, contatti e link Google Maps diventeranno modificabili dal pannello admin.',
-        'style_title' => 'Il nostro stile',
-        'style_text'  => 'Layout visual ispirato al secondo sito, ma con call to action chiare come nel primo.',
-        'book_title'  => 'Prenotazioni',
-        'book_text'   => 'Inseriremo pulsanti “Chiama / WhatsApp / Prenota” ottimizzati per mobile.',
-        'cta_menu'    => 'Scopri il menu',
-        'cta_where'   => 'Apri indicazioni',
+        'title' => 'Torre di Blaga',
+        'subtitle' => 'Agriturismo con ristorante di cucina tipica abruzzese: carne alla brace, arrosticini e pizza.',
+
+        'info_title' => 'Cucina tipica abruzzese',
+        'info_text'  => 'Proponiamo piatti della tradizione abruzzese preparati con ingredienti semplici e stagionali. Paste fatte in casa, salumi, formaggi e contorni che richiamano la cucina di una volta.',
+
+        'style_title' => 'Carne alla brace e arrosticini',
+        'style_text'  => 'La brace è il cuore del locale: selezioniamo carni di qualità e prepariamo arrosticini e grigliate seguendo i metodi tradizionali abruzzesi.',
+
+        'book_title' => 'Pizzeria e serate tra amici',
+        'book_text'  => 'Impasti leggeri, lievitazione lenta e forno sempre caldo: la pizza è pensata per accompagnare serate informali tra amici e famiglia.',
+
+        'cta_menu'  => 'Guarda il menu',
+        'cta_where' => 'Scopri dove siamo',
     ],
+
 
     'where' => [
         'title'     => 'Dove siamo',
@@ -32,46 +37,80 @@ return [
     ],
 
     'restaurant' => [
-        'title'           => 'Il Ristorante',
-        'intro'           => 'Un luogo dove cucina, accoglienza e territorio si incontrano. Una sala intima, pochi coperti e un servizio curato, pensato per farti sentire a casa.',
-        'history_title'   => 'La nostra storia',
-        'history_text'    => 'Il ristorante nasce dal desiderio di valorizzare le ricette di famiglia e i sapori autentici della tradizione. Negli anni abbiamo unito esperienza, ricerca e prodotti locali per proporre una cucina sincera e contemporanea.',
-        'kitchen_title'   => 'La nostra cucina',
-        'kitchen_text'    => 'Selezioniamo ingredienti freschi e stagionali, privilegiando produttori del territorio. I piatti cambiano durante l’anno, seguendo il ritmo delle stagioni e ciò che il mercato offre ogni giorno.',
-        'room_title'      => 'La sala e l’atmosfera',
-        'room_text'       => 'L’ambiente è caldo e raccolto, con pochi tavoli e luci soffuse. Vogliamo che ogni ospite possa rilassarsi, chiacchierare in tranquillità e godersi l’esperienza senza fretta.',
+        'title' => 'Il Ristorante',
+        'intro' => 'Un luogo dove cucina, accoglienza e territorio si incontrano. Una sala intima, pochi coperti e un servizio curato, pensato per farti sentire a casa.',
+
+        'story_title' => 'La nostra storia',
+        'story_text'  => 'Torre di Blaga nasce come piccola trattoria di famiglia e nel tempo è diventata un ristorante che unisce tradizione e cura dei dettagli, senza perdere il calore di casa.',
+
+
+        'kitchen_title' => 'La nostra cucina',
+        'kitchen_text'  => 'Selezioniamo ingredienti freschi e stagionali, privilegiando produttori del territorio. I piatti cambiano durante l’anno, seguendo il ritmo delle stagioni e ciò che il mercato offre ogni giorno.',
+
+        'room_title' => 'La sala e l’atmosfera',
+        'room_text'  => 'L’ambiente è caldo e raccolto, con pochi tavoli e luci soffuse. Vogliamo che ogni ospite possa rilassarsi, chiacchierare in tranquillità e godersi l’esperienza senza fretta.',
+
         'territory_title' => 'Territorio e tradizione',
         'territory_text'  => 'Siamo legati al nostro territorio: selezioniamo vini, oli e materie prime che raccontano la nostra zona. Nei piatti ritroverai sapori riconoscibili, interpretati con rispetto e leggerezza.',
     ],
 
+
     'contacts' => [
-        'title'          => 'Contatti e prenotazioni',
-        'text'           => 'Per qualsiasi informazione o per riservare un tavolo puoi contattarci telefonicamente, via email o tramite WhatsApp.',
+        'title' => 'Contatti e prenotazioni',
+        'intro' => 'Per informazioni, richieste speciali o per prenotare un tavolo puoi usare il modulo qui sotto oppure i recapiti diretti.',
+
+        'info_title' => 'Recapiti',
+        'info_text'  => 'Siamo a tua disposizione per prenotazioni, eventi privati e richieste particolari.',
 
         'phone_label'    => 'Telefono',
         'email_label'    => 'Email',
         'whatsapp_label' => 'WhatsApp',
-        'address_label'  => 'Indirizzo',
 
-        'booking_title'  => 'Prenotazioni',
-        'booking_text'   => 'Ti consigliamo di prenotare in anticipo, soprattutto nei fine settimana e nei giorni festivi. Per richieste particolari (allergie, intolleranze, ricorrenze) segnalacelo al momento della prenotazione.',
+        'form_title'   => 'Scrivici',
+        'form_name'    => 'Nome e cognome',
+        'form_email'   => 'Email',
+        'form_message' => 'Messaggio',
+        'form_submit'  => 'Invia richiesta',
 
-        'note_title'     => 'Note',
-        'note_text'      => 'In caso di ritardo o impossibilità a presentarti, ti chiediamo gentilmente di avvisarci. In questo modo possiamo gestire al meglio i posti disponibili in sala.',
+        'form_error_title' => 'Controlla i campi e correggi gli errori.',
 
-        'form_title'     => 'Scrivici',
-        'form_name'      => 'Nome e cognome',
-        'form_email'     => 'Email',
-        'form_message'   => 'Messaggio',
-        'form_send'      => 'Invia richiesta',
+        'note' => 'Le richieste di prenotazione sono soggette a conferma: ti risponderemo il prima possibile.',
 
-        'success'        => 'Grazie, la tua richiesta è stata inviata. Ti risponderemo il prima possibile.',
+        'success' => 'Grazie, la tua richiesta è stata inviata. Ti contatteremo al più presto.',
     ],
+
+
+    'contacts' => [
+        'title' => 'Contatti e prenotazioni',
+        'intro' => 'Per informazioni, richieste speciali o per prenotare un tavolo puoi usare il modulo qui sotto oppure i recapiti diretti.',
+
+        'info_title' => 'Recapiti',
+        'info_text'  => 'Siamo a tua disposizione per prenotazioni, eventi privati e richieste particolari.',
+
+        'phone_label'    => 'Telefono',
+        'email_label'    => 'Email',
+        'whatsapp_label' => 'WhatsApp',
+
+        'form_title'   => 'Scrivici',
+        'form_name'    => 'Nome e cognome',
+        'form_email'   => 'Email',
+        'form_message' => 'Messaggio',
+        'form_submit'  => 'Invia richiesta',
+
+        'form_error_title' => 'Controlla i campi e correggi gli errori.',
+
+        'note' => 'Le richieste di prenotazione sono soggette a conferma: ti risponderemo il prima possibile.',
+
+        'success' => 'Grazie, la tua richiesta è stata inviata. Ti contatteremo al più presto.',
+    ],
+
 
     'menu_page' => [
         'title' => 'Il Menu',
-        'text'  => 'Qui inseriremo un menu strutturato (categorie, piatti, prezzi), gestibile dal pannello admin.',
+        'intro' => 'Una selezione di antipasti, primi piatti, secondi alla brace, arrosticini, pizze e dessert.',
+        'note'  => 'Il menu e i prezzi possono variare in base alla stagione e alla disponibilità dei prodotti. Chiedi sempre al personale le proposte del giorno.',
     ],
+
 
         'not_found' => [
         'title'     => 'Pagina non trovata',

@@ -12,17 +12,22 @@ return [
     ],
 
     'home' => [
-        'title'       => 'Experience, cuisine and territory',
-        'subtitle'    => 'Multilingual base (IT/EN/DE/ES/FR), simple and responsive. Later we will connect the contents to the admin panel.',
-        'info_title'  => 'Quick info',
-        'info_text'   => 'Opening hours, closing days, contacts and Google Maps link will be editable from the admin panel.',
-        'style_title' => 'Our style',
-        'style_text'  => 'Visual layout inspired by the second site, but with clear calls to action like the first.',
-        'book_title'  => 'Reservations',
-        'book_text'   => 'We will add “Call / WhatsApp / Book” buttons optimised for mobile.',
-        'cta_menu'    => 'View the menu',
-        'cta_where'   => 'Open directions',
+        'title' => 'Torre di Blaga',
+        'subtitle' => 'Country restaurant with traditional Abruzzo cuisine: grilled meat, arrosticini and pizza.',
+
+        'info_title' => 'Traditional Abruzzo cuisine',
+        'info_text'  => 'We serve dishes from the Abruzzo culinary tradition, prepared with simple, seasonal ingredients: homemade pasta, cured meats, cheeses and classic side dishes.',
+
+        'style_title' => 'Grilled meat and arrosticini',
+        'style_text'  => 'The charcoal grill is the heart of the restaurant: we select quality cuts of meat and prepare arrosticini and mixed grills following local traditions.',
+
+        'book_title' => 'Pizza and evenings with friends',
+        'book_text'  => 'Light dough, long leavening and a hot oven: our pizza is designed for relaxed evenings with friends and family.',
+
+        'cta_menu'  => 'View the menu',
+        'cta_where' => 'Find us',
     ],
+
 
     'where' => [
         'title'      => 'Where we are',
@@ -32,46 +37,54 @@ return [
     ],
 
     'restaurant' => [
-        'title'           => 'The Restaurant',
-        'intro'           => 'A place where cuisine, hospitality and territory meet. An intimate dining room, few tables and attentive service designed to make you feel at home.',
-        'history_title'   => 'Our story',
-        'history_text'    => 'The restaurant was born from the desire to enhance family recipes and the authentic flavors of tradition. Over the years we have combined experience, research and local products to offer an honest, contemporary cuisine.',
-        'kitchen_title'   => 'Our cuisine',
-        'kitchen_text'    => 'We carefully select fresh, seasonal ingredients, giving priority to local producers. The menu changes throughout the year, following the rhythm of the seasons and what the market offers every day.',
-        'room_title'      => 'Dining room and atmosphere',
-        'room_text'       => 'The atmosphere is warm and intimate, with few tables and soft lighting. We want every guest to relax, enjoy the company and take the time to fully experience the meal.',
+        'title' => 'The Restaurant',
+        'intro' => 'A place where cuisine, hospitality and local territory come together. An intimate dining room, few tables and attentive service designed to make you feel at home.',
+
+        'story_title' => 'Our story',
+        'story_text'  => 'Here you can add a short story of the restaurant in English.',
+
+        'kitchen_title' => 'Our cuisine',
+        'kitchen_text'  => 'We select fresh, seasonal ingredients, giving priority to local producers. The menu changes throughout the year, following the rhythm of the seasons and what the market offers every day.',
+
+        'room_title' => 'The dining room and atmosphere',
+        'room_text'  => 'A warm and cosy room, with few tables and soft lighting. We want every guest to relax, talk in peace and enjoy the experience without haste.',
+
         'territory_title' => 'Territory and tradition',
-        'territory_text'  => 'We are closely connected to our territory: we select wines, oils and raw materials that tell the story of our area. In each dish you will find familiar flavors interpreted with respect and lightness.',
+        'territory_text'  => 'We are deeply linked to our territory: we select wines, oils and raw materials that tell the story of our area. On the plate you will find recognisable flavours, interpreted with respect and lightness.',
     ],
 
+
     'contacts' => [
-        'title'          => 'Contacts and reservations',
-        'text'           => 'For any information or to book a table you can contact us by phone, email or WhatsApp.',
+        'title' => 'Contacts and reservations',
+        'intro' => 'For information, special requests or to book a table you can use the form below or contact us directly.',
+
+        'info_title' => 'Contact details',
+        'info_text'  => 'We are available for reservations, private events and any special requests.',
 
         'phone_label'    => 'Phone',
         'email_label'    => 'Email',
         'whatsapp_label' => 'WhatsApp',
-        'address_label'  => 'Address',
 
-        'booking_title'  => 'Reservations',
-        'booking_text'   => 'We recommend booking in advance, especially at weekends and on public holidays. For special requests (allergies, intolerances, celebrations) please let us know when you book.',
+        'form_title'   => 'Write to us',
+        'form_name'    => 'Name and surname',
+        'form_email'   => 'Email',
+        'form_message' => 'Message',
+        'form_submit'  => 'Send request',
 
-        'note_title'     => 'Notes',
-        'note_text'      => 'If you are running late or unable to come, we kindly ask you to inform us. This helps us manage the available tables in the best way.',
+        'form_error_title' => 'Please check the fields and correct the errors.',
 
-        'form_title'     => 'Write to us',
-        'form_name'      => 'Full name',
-        'form_email'     => 'Email',
-        'form_message'   => 'Message',
-        'form_send'      => 'Send request',
+        'note' => 'Reservation requests are subject to confirmation: we will get back to you as soon as possible.',
 
-        'success'        => 'Thank you, your request has been sent. We will get back to you as soon as possible.',
+        'success' => 'Thank you, your request has been sent. We will contact you as soon as possible.',
     ],
+
 
     'menu_page' => [
-        'title' => 'Menu',
-        'text'  => 'Here we will add a structured menu (categories, dishes, prices), managed from the admin panel.',
+        'title' => 'The Menu',
+        'intro' => 'A selection of starters, first courses, grilled meat, arrosticini, pizzas and desserts.',
+        'note'  => 'Dishes and prices may change according to the season and product availability. Please ask the staff for today’s specials.',
     ],
+
 
         'not_found' => [
         'title'     => 'Page not found',

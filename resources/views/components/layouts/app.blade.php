@@ -64,18 +64,69 @@
 
     <style>
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; background: #0b0b0b; color: #f3f3f3; }
+
         .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+                .page {
+            padding-top: 32px;
+            padding-bottom: 32px;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+            line-height: 1.2;
+        }
+
+        .page-header .muted {
+            max-width: 640px;
+        }
+
         header { position: sticky; top: 0; background: rgba(10,10,10,.9); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.08); z-index: 50; }
+
         nav { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+
         .nav-left, .nav-right { display:flex; gap:12px; align-items:center; flex-wrap: wrap; }
+
         a { color: inherit; text-decoration: none; opacity: .9; }
+
         a:hover { opacity: 1; }
+
         .pill { padding: 8px 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; }
+
         .primary { background: #f5f5f5; color:#111; border-color: transparent; }
+
         .lang a { font-size: 12px; padding: 6px 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; }
+
         .lang a.active { background: #f5f5f5; color:#111; border-color: transparent; }
-        .hero { padding: 56px 0; border-bottom: 1px solid rgba(255,255,255,.08); background: radial-gradient(800px 300px at 20% 10%, rgba(255,255,255,.08), transparent); }
-        .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
+
+.hero {
+    padding: 56px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: radial-gradient(800px 300px at 20% 10%, rgba(255,255,255,.08), transparent);
+}
+
+.grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 800px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero .grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+    }
+}
+
+        
         @media (min-width: 800px) { .grid { grid-template-columns: 1.2fr .8fr; } }
         .card {
             border: 1px solid rgba(255,255,255,.10);
@@ -209,6 +260,86 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+            /* --- Hero home page --- */
+
+    .hero-heading {
+        margin: 0 0 12px;
+        font-size: 40px;
+        line-height: 1.1;
+    }
+
+    .hero-lead {
+        margin: 0 0 18px;
+        max-width: 560px;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .hero-heading {
+            font-size: 30px;
+        }
+
+        .hero-lead {
+            font-size: 15px;
+        }
+    }
+
+        /* --- Pagina Menu --- */
+
+    .menu-category-title {
+        margin: 0 0 6px;
+        font-size: 20px;
+    }
+
+    .menu-dishes {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 6px;
+    }
+
+    .menu-dish-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .menu-dish-text {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .menu-dish-name {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .menu-dish-description {
+        margin: 2px 0 0;
+        font-size: 14px;
+    }
+
+    .menu-dish-price {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        margin-left: 8px;
+    }
+
+    .menu-note {
+        margin-top: 24px;
+        font-size: 13px;
+    }
+
+
     </style>
 </head>
 <body>
@@ -255,20 +386,32 @@
                 </a>
             </div>
 
-            <div class="nav-right">
-                <a class="pill primary" href="/{{ $locale }}/contatti">{{ __('pages.nav.book') }}</a>
+<div class="nav-right">
+    @php
+        $restaurantPhone = config('restaurant.phone');
+        // link tel: solo se il telefono è configurato,
+        // altrimenti facciamo fallback alla pagina contatti
+        $phoneHref = $restaurantPhone
+            ? 'tel:' . preg_replace('/\D+/', '', $restaurantPhone)
+            : '/' . $locale . '/contatti';
+    @endphp
 
-                <div class="lang" style="display:flex; gap:8px;">
-                    @foreach (config('locales.supported') as $l)
-                        @php
-                            $url = '/' . $l . ($rest ? '/' . $rest : '');
-                        @endphp
-                        <a href="{{ $url }}" class="{{ $l === $locale ? 'active' : '' }}">
-                            {{ config('locales.labels')[$l] ?? strtoupper($l) }}
-                        </a>
-                    @endforeach
-                </div>
-            </div>
+    <a class="pill primary" href="{{ $phoneHref }}">
+        {{ __('pages.nav.book') }}
+    </a>
+
+    <div class="lang" style="display:flex; gap:8px;">
+        @foreach (config('locales.supported') as $l)
+            @php
+                $url = '/' . $l . ($rest ? '/' . $rest : '');
+            @endphp
+            <a href="{{ $url }}" class="{{ $l === $locale ? 'active' : '' }}">
+                {{ config('locales.labels')[$l] ?? strtoupper($l) }}
+            </a>
+        @endforeach
+    </div>
+</div>
+
         </nav>
     </div>
 </header>

@@ -12,17 +12,22 @@ return [
     ],
 
     'home' => [
-        'title'       => 'Expérience, cuisine et territoire',
-        'subtitle'    => 'Base multilingue (IT/EN/DE/ES/FR), simple et responsive. Plus tard, nous connecterons les contenus au panneau d’administration.',
-        'info_title'  => 'Infos rapides',
-        'info_text'   => 'Horaires d’ouverture, jours de fermeture, contacts et lien Google Maps seront modifiables depuis le panneau d’administration.',
-        'style_title' => 'Notre style',
-        'style_text'  => 'Mise en page visuelle inspirée du second site, avec des appels à l’action clairs comme sur le premier.',
-        'book_title'  => 'Réservations',
-        'book_text'   => 'Nous ajouterons des boutons « Appeler / WhatsApp / Réserver » optimisés pour mobile.',
-        'cta_menu'    => 'Voir le menu',
-        'cta_where'   => 'Ouvrir l’itinéraire',
+        'title' => 'Torre di Blaga',
+        'subtitle' => 'Restaurant de campagne avec cuisine typique des Abruzzes : viandes grillées, arrosticini et pizza.',
+
+        'info_title' => 'Cuisine typique des Abruzzes',
+        'info_text'  => 'Nous proposons des plats de la tradition culinaire des Abruzzes, préparés avec des ingrédients simples et de saison : pâtes maison, charcuterie, fromages et accompagnements classiques.',
+
+        'style_title' => 'Viandes grillées et arrosticini',
+        'style_text'  => 'Le gril est le cœur du restaurant : nous sélectionnons des viandes de qualité et préparons arrosticini et assortiments grillés selon la tradition locale.',
+
+        'book_title' => 'Pizza et soirées entre amis',
+        'book_text'  => 'Pâte légère, longue levée et four bien chaud : notre pizza est pensée pour des soirées conviviales entre amis et en famille.',
+
+        'cta_menu'  => 'Voir le menu',
+        'cta_where' => 'Nous trouver',
     ],
+
 
     'where' => [
         'title'       => 'Nous trouver',
@@ -32,46 +37,54 @@ return [
     ],
 
     'restaurant' => [
-        'title'           => 'Le Restaurant',
-        'intro'           => 'Un lieu où se rencontrent cuisine, accueil et terroir. Une salle intime, peu de tables et un service soigné pour que vous vous sentiez comme chez vous.',
-        'history_title'   => 'Notre histoire',
-        'history_text'    => 'Le restaurant est né du désir de mettre en valeur les recettes de famille et les saveurs authentiques de la tradition. Au fil des années, nous avons uni expérience, recherche et produits locaux pour proposer une cuisine sincère et contemporaine.',
-        'kitchen_title'   => 'Notre cuisine',
-        'kitchen_text'    => 'Nous sélectionnons des ingrédients frais et de saison, en privilégiant les producteurs locaux. Les plats changent au fil de l’année, suivant le rythme des saisons et ce que le marché propose chaque jour.',
-        'room_title'      => 'La salle et l’ambiance',
-        'room_text'       => 'L’atmosphère est chaleureuse et intime, avec peu de tables et un éclairage doux. Nous souhaitons que chaque client puisse se détendre et profiter pleinement du moment.',
+        'title' => 'Le Restaurant',
+        'intro' => 'Un lieu où se rencontrent cuisine, accueil et terroir. Une salle intime, peu de tables et un service soigné, pensés pour vous faire sentir comme chez vous.',
+
+        'story_title' => 'Notre histoire',
+        'story_text'  => 'Torre di Blaga est née comme une petite trattoria familiale et est devenue au fil du temps un restaurant qui associe tradition et souci du détail, sans perdre la chaleur de la maison.',
+
+        'kitchen_title' => 'Notre cuisine',
+        'kitchen_text'  => 'Nous sélectionnons des ingrédients frais et de saison, en privilégiant les producteurs locaux. Les plats évoluent au fil de l’année, suivant le rythme des saisons et ce que le marché propose chaque jour.',
+
+        'room_title' => 'La salle et l’atmosphère',
+        'room_text'  => 'La salle est chaleureuse et conviviale, avec peu de tables et une lumière tamisée. Nous souhaitons que chaque client puisse se détendre, discuter en toute tranquillité et profiter de l’expérience sans se presser.',
+
         'territory_title' => 'Terroir et tradition',
-        'territory_text'  => 'Nous sommes très attachés à notre terroir : nous choisissons des vins, huiles et matières premières qui racontent notre région. Dans les plats, vous retrouverez des saveurs familières, interprétées avec respect et légèreté.',
+        'territory_text'  => 'Nous sommes profondément attachés à notre territoire : nous sélectionnons des vins, des huiles et des produits qui racontent notre région. Dans les assiettes, vous retrouverez des saveurs reconnaissables, interprétées avec respect et légèreté.',
     ],
 
+
     'contacts' => [
-        'title'          => 'Contacts et réservations',
-        'text'           => 'Pour toute information ou pour réserver une table, vous pouvez nous contacter par téléphone, e-mail ou WhatsApp.',
+        'title' => 'Contacts et réservations',
+        'intro' => 'Pour toute information, demande particulière ou réservation de table, vous pouvez utiliser le formulaire ci-dessous ou nous contacter directement.',
+
+        'info_title' => 'Coordonnées',
+        'info_text'  => 'Nous sommes à votre disposition pour les réservations, événements privés et demandes spéciales.',
 
         'phone_label'    => 'Téléphone',
         'email_label'    => 'E-mail',
         'whatsapp_label' => 'WhatsApp',
-        'address_label'  => 'Adresse',
 
-        'booking_title'  => 'Réservations',
-        'booking_text'   => 'Nous vous conseillons de réserver à l’avance, surtout le week-end et les jours fériés. Pour toute demande particulière (allergies, intolérances, événements), merci de nous le signaler lors de la réservation.',
+        'form_title'   => 'Écrivez-nous',
+        'form_name'    => 'Nom et prénom',
+        'form_email'   => 'E-mail',
+        'form_message' => 'Message',
+        'form_submit'  => 'Envoyer la demande',
 
-        'note_title'     => 'Remarques',
-        'note_text'      => 'En cas de retard ou d’imprévu, nous vous serions reconnaissants de nous prévenir. Cela nous aide à gérer au mieux les tables disponibles en salle.',
+        'form_error_title' => 'Veuillez vérifier les champs et corriger les erreurs.',
 
-        'form_title'     => 'Écrivez-nous',
-        'form_name'      => 'Nom et prénom',
-        'form_email'     => 'E-mail',
-        'form_message'   => 'Message',
-        'form_send'      => 'Envoyer la demande',
+        'note' => 'Les demandes de réservation sont soumises à confirmation : nous vous répondrons dans les plus brefs délais.',
 
-        'success'        => 'Merci, votre demande a été envoyée. Nous vous répondrons dès que possible.',
+        'success' => 'Merci, votre demande a été envoyée. Nous vous contacterons dès que possible.',
     ],
+
 
     'menu_page' => [
-        'title' => 'Menu',
-        'text'  => 'Ici, nous ajouterons un menu structuré (catégories, plats, prix), géré depuis le panneau d’administration.',
+        'title' => 'Le Menu',
+        'intro' => 'Une sélection d’entrées, de premiers plats, de viandes grillées, d’arrosticini, de pizzas et de desserts.',
+        'note'  => 'Les plats et les prix peuvent varier selon la saison et la disponibilité des produits. Demandez au personnel les suggestions du jour.',
     ],
+
 
         'not_found' => [
         'title'     => 'Page introuvable',

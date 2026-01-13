@@ -5,19 +5,24 @@
     <section class="hero">
         <div class="container grid">
             <div>
-                <h1 style="margin:0 0 12px; font-size: 40px; line-height: 1.1;">
+                <h1 class="hero-heading">
                     {{ __('pages.home.title') }}
                 </h1>
-                <p class="muted" style="margin:0 0 18px;">
+
+                <p class="muted hero-lead">
                     {{ __('pages.home.subtitle') }}
                 </p>
-                <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                    {{--<a class="pill primary" href="/{{ request()->route('locale') }}/menu">
+
+                <div class="hero-actions">
+                    <a class="pill primary"
+                       href="{{ route('menu', ['locale' => request()->route('locale')]) }}">
                         {{ __('pages.home.cta_menu') }}
                     </a>
-                    <a class="pill" href="/{{ request()->route('locale') }}/dove-siamo">
+
+                    <a class="pill"
+                       href="{{ route('dove-siamo', ['locale' => request()->route('locale')]) }}">
                         {{ __('pages.home.cta_where') }}
-                    </a>--}}
+                    </a>
                 </div>
             </div>
 
@@ -62,30 +67,4 @@
             </div>
         </div>
     </div>
-
-    {{-- JS per far cambiare automaticamente le immagini dello slider --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const slider = document.getElementById('hero-slider');
-            if (!slider) return;
-
-            let images;
-            try {
-                images = JSON.parse(slider.dataset.images);
-            } catch (e) {
-                images = [];
-            }
-
-            if (!images || images.length === 0) {
-                return;
-            }
-
-            let index = 0;
-
-            setInterval(function () {
-                index = (index + 1) % images.length;
-                slider.style.backgroundImage = "url('" + images[index] + "')";
-            }, 4000); // cambia immagine ogni 4 secondi
-        });
-    </script>
 </x-layouts.app>

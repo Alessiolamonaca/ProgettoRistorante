@@ -2,54 +2,58 @@
     :title="__('seo.menu.title')"
     :meta-description="__('seo.menu.description')"
 >
-    <div class="container" style="padding-top: 24px;">
+    @php
+        /** @var \Illuminate\Support\Collection|\App\Models\Category[] $categories */
+        $locale   = request()->route('locale') ?? config('locales.default', 'it');
+        $menuNote = __('pages.menu_page.note');
+    @endphp
 
-        <div class="card" style="margin-bottom: 20px;">
-            <h1 style="margin-top:0;">{{ __('pages.menu_page.title') }}</h1>
+    <div class="container page">
+        <div class="page-header">
+            <h1>{{ __('pages.menu_page.title') }}</h1>
             <p class="muted">
                 {{ __('pages.menu_page.intro') }}
             </p>
         </div>
 
-        @if ($categories->isEmpty())
-            <div class="card">
-                <p class="muted" style="margin:0;">
-                    (Menu non ancora disponibile.)
-                </p>
-            </div>
-        @else
-            <div class="grid">
-                @foreach ($categories as $category)
-                    <div class="card">
-                        <h2 style="margin-top:0; font-size:20px;">
-                            {{ $category->name }}
-                        </h2>
+        <div class="grid">
+            @foreach ($categories as $category)
+                <section class="card">
+                    <h2 class="menu-category-title">
+                        {{ $category->name }}
+                    </h2>
 
-                        @forelse ($category->dishes as $dish)
-                            <div style="display:flex; justify-content:space-between; gap:16px; margin-bottom:10px;">
-                                <div>
-                                    <strong>{{ $dish->name }}</strong>
-                                    @if ($dish->description)
-                                        <p class="muted" style="margin:4px 0 0;">
+                    <div class="menu-dishes">
+                        @foreach ($category->dishes as $dish)
+                            <div class="menu-dish-row">
+                                <div class="menu-dish-text">
+                                    <p class="menu-dish-name">
+                                        {{ $dish->name }}
+                                    </p>
+
+                                    @if($dish->description)
+                                        <p class="menu-dish-description muted">
                                             {{ $dish->description }}
                                         </p>
                                     @endif
                                 </div>
 
-                                @if ($dish->formatted_price)
-                                    <div style="white-space:nowrap;">
-                                        € {{ $dish->formatted_price }}
+                                @if($dish->formatted_price)
+                                    <div class="menu-dish-price">
+                                        {{ $dish->formatted_price }}
                                     </div>
                                 @endif
                             </div>
-                        @empty
-                            <p class="muted" style="margin:0;">
-                                (Nessun piatto disponibile in questa categoria.)
-                            </p>
-                        @endforelse
+                        @endforeach
                     </div>
-                @endforeach
-            </div>
+                </section>
+            @endforeach
+        </div>
+
+        @if($menuNote !== 'pages.menu_page.note')
+            <p class="muted menu-note">
+                {{ $menuNote }}
+            </p>
         @endif
     </div>
 </x-layouts.app>

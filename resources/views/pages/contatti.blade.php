@@ -2,83 +2,112 @@
     :title="__('seo.contacts.title')"
     :meta-description="__('seo.contacts.description')"
 >
-    <div class="container" style="padding-top: 24px;">
+    @php
+        $restaurantName = config('restaurant.name', 'Ristorante');
+        $addressLine    = config('restaurant.address_line');
+        $phone          = config('restaurant.phone');
+        $email          = config('restaurant.email');
+        $whatsapp       = config('restaurant.whatsapp');
+
+        $waNumber  = $whatsapp ? preg_replace('/\D+/', '', $whatsapp) : null;
+        $phoneHref = $phone ? 'tel:' . preg_replace('/\D+/', '', $phone) : null;
+
+        $locale = request()->route('locale') ?? config('locales.default', 'it');
+        $action = route('contatti.submit', ['locale' => $locale]);
+    @endphp
+
+    <div class="container page">
+        <div class="page-header">
+            <h1>{{ __('pages.contacts.title') }}</h1>
+            <p class="muted">
+                {{ __('pages.contacts.intro') }}
+            </p>
+        </div>
 
         {{-- Messaggio di successo --}}
         @if (session('success'))
-            <div class="card" style="margin-bottom: 16px; border-color: rgba(46,204,113,.6);">
-                <p class="muted" style="margin:0; color:#2ecc71;">
-                    {{ session('success') }}
-                </p>
+            <div class="card" style="border-color: rgba(46,204,113,.7); background: rgba(46,204,113,.08); margin-bottom:20px;">
+                {{ session('success') }}
             </div>
         @endif
 
         {{-- Errori di validazione --}}
         @if ($errors->any())
-            <div class="card" style="margin-bottom: 16px; border-color: rgba(231,76,60,.6);">
+            <div class="card" style="border-color: rgba(231,76,60,.7); background: rgba(231,76,60,.08); margin-bottom:20px;">
+                <p style="margin-top:0; font-weight:600;">
+                    {{ __('pages.contacts.form_error_title') ?? 'Per favore controlla i campi evidenziati.' }}
+                </p>
                 <ul style="margin:0; padding-left:18px;">
                     @foreach ($errors->all() as $error)
-                        <li class="muted">{{ $error }}</li>
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
         @endif
 
         <div class="grid">
+            {{-- Colonna informazioni di contatto --}}
             <div class="card">
-                <h1 style="margin-top:0;">{{ __('pages.contacts.title') }}</h1>
+                <h2 style="margin-top:0; font-size:20px;">
+                    {{ __('pages.contacts.info_title') }}
+                </h2>
+
                 <p class="muted">
-                    {{ __('pages.contacts.text') }}
+                    {{ __('pages.contacts.info_text') }}
                 </p>
-
-                @php
-                    $phone    = config('restaurant.phone');
-                    $email    = config('restaurant.email');
-                    $whatsapp = config('restaurant.whatsapp');
-                    $address  = config('restaurant.address_line');
-                @endphp
-
 
                 <div style="margin-top:16px;">
-                    <p><strong>{{ __('pages.contacts.phone_label') }}:</strong> {{ $phone }}</p>
-                    <p><strong>{{ __('pages.contacts.email_label') }}:</strong> {{ $email }}</p>
-                    <p><strong>{{ __('pages.contacts.whatsapp_label') }}:</strong> {{ $whatsapp }}</p>
-                    <p><strong>{{ __('pages.contacts.address_label') }}:</strong> {{ $address }}</p>
+                    @if($addressLine)
+                        <p class="muted" style="margin:0 0 8px;">
+                            <strong>{{ $restaurantName }}</strong><br>
+                            {{ $addressLine }}
+                        </p>
+                    @endif
+
+                    @if($phone)
+                        <p style="margin:0 0 6px;">
+                            <strong>{{ __('pages.contacts.phone_label') }}:</strong>
+                            <a href="{{ $phoneHref ?? '#' }}">{{ $phone }}</a>
+                        </p>
+                    @endif
+
+                    @if($email)
+                        <p style="margin:0 0 6px;">
+                            <strong>{{ __('pages.contacts.email_label') }}:</strong>
+                            <a href="mailto:{{ $email }}">{{ $email }}</a>
+                        </p>
+                    @endif
+
+                    @if($waNumber)
+                        <p style="margin:0 0 6px;">
+                            <strong>{{ __('pages.contacts.whatsapp_label') }}:</strong>
+                            <a href="https://wa.me/{{ $waNumber }}" target="_blank" rel="noopener">
+                                {{ $whatsapp }}
+                            </a>
+                        </p>
+                    @endif
                 </div>
 
-                <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
-                    <a class="pill primary" href="tel:{{ preg_replace('/\s+/', '', $phone) }}">
-                        {{ __('pages.contacts.phone_label') }}
-                    </a>
-                    <a class="pill" href="mailto:{{ $email }}">
-                        {{ __('pages.contacts.email_label') }}
-                    </a>
-                    <a class="pill" href="https://wa.me/{{ preg_replace('/\D+/', '', $whatsapp) }}" target="_blank" rel="noopener">
-                        {{ __('pages.contacts.whatsapp_label') }}
-                    </a>
-                </div>
+                @if($phoneHref)
+                    <div style="margin-top:18px;">
+                        <a href="{{ $phoneHref }}" class="pill primary">
+                            {{ __('pages.nav.book') }}
+                        </a>
+                    </div>
+                @endif
             </div>
 
+            {{-- Colonna form contatti --}}
             <div class="card">
-                <h2 style="margin-top:0; font-size:20px;">{{ __('pages.contacts.booking_title') }}</h2>
-                <p class="muted">
-                    {{ __('pages.contacts.booking_text') }}
-                </p>
+                <h2 style="margin-top:0; font-size:20px;">
+                    {{ __('pages.contacts.form_title') }}
+                </h2>
 
-                <h3 style="margin-top:16px; font-size:18px;">{{ __('pages.contacts.note_title') }}</h3>
-                <p class="muted">
-                    {{ __('pages.contacts.note_text') }}
-                </p>
-
-                <hr style="margin:16px 0; border-color: rgba(255,255,255,.08);">
-
-                <h2 style="margin-top:0; font-size:20px;">{{ __('pages.contacts.form_title') }}</h2>
-
-                <form method="POST" action="{{ route('contatti.submit', ['locale' => request()->route('locale')]) }}">
+                <form method="POST" action="{{ $action }}" style="margin-top:12px; display:flex; flex-direction:column; gap:12px;">
                     @csrf
 
-                    <div style="margin-bottom:12px;">
-                        <label for="name" style="display:block; font-size:14px; margin-bottom:4px;">
+                    <div>
+                        <label for="name" style="display:block; margin-bottom:4px;">
                             {{ __('pages.contacts.form_name') }}
                         </label>
                         <input
@@ -86,11 +115,12 @@
                             name="name"
                             type="text"
                             value="{{ old('name') }}"
-                            style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.4); color:#f3f3f3;">
+                            style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:#141414; color:#f5f5f5;"
+                        >
                     </div>
 
-                    <div style="margin-bottom:12px;">
-                        <label for="email" style="display:block; font-size:14px; margin-bottom:4px;">
+                    <div>
+                        <label for="email" style="display:block; margin-bottom:4px;">
                             {{ __('pages.contacts.form_email') }}
                         </label>
                         <input
@@ -98,27 +128,34 @@
                             name="email"
                             type="email"
                             value="{{ old('email') }}"
-                            style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.4); color:#f3f3f3;">
+                            style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:#141414; color:#f5f5f5;"
+                        >
                     </div>
 
-                    <div style="margin-bottom:12px;">
-                        <label for="message" style="display:block; font-size:14px; margin-bottom:4px;">
+                    <div>
+                        <label for="message" style="display:block; margin-bottom:4px;">
                             {{ __('pages.contacts.form_message') }}
                         </label>
                         <textarea
                             id="message"
                             name="message"
                             rows="4"
-                            style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.4); color:#f3f3f3;">{{ old('message') }}</textarea>
+                            style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:#141414; color:#f5f5f5; resize:vertical;"
+                        >{{ old('message') }}</textarea>
                     </div>
 
-                    <button
-                        type="submit"
-                        class="pill primary"
-                        style="margin-top:4px; border:none; cursor:pointer;">
-                        {{ __('pages.contacts.form_send') }}
-                    </button>
+                    <div style="margin-top:4px;">
+                        <button type="submit" class="pill primary">
+                            {{ __('pages.contacts.form_submit') }}
+                        </button>
+                    </div>
                 </form>
+
+                @if(__('pages.contacts.note') !== 'pages.contacts.note')
+                    <p class="muted" style="margin-top:12px;">
+                        {{ __('pages.contacts.note') }}
+                    </p>
+                @endif
             </div>
         </div>
     </div>
