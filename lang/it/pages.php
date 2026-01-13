@@ -79,4 +79,17 @@ return [
         'back_home' => 'Torna alla home',
     ],
 
+    'privacy' => [
+        'title'          => 'Informativa privacy e cookie',
+        'intro'          => 'In questa pagina trovi alcune informazioni di base sul trattamento dei dati personali e sull’uso dei cookie su questo sito.',
+        'data_title'     => 'Dati raccolti tramite il sito',
+        'data_text'      => 'Questo sito raccoglie dati personali solo quando l’utente compila volontariamente il modulo di contatto (nome, email e messaggio). I dati vengono utilizzati esclusivamente per rispondere alle richieste inviate e non vengono ceduti a terzi.',
+        'cookies_title'  => 'Cookie',
+        'cookies_text'   => 'Il sito può utilizzare cookie tecnici necessari al corretto funzionamento delle pagine. Eventuali cookie di terze parti (ad esempio strumenti di statistica o mappe esterne) saranno utilizzati solo se integrati in futuro e, se necessario, verranno accompagnati da un’informativa specifica.',
+        'contacts_title' => 'Titolare del trattamento',
+        'contacts_text'  => 'Il titolare del trattamento dei dati è il ristorante indicato nella pagina Contatti. Per qualsiasi richiesta relativa alla privacy puoi scriverci all’indirizzo email indicato nella stessa pagina.',
+    ],
+
+    'footer_privacy' => 'Privacy & cookie',
+
 ];

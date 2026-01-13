@@ -79,4 +79,17 @@ return [
         'back_home' => 'Back to home',
     ],
 
+    'privacy' => [
+        'title'          => 'Privacy and cookie policy',
+        'intro'          => 'On this page you can find some basic information about how we process personal data and how cookies are used on this website.',
+        'data_title'     => 'Data collected through the website',
+        'data_text'      => 'This site collects personal data only when the contact form is voluntarily filled in (name, email and message). The data is used solely to reply to the requests received and is not shared with third parties.',
+        'cookies_title'  => 'Cookies',
+        'cookies_text'   => 'The site may use technical cookies necessary for the proper functioning of the pages. Any third-party cookies (for example analytics tools or external maps) will be used only if integrated in the future and, where required, will be accompanied by a specific notice.',
+        'contacts_title' => 'Data controller',
+        'contacts_text'  => 'The data controller is the restaurant indicated on the Contacts page. For any request regarding privacy you can write to the email address shown there.',
+    ],
+
+    'footer_privacy' => 'Privacy & cookies',
+
 ];

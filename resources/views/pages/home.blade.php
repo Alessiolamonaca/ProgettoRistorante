@@ -22,7 +22,15 @@
             </div>
 
             <div class="card">
-                <div class="hero-image" style="background-image: url('/images/hero-sala.jpg');"></div>
+                {{-- HERO con slider automatico --}}
+                <div
+                    class="hero-image"
+                    id="hero-slider"
+                    data-images='["/images/hero-sala.jpg","/images/piatto-1.jpg","/images/piatto-2.jpg"]'
+                    style="background-image: url('/images/hero-sala.jpg');"
+                ></div>
+
+                {{-- Piccola galleria statica sotto --}}
                 <div class="gallery">
                     <img src="/images/piatto-1.jpg" alt="Piatto 1">
                     <img src="/images/piatto-2.jpg" alt="Piatto 2">
@@ -54,4 +62,30 @@
             </div>
         </div>
     </div>
+
+    {{-- JS per far cambiare automaticamente le immagini dello slider --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.getElementById('hero-slider');
+            if (!slider) return;
+
+            let images;
+            try {
+                images = JSON.parse(slider.dataset.images);
+            } catch (e) {
+                images = [];
+            }
+
+            if (!images || images.length === 0) {
+                return;
+            }
+
+            let index = 0;
+
+            setInterval(function () {
+                index = (index + 1) % images.length;
+                slider.style.backgroundImage = "url('" + images[index] + "')";
+            }, 4000); // cambia immagine ogni 4 secondi
+        });
+    </script>
 </x-layouts.app>

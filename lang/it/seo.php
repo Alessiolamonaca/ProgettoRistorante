@@ -31,4 +31,14 @@ return [
         'description' => 'La pagina che stai cercando non è disponibile. Torna alla home del ristorante Torre di Blaga per scoprire il menu e le nostre proposte.',
     ],
 
+    'privacy' => [
+        'title'       => 'Privacy e cookie – Torre di Blaga',
+        'description' => 'Informazioni di base sul trattamento dei dati personali e sull’utilizzo dei cookie sul sito del ristorante Torre di Blaga.',
+    ],
+
+    'privacy' => [
+        'title'       => 'Privacy and cookies – Torre di Blaga',
+        'description' => 'Basic information about personal data processing and cookie usage on the Torre di Blaga restaurant website.',
+    ],
+
 ];

@@ -3,6 +3,55 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Models\Category;
+use App\Mail\ContactRequestMail;
+use Illuminate\Support\Facades\Mail;
+
+
+/*
+|--------------------------------------------------------------------------
+| Sitemap XML
+|--------------------------------------------------------------------------
+|
+| Sitemap multilingua per tutte le pagine principali del sito.
+| URL: /sitemap.xml
+|
+*/
+
+Route::get('/sitemap.xml', function () {
+    $locales = config('locales.supported', ['it']);
+    $pages = [
+        '',            // home
+        'ristorante',
+        'menu',
+        'dove-siamo',
+        'contatti',
+        'privacy',
+    ];
+
+    $baseUrl = request()->root(); // es: http://127.0.0.1:8000
+
+    $urls = [];
+
+    foreach ($locales as $locale) {
+        foreach ($pages as $slug) {
+            $path = '/' . $locale;
+            if ($slug !== '') {
+                $path .= '/' . $slug;
+            }
+
+            $urls[] = [
+                'loc'        => $baseUrl . $path,
+                'changefreq' => $slug === 'menu' ? 'weekly' : 'monthly',
+                'priority'   => $slug === '' ? '1.0' : '0.8',
+            ];
+        }
+    }
+
+    return response()
+        ->view('sitemap', ['urls' => $urls])
+        ->header('Content-Type', 'application/xml');
+})->name('sitemap');
 
 /*
 |--------------------------------------------------------------------------
@@ -48,8 +97,16 @@ Route::group([
 
     // Menu
     Route::get('/menu', function () {
-        return view('pages.menu');
+        $categories = Category::with(['dishes' => function ($query) {
+                $query->where('is_active', true)
+                        ->orderBy('position');
+            }])
+            ->orderBy('position')
+            ->get();
+
+        return view('pages.menu', compact('categories'));
     })->name('menu');
+
 
     // Dove siamo
     Route::get('/dove-siamo', function () {
@@ -61,12 +118,15 @@ Route::group([
         return view('pages.contatti');
     })->name('contatti');
 
+    // Privacy & Cookie
+    Route::get('/privacy', function () {
+        return view('pages.privacy');
+    })->name('privacy');
+
     // Contatti (POST) – invio form
     Route::post('/contatti', function (Request $request, string $locale) {
-        // Il middleware ha già impostato la locale, qui la forziamo comunque
         app()->setLocale($locale);
 
-        // Validazione con messaggi personalizzati per ogni lingua
         $validated = $request->validate([
             'name'    => ['required', 'string', 'max:255'],
             'email'   => ['required', 'email', 'max:255'],
@@ -81,15 +141,30 @@ Route::group([
             'message.max'      => __('validation_contact.message_max', ['max' => 2000]),
         ]);
 
-        // Per ora salviamo solo nei log (nessun invio email)
+        // Log per debug
         Log::info('Contact form request', [
             'locale' => $locale,
             'name'   => $validated['name'],
             'email'  => $validated['email'],
         ]);
 
+        // Invio email al ristorante (se configurato)
+        $to = config('restaurant.email');
+
+        if ($to) {
+            try {
+                Mail::to($to)->send(new ContactRequestMail($validated));
+            } catch (\Throwable $e) {
+                Log::error('Errore invio email contatti', [
+                    'error' => $e->getMessage(),
+                ]);
+                // Non blocchiamo l’utente se c’è un problema di email
+            }
+        }
+
         return back()->with('success', __('pages.contacts.success'));
     })->name('contatti.submit');
+
 
     /*
     |--------------------------------------------------------------------------

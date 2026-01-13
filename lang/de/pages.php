@@ -79,4 +79,17 @@ return [
         'back_home' => 'Zur Startseite',
     ],
 
+    'privacy' => [
+        'title'          => 'Datenschutz- und Cookie-Hinweis',
+        'intro'          => 'Auf dieser Seite finden Sie grundlegende Informationen darüber, wie wir personenbezogene Daten verarbeiten und wie Cookies auf dieser Website verwendet werden.',
+        'data_title'     => 'Über die Website erhobene Daten',
+        'data_text'      => 'Diese Website erhebt personenbezogene Daten nur, wenn das Kontaktformular freiwillig ausgefüllt wird (Name, E-Mail-Adresse und Nachricht). Die Daten werden ausschließlich zur Beantwortung der eingegangenen Anfragen verwendet und nicht an Dritte weitergegeben.',
+        'cookies_title'  => 'Cookies',
+        'cookies_text'   => 'Die Website kann technische Cookies verwenden, die für das ordnungsgemäße Funktionieren der Seiten erforderlich sind. Etwaige Cookies Dritter (z. B. Statistikwerkzeuge oder externe Karten) werden nur verwendet, wenn sie in Zukunft integriert werden. Gegebenenfalls wird ein gesonderter Hinweis bereitgestellt.',
+        'contacts_title' => 'Verantwortlicher für die Datenverarbeitung',
+        'contacts_text'  => 'Verantwortlich für die Datenverarbeitung ist das Restaurant, das auf der Kontaktseite angegeben ist. Bei Fragen zum Datenschutz können Sie uns an die dort angegebene E-Mail-Adresse schreiben.',
+    ],
+
+    'footer_privacy' => 'Datenschutz & Cookies',
+
 ];

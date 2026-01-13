@@ -31,4 +31,9 @@ return [
         'description' => 'La page que vous recherchez n’est pas disponible. Retournez à la page d’accueil de Torre di Blaga pour découvrir le menu et nos propositions.',
     ],
 
+    'privacy' => [
+        'title'       => 'Confidentialité et cookies – Torre di Blaga',
+        'description' => 'Informations de base sur le traitement des données personnelles et l’utilisation des cookies sur le site du restaurant Torre di Blaga.',
+    ],
+
 ];

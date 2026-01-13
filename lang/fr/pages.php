@@ -79,4 +79,17 @@ return [
         'back_home' => 'Retour à l’accueil',
     ],
 
+    'privacy' => [
+        'title'          => 'Politique de confidentialité et cookies',
+        'intro'          => 'Cette page présente des informations de base sur le traitement des données personnelles et l’utilisation des cookies sur ce site.',
+        'data_title'     => 'Données collectées via le site',
+        'data_text'      => 'Ce site collecte des données personnelles uniquement lorsque le formulaire de contact est rempli volontairement (nom, e-mail et message). Les données sont utilisées uniquement pour répondre aux demandes reçues et ne sont pas communiquées à des tiers.',
+        'cookies_title'  => 'Cookies',
+        'cookies_text'   => 'Le site peut utiliser des cookies techniques nécessaires au bon fonctionnement des pages. D’éventuels cookies tiers (par exemple des outils de statistiques ou des cartes externes) ne seront utilisés que s’ils sont intégrés à l’avenir et, le cas échéant, feront l’objet d’une information spécifique.',
+        'contacts_title' => 'Responsable du traitement',
+        'contacts_text'  => 'Le responsable du traitement des données est le restaurant indiqué sur la page Contacts. Pour toute question relative à la confidentialité, vous pouvez nous écrire à l’adresse e-mail qui y figure.',
+    ],
+
+    'footer_privacy' => 'Confidentialité & cookies',
+
 ];

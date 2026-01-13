@@ -11,7 +11,7 @@ return [
     'maps_query'   => 'Torre di Blaga, Italia',
 
     // URL relativa a un'immagine da usare per la condivisione (Open Graph)
-    'og_image'   => '/images/piatto1.jpg',
+    'og_image'   => '/images/hero-sala.jpg',
 
     // Nome del sito/brand per i meta Open Graph
     'site_name'  => 'Torre di Blaga',
