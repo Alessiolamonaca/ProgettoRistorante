@@ -15,4 +15,8 @@ return [
 
     // Nome del sito/brand per i meta Open Graph
     'site_name'  => 'Torre di Blaga',
+
+    // Logo //
+    'logo' => 'images/logo-torre-blaga.png', 
+
 ];
