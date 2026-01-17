@@ -101,14 +101,36 @@
             padding: 16px;
         }
 
-        .page {
-            padding-top: 32px;
-            padding-bottom: 32px;
+        /* Spazio globale sotto la navbar fissa (solo desktop/tablet) */
+        main {
+            padding-top: 72px;  /* altezza approssimativa dell'header */
         }
 
-        .page-header {
-            margin-bottom: 24px;
+
+        /* Spaziatura pagine interne (Il Menu, Il Ristorante, ecc.) */
+        .page {
+            padding-top: 48px;      /* così i contenuti partono più sotto, come la hero in home */
+            padding-bottom: 32px;
         }
+        
+
+        .page-header {
+            /* piccolo stacco dalla navbar */
+            margin-top: 0px;
+            margin-bottom: 24px;
+            padding-top: 16px;
+            /* riga sottile come separatore fra header blur e contenuto pagina */
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+
+        /* Titoli delle sezioni nelle pagine interne (es. "Il Ristorante") */
+        .page-section-title {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
 
         .page-header h1 {
             margin: 0 0 8px;
@@ -118,6 +140,13 @@
 
         .page-header .muted {
             max-width: 640px;
+        }
+
+        /* Su mobile teniamo un po' meno spazio per non allungare troppo la pagina */
+        @media (max-width: 640px) {
+            .page {
+                padding-top: 32px;
+            }
         }
 
         .muted {
@@ -173,15 +202,15 @@
 
         /* === HEADER E NAVBAR (DESKTOP + MOBILE) === */
         header {
-            position: sticky;
+            position: sticky;              /* fisso in alto */
             top: 0;
             background: rgba(10,10,10,.9);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);   /* resta la blur */
             border-bottom: 1px solid rgba(255,255,255,.08);
-            z-index: 50;
+            z-index: 50;                /* sicuro sopra a tutto il resto */
         }
-
-        /* SOLO NELL'HEADER: container a tutta larghezza */
+        
+        /* SOLO NELL'HEADER: container a tutta larghezza (come avevamo già) */
         header .container {
             max-width: 100%;
         }
@@ -298,6 +327,10 @@
             /* Su mobile il header non resta sticky in alto */
             header {
                 position: static;
+
+           /* E non serve il padding extra sul main */
+            main {
+                padding-top: 72px;
             }
 
             /* Impiliamo le 3 sezioni una sotto l'altra */
@@ -321,7 +354,7 @@
             .nav-center {
                 justify-content: center;
                 flex: wrap;
-                margin-top: 8px;
+                width: 100%;
                 margin-top: 8px;
                 row-gap: 6px;
             }
@@ -329,6 +362,7 @@
             /* 3) Prenota + lingua in basso, uno a sinistra e uno a destra */
             .nav-right {
                 justify-content: space-between;
+                width: 100%;
                 margin-top: 10px;
             }
 
@@ -367,7 +401,7 @@
 
         .grid {
             display: grid;
-            gap: 16px;
+            gap: 16px;                                                                                      
             grid-template-columns: 1fr;
         }
 
@@ -536,36 +570,69 @@
         @media (min-width: 800px) {
             /* più spazio verticale nel container dell'header */
             header .container {
-                padding-top: 20px;
-                padding-bottom: 20px;
+                padding-top: 12px;
+                padding-bottom: 12px;
             }
         
             /* altezza minima della barra di navigazione */
             nav {
-                min-height: 80px;
+                min-height: 64px;
             }
         
             /* logo un po' più grande */
             .brand img {
-                height: 125px;
+                height: 100px;
             }
         
             /* link centrali più "importanti" */
             .nav-center .nav-main-link {
-                font-size: 25px;
-                padding: 8px 16px;
+                font-size: 15px;
+                padding: 6px 14px;
             }
         
             /* pulsante Prenota più grande */
             .pill.primary {
-                padding: 10px 18px;
-                font-size: 18px;
+                padding: 8px 16px;
+                font-size: 14px;
             }
         
             /* select lingua più comoda da cliccare */
             .lang-select {
-                padding: 8px 14px;
-                font-size: 18px;
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* --- Home: sezione informativa con 3 card */
+        .home-info {
+            padding-top: 24px;
+            padding-bottom: 32px;
+        }
+
+        /* Titolo delle card nella sezione home */
+        .home-card-title {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        /* Su desktop la griglia .grid-3 va a tre colonne */
+        @media (min-width: 800px){
+            .grid-3 {
+                grid-template-columns: repeat(3, minmax(0,1fr));
+            }
+        }
+
+        /* --- Menu: adattamento piatti/prezzi su schermi piccoli --- */
+        @media (max-width: 480px) {
+            .menu-dish-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        
+            .menu-dish-price {
+                margin-top: 2px;
             }
         }
     </style>
