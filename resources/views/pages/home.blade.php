@@ -4,60 +4,64 @@
 >
     {{-- 
         SEZIONE HERO HOME
-        - Colonna sinistra: titolo, sottotitolo, call-to-action (Menu / Dove siamo)
-        - Colonna destra: immagine con slider automatico + piccola galleria
-        - La griglia è 1 colonna su mobile e 2 colonne su desktop
+        - Sfondo con 3 immagini in rotazione
+        - Testo centrato (titolo + sottotitolo)
+        - Navigazione con frecce laterali + autoplay
     --}}
-    <section class="hero">
-        <div class="container grid">
-            {{-- Colonna testo (titolo + CTA) --}}
-            <div>
-                <h1 class="hero-heading">
-                    {{ __('pages.home.title') }}
+    <section class="hero hero-home" data-hero-bg>
+        {{-- Sfondo con 3 immagini in rotazione --}}
+        <div class="hero-bg-track">
+            <div
+                class="hero-bg-slide is-active"
+                data-hero-bg-slide
+                style="background-image: url('{{ asset('images/ristorante-esterno.jpg') }}');"
+            ></div>
+
+            <div
+                class="hero-bg-slide"
+                data-hero-bg-slide
+                style="background-image: url('{{ asset('images/sala.jpg') }}');"
+            ></div>
+
+            <div
+                class="hero-bg-slide"
+                data-hero-bg-slide
+                style="background-image: url('{{ asset('images/braceria-2.jpg') }}');"
+            ></div>
+        </div>
+
+        {{-- Contenuto centrato sopra lo sfondo --}}
+        <div class="hero-content-center">
+            <div class="container">
+                <h1 class="hero-heading hero-heading-center">
+                    Torre di Blaga
                 </h1>
 
-                <p class="muted hero-lead">
-                    {{ __('pages.home.subtitle') }}
+                <p class="hero-lead hero-lead-center">
+                    Agriturismo con cucina tipica abruzzese:
+                    carne alla brace, arrosticini e pizza.
                 </p>
-
-                <div class="hero-actions">
-                    <a
-                        class="pill primary"
-                        href="{{ route('menu', ['locale' => request()->route('locale')]) }}"
-                    >
-                        {{ __('pages.home.cta_menu') }}
-                    </a>
-
-                    <a
-                        class="pill"
-                        href="{{ route('dove-siamo', ['locale' => request()->route('locale')]) }}"
-                    >
-                        {{ __('pages.home.cta_where') }}
-                    </a>
-                </div>
-            </div>
-
-            {{-- Colonna immagine (slider + mini-galleria) --}}
-            <div class="card">
-                {{-- HERO con slider automatico:
-                    - background iniziale = hero-sala
-                    - data-images contiene le immagini che lo script ruota
-                --}}
-                <div
-                    class="hero-image"
-                    id="hero-slider"
-                    data-images='["/images/hero-sala.jpg","/images/piatto-1.jpg","/images/piatto-2.jpg"]'
-                    style="background-image: url('/images/hero-sala.jpg');"
-                ></div>
-
-                {{-- Piccola galleria statica sotto lo slider --}}
-                <div class="gallery">
-                    <img src="/images/piatto-1.jpg" alt="Piatto 1">
-                    <img src="/images/piatto-2.jpg" alt="Piatto 2">
-                    <img src="/images/esterno-1.jpg" alt="Esterno del ristorante">
-                </div>
             </div>
         </div>
+
+        {{-- Frecce di navigazione laterali --}}
+        <button
+            type="button"
+            class="hero-bg-arrow hero-bg-arrow-left"
+            data-hero-bg-prev
+            aria-label="Immagine precedente"
+        >
+            <span>&lsaquo;</span>
+        </button>
+
+        <button
+            type="button"
+            class="hero-bg-arrow hero-bg-arrow-right"
+            data-hero-bg-next
+            aria-label="Immagine successiva"
+        >
+            <span>&rsaquo;</span>
+        </button>
     </section>
 
     {{-- 
@@ -100,4 +104,76 @@
             </div>
         </div>
     </section>
+
+    {{-- SCRIPT: carousel di sfondo hero (desktop + mobile) --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hero = document.querySelector('[data-hero-bg]');
+            if (!hero) return;
+
+            const slides = hero.querySelectorAll('[data-hero-bg-slide]');
+            const prevBtn = hero.querySelector('[data-hero-bg-prev]');
+            const nextBtn = hero.querySelector('[data-hero-bg-next]');
+
+            if (slides.length <= 1) return;
+
+            let currentIndex = 0;
+            let timerId = null;
+
+            function showSlide(index) {
+                slides[currentIndex].classList.remove('is-active');
+
+                // gestione indice circolare
+                const total = slides.length;
+                currentIndex = ((index % total) + total) % total;
+
+                slides[currentIndex].classList.add('is-active');
+            }
+
+            function nextSlide() {
+                showSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentIndex - 1);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                // cambia sfondo ogni 3 secondi
+                timerId = setInterval(nextSlide, 3000);
+            }
+
+            function stopAutoPlay() {
+                if (timerId !== null) {
+                    clearInterval(timerId);
+                    timerId = null;
+                }
+            }
+
+            // click freccia destra
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    nextSlide();
+                    startAutoPlay();
+                });
+            }
+
+            // click freccia sinistra
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    prevSlide();
+                    startAutoPlay();
+                });
+            }
+
+            // pausa al passaggio del mouse (solo desktop)
+            hero.addEventListener('mouseenter', stopAutoPlay);
+            hero.addEventListener('mouseleave', startAutoPlay);
+
+            // inizializzazione
+            showSlide(0);
+            startAutoPlay();
+        });
+    </script>
 </x-layouts.app>

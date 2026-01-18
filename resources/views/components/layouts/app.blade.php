@@ -106,23 +106,20 @@
             padding-top: 72px;  /* altezza approssimativa dell'header */
         }
 
-
         /* Spaziatura pagine interne (Il Menu, Il Ristorante, ecc.) */
         .page {
-            padding-top: 48px;      /* così i contenuti partono più sotto, come la hero in home */
+            position: relative;
+            z-index: 1;          /* il contenuto resta comunque sotto la navbar (che ha z-index maggiore) */
+            padding-top: 48px;   /* così i contenuti partono più sotto, come la hero in home */
             padding-bottom: 32px;
         }
-        
 
         .page-header {
-            /* piccolo stacco dalla navbar */
-            margin-top: 0px;
+            margin-top: 0;
             margin-bottom: 24px;
             padding-top: 16px;
-            /* riga sottile come separatore fra header blur e contenuto pagina */
             border-top: 1px solid rgba(255,255,255,.08);
         }
-
 
         /* Titoli delle sezioni nelle pagine interne (es. "Il Ristorante") */
         .page-section-title {
@@ -130,7 +127,6 @@
             margin-bottom: 8px;
             font-size: 20px;
         }
-
 
         .page-header h1 {
             margin: 0 0 8px;
@@ -140,13 +136,6 @@
 
         .page-header .muted {
             max-width: 640px;
-        }
-
-        /* Su mobile teniamo un po' meno spazio per non allungare troppo la pagina */
-        @media (max-width: 640px) {
-            .page {
-                padding-top: 32px;
-            }
         }
 
         .muted {
@@ -202,14 +191,22 @@
 
         /* === HEADER E NAVBAR (DESKTOP + MOBILE) === */
         header {
-            position: sticky;              /* fisso in alto */
+            position: sticky;
             top: 0;
-            background: rgba(10,10,10,.9);
-            backdrop-filter: blur(8px);   /* resta la blur */
-            border-bottom: 1px solid rgba(255,255,255,.08);
-            z-index: 50;                /* sicuro sopra a tutto il resto */
+            /* Fonde il colore della navbar con lo sfondo sottostante */
+            background: linear-gradient(
+                to bottom,
+                rgba(10,10,10,0.90),
+                rgba(10,10,10,0.55),
+                rgba(10,10,10,0.00)
+            );
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,.04);
+            z-index: 1000;
+            isolation: isolate;
         }
         
+
         /* SOLO NELL'HEADER: container a tutta larghezza (come avevamo già) */
         header .container {
             max-width: 100%;
@@ -228,28 +225,26 @@
         .nav-center,
         .nav-right {
             display: flex;
-            /*gap: 12px;*/
             align-items: center;
-            /*flex-wrap: wrap;*/
         }
 
-        /*Logo a sinistra*/
+        /* Logo a sinistra */
         .nav-left {
-            flex: 0.0 auto;
+            flex: 0 0 auto;
             justify-content: flex-start;
             gap: 12px;
         }
 
-        /*Link centrali*/
+        /* Link centrali */
         .nav-center {
             flex: 1 1 auto;
             justify-content: center;
             gap: 16px;
         }
 
-        /*Prenota + lingua a destra*/
+        /* Prenota + lingua a destra */
         .nav-right {
-            flex: 0.0 auto;
+            flex: 0 0 auto;
             justify-content: flex-end;
             gap: 12px;
         }
@@ -272,7 +267,6 @@
             text-transform: uppercase;
             font-size: 13px;
         }
-
 
         /* Link principali di navigazione (Ristorante, Menu, Dove siamo, Contatti) */
         .nav-main-link {
@@ -327,10 +321,16 @@
             /* Su mobile il header non resta sticky in alto */
             header {
                 position: static;
+            }
 
-           /* E non serve il padding extra sul main */
+            /* Su mobile non serve il padding extra sul main */
             main {
-                padding-top: 72px;
+                padding-top: 0;
+            }
+
+            /* Su mobile teniamo un po' meno spazio per non allungare troppo la pagina */
+            .page {
+                padding-top: 32px;
             }
 
             /* Impiliamo le 3 sezioni una sotto l'altra */
@@ -350,10 +350,10 @@
                 margin: 0 auto;
             }
 
-            /* 2) Linke centrati sotto il logo */
+            /* 2) Link centrati sotto il logo */
             .nav-center {
                 justify-content: center;
-                flex: wrap;
+                flex-wrap: wrap;
                 width: 100%;
                 margin-top: 8px;
                 row-gap: 6px;
@@ -372,7 +372,6 @@
                 width: 100%;
                 justify-content: space-between;
                 margin-top: 10px;
-                /*gap: 8px;*/
             }
 
             .pill {
@@ -401,7 +400,7 @@
 
         .grid {
             display: grid;
-            gap: 16px;                                                                                      
+            gap: 16px;
             grid-template-columns: 1fr;
         }
 
@@ -504,9 +503,229 @@
             opacity: .95;
         }
 
-        @media (max-width: 640px) {
+                @media (max-width: 640px) {
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* === CAROUSEL HERO HOME (3 foto ristorante) === */
+        .hero-carousel {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            min-height: 260px;
+            background: #111;
+            box-shadow: 0 18px 36px rgba(0,0,0,.7);
+        }
+        
+        .hero-carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Ogni slide occupa tutto lo spazio, con fade + leggero zoom */
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transform: scale(1.02);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+        
+        .hero-slide.is-active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+        
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Pallini di navigazione in basso */
+        .hero-carousel-dots {
+            position: absolute;
+            left: 50%;
+            bottom: 12px;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+        }
+        
+        .hero-carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.85);
+            background: rgba(0,0,0,.4);
+            padding: 0;
+            cursor: pointer;
+        }
+        
+        .hero-carousel-dot.is-active {
+            background: #ffffff;
+        }
+        
+        /* Mobile: altezza leggermente più bassa e un po' di spazio sopra */
+        @media (max-width: 640px) {
+            .hero-carousel {
+                min-height: 220px;
+                margin-top: 16px;
+            }
+        }
+
+
+        /* === HERO HOME CON SFONDO A CAROUSEL === */
+        .hero-home {
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            /* copre praticamente tutto lo schermo */
+            min-height: 90vh;
+            padding: 0;
+            margin: 0;
+            background: #050505;
+            /* elimina lo spazio nero sotto la navbar (compensa il padding-top del main) */
+            margin-top: -72px;
+        }
+        
+        /* sfondo: track con le slide */
+        .hero-bg-track {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        /* ogni slide come background full-bleed */
+        .hero-bg-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;         /* nessun zoom extra oltre il necessario per coprire */
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity .6s ease;   /* niente transform -> nessun effetto “sfocato” */
+        }
+        
+        .hero-bg-slide.is-active {
+            opacity: 1;
+        }
+        
+        /* sfumatura leggera per leggibilità del testo senza rovinare troppo la foto */
+        .hero-home::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                900px 380px at 15% 20%,
+                rgba(0,0,0,.10),
+                rgba(0,0,0,.55)
+            );
+            z-index: 1;
+        }
+        
+        /* wrapper del contenuto: centrato ma più in alto della metà esatta */
+        .hero-content-center {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            min-height: 90vh;
+            display: flex;
+            align-items: flex-start;   /* aggancia in alto */
+            justify-content: center;
+            padding-top: 18vh;         /* alza il blocco “Torre di Blaga” */
+        }
+        
+        /* testo centrato */
+        .hero-heading-center,
+        .hero-lead-center {
+            text-align: center;
+        }
+        
+        .hero-heading-center {
+            margin-bottom: 12px;
+        }
+        
+        .hero-lead-center {
+            margin-top: 0;
+        }
+        
+        /* FRECCE DI NAVIGAZIONE LATERALI (come prima) */
+        .hero-bg-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: none;                /* niente bordo */
+            background: transparent;     /* completamente trasparente */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+            backdrop-filter: blur(4px);
+        }
+        
+        .hero-bg-arrow span {
+            font-size: 50px;             /* un po' più grande per essere ben visibile */
+            line-height: 1;
+            color: rgba(255,255,255,.55);
+        }
+        
+        .hero-bg-arrow-left {
+            left: 24px;
+        }
+        
+        .hero-bg-arrow-right {
+            right: 24px;
+        }
+        
+        .hero-bg-arrow:hover span {
+            background: rgba(255,255,255,.09);    /* nessun cambio di fondo nemmeno in hover */
+        }
+        
+        /* Responsive mobile */
+        @media (max-width: 640px) {
+            .hero-home {
+                /* su mobile il main non ha padding-top, quindi niente margine negativo */
+                margin-top: 0;
+                min-height: 75vh;  /* invece di calc(100vh - 56px) */
+            }
+        
+            .hero-content-center {
+            min-height: 75vh;
+            padding-top: 16vh;
+            }
+        
+            .hero-heading-center {
+                font-size: 28px;
+            }
+        
+            .hero-lead-center {
+                font-size: 15px;
+            }
+        
+            .hero-bg-arrow {
+                width: 32px;
+                height: 32px;
+            }
+        
+            .hero-bg-arrow-left {
+                left: 12px;
+            }
+        
+            .hero-bg-arrow-right {
+                right: 12px;
             }
         }
 
@@ -645,110 +864,108 @@
         - Il pulsante di prenotazione
         - Il selettore lingua a tendina (desktop + mobile)
     --}}
-<header>
-    
-    <div class="container">
-        <nav>
-            @php
-                // Lingua corrente e path senza prefisso lingua
-                $locale        = request()->route('locale') ?? config('locales.default', 'it');
-                $path          = request()->path(); // es: "it/menu"
-                $rest          = preg_replace('#^[a-z]{2}(/|$)#', '', $path);
-                $rest          = ltrim((string) $rest, '/');
-                $currentRoute  = Route::currentRouteName();
+    <header>
+        <div class="container">
+            <nav>
+                @php
+                    // Lingua corrente e path senza prefisso lingua
+                    $locale        = request()->route('locale') ?? config('locales.default', 'it');
+                    $path          = request()->path(); // es: "it/menu"
+                    $rest          = preg_replace('#^[a-z]{2}(/|$)#', '', $path);
+                    $rest          = ltrim((string) $rest, '/');
+                    $currentRoute  = Route::currentRouteName();
 
-                // Dati ristorante
-                $restaurantName  = config('restaurant.name', 'Ristorante');
-                $restaurantPhone = config('restaurant.phone');
+                    // Dati ristorante
+                    $restaurantName  = config('restaurant.name', 'Ristorante');
+                    $restaurantPhone = config('restaurant.phone');
 
-                // Link per il pulsante "Prenota"
-                $phoneHref = $restaurantPhone
-                    ? 'tel:' . preg_replace('/\D+/', '', $restaurantPhone)
-                    : '/' . $locale . '/contatti';
-            @endphp
+                    // Link per il pulsante "Prenota"
+                    $phoneHref = $restaurantPhone
+                        ? 'tel:' . preg_replace('/\D+/', '', $restaurantPhone)
+                        : '/' . $locale . '/contatti';
+                @endphp
 
-            {{-- COLONNA SINISTRA: SOLO LOGO --}}
-            <div class="nav-left">
-                <a class="brand" href="/{{ $locale }}" aria-label="{{ $restaurantName }}">
-                    @php
-                        $logoPath = config('restaurant.logo'); // es: images/logo-torre-blaga.svg
-                    @endphp
-            
-                    @if($logoPath)
-                        {{-- Logo immagine --}}
-                        <img src="{{ asset($logoPath) }}" alt="{{ $restaurantName }}">
-                    @else
-                        {{-- Fallback: testo brand se il logo non è configurato correttamente --}}
-                        <span class="brand-text">{{ $restaurantName }}</span>
-                    @endif
-                </a>
-            </div>
-            
-
-            {{-- COLONNA CENTRALE: LINK PRINCIPALI --}}
-            <div class="nav-center">
-                <a
-                    href="/{{ $locale }}/ristorante"
-                    class="nav-main-link {{ $currentRoute === 'ristorante' ? 'active' : '' }}"
-                >
-                    {{ __('pages.nav.restaurant') }}
-                </a>
-
-                <a
-                    href="/{{ $locale }}/menu"
-                    class="nav-main-link {{ $currentRoute === 'menu' ? 'active' : '' }}"
-                >
-                    {{ __('pages.nav.menu') }}
-                </a>
-
-                <a
-                    href="/{{ $locale }}/dove-siamo"
-                    class="nav-main-link {{ $currentRoute === 'dove-siamo' ? 'active' : '' }}"
-                >
-                    {{ __('pages.nav.where') }}
-                </a>
-
-                <a
-                    href="/{{ $locale }}/contatti"
-                    class="nav-main-link {{ in_array($currentRoute, ['contatti', 'contatti.submit']) ? 'active' : '' }}"
-                >
-                    {{ __('pages.nav.contacts') }}
-                </a>
-            </div>
-
-            {{-- COLONNA DESTRA: PRENOTA + LINGUA A TENDINA --}}
-            <div class="nav-right">
-                <a class="pill primary" href="{{ $phoneHref }}">
-                    {{ __('pages.nav.book') }}
-                </a>
-
-                <div class="lang-dropdown">
-                    <label for="language-switcher" class="sr-only">
-                        {{ __('pages.nav.language') ?? 'Lingua' }}
-                    </label>
-
-                    <select
-                        id="language-switcher"
-                        class="lang-select"
-                        onchange="if (this.value) window.location.href = this.value;"
-                    >
-                        @foreach (config('locales.supported') as $l)
-                            @php
-                                $url = '/' . $l . ($rest ? '/' . $rest : '');
-                            @endphp
-                            <option
-                                value="{{ $url }}"
-                                {{ $l === $locale ? 'selected' : '' }}
-                            >
-                                {{ config('locales.labels')[$l] ?? strtoupper($l) }}
-                            </option>
-                        @endforeach
-                    </select>
+                {{-- COLONNA SINISTRA: SOLO LOGO --}}
+                <div class="nav-left">
+                    <a class="brand" href="/{{ $locale }}" aria-label="{{ $restaurantName }}">
+                        @php
+                            $logoPath = config('restaurant.logo'); // es: images/logo-torre-blaga.svg
+                        @endphp
+                
+                        @if($logoPath)
+                            {{-- Logo immagine --}}
+                            <img src="{{ asset($logoPath) }}" alt="{{ $restaurantName }}">
+                        @else
+                            {{-- Fallback: testo brand se il logo non è configurato correttamente --}}
+                            <span class="brand-text">{{ $restaurantName }}</span>
+                        @endif
+                    </a>
                 </div>
-            </div>
-        </nav>
-    </div>
-</header>
+                
+                {{-- COLONNA CENTRALE: LINK PRINCIPALI --}}
+                <div class="nav-center">
+                    <a
+                        href="/{{ $locale }}/ristorante"
+                        class="nav-main-link {{ $currentRoute === 'ristorante' ? 'active' : '' }}"
+                    >
+                        {{ __('pages.nav.restaurant') }}
+                    </a>
+
+                    <a
+                        href="/{{ $locale }}/menu"
+                        class="nav-main-link {{ $currentRoute === 'menu' ? 'active' : '' }}"
+                    >
+                        {{ __('pages.nav.menu') }}
+                    </a>
+
+                    <a
+                        href="/{{ $locale }}/dove-siamo"
+                        class="nav-main-link {{ $currentRoute === 'dove-siamo' ? 'active' : '' }}"
+                    >
+                        {{ __('pages.nav.where') }}
+                    </a>
+
+                    <a
+                        href="/{{ $locale }}/contatti"
+                        class="nav-main-link {{ in_array($currentRoute, ['contatti', 'contatti.submit']) ? 'active' : '' }}"
+                    >
+                        {{ __('pages.nav.contacts') }}
+                    </a>
+                </div>
+
+                {{-- COLONNA DESTRA: PRENOTA + LINGUA A TENDINA --}}
+                <div class="nav-right">
+                    <a class="pill primary" href="{{ $phoneHref }}">
+                        {{ __('pages.nav.book') }}
+                    </a>
+
+                    <div class="lang-dropdown">
+                        <label for="language-switcher" class="sr-only">
+                            {{ __('pages.nav.language') ?? 'Lingua' }}
+                        </label>
+
+                        <select
+                            id="language-switcher"
+                            class="lang-select"
+                            onchange="if (this.value) window.location.href = this.value;"
+                        >
+                            @foreach (config('locales.supported') as $l)
+                                @php
+                                    $url = '/' . $l . ($rest ? '/' . $rest : '');
+                                @endphp
+                                <option
+                                    value="{{ $url }}"
+                                    {{ $l === $locale ? 'selected' : '' }}
+                                >
+                                    {{ config('locales.labels')[$l] ?? strtoupper($l) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
 
     {{-- 
         SEZIONE: CONTENUTO PRINCIPALE DINAMICO
