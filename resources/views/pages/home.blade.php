@@ -74,34 +74,51 @@
     --}}
     <section class="home-info">
         <div class="container">
-            <div class="grid grid-3">
-                <div class="card">
-                    <h3 class="home-card-title">
+    
+            {{-- Blocco 1: Cucina tipica abruzzese --}}
+            <article
+                class="home-feature"
+                style="background-image: url('{{ asset('images/home-cucina.jpg') }}');"
+            >
+                <div class="home-feature-inner">
+                    <h3 class="home-feature-title">
                         {{ __('pages.home.info_title') }}
                     </h3>
-                    <p class="muted">
+                    <p class="home-feature-text">
                         {{ __('pages.home.info_text') }}
                     </p>
                 </div>
-
-                <div class="card">
-                    <h3 class="home-card-title">
+            </article>
+    
+            {{-- Blocco 2: Carne alla brace e arrosticini --}}
+            <article
+                class="home-feature"
+                style="background-image: url('{{ asset('images/home-brace.jpg') }}');"
+            >
+                <div class="home-feature-inner">
+                    <h3 class="home-feature-title">
                         {{ __('pages.home.style_title') }}
                     </h3>
-                    <p class="muted">
+                    <p class="home-feature-text">
                         {{ __('pages.home.style_text') }}
                     </p>
                 </div>
-
-                <div class="card">
-                    <h3 class="home-card-title">
+            </article>
+    
+            {{-- Blocco 3: Pizzeria e serate tra amici --}}
+            <article
+                class="home-feature"
+                style="background-image: url('{{ asset('images/home-pizzeria.jpg') }}');"
+            >
+                <div class="home-feature-inner">
+                    <h3 class="home-feature-title">
                         {{ __('pages.home.book_title') }}
                     </h3>
-                    <p class="muted">
+                    <p class="home-feature-text">
                         {{ __('pages.home.book_text') }}
                     </p>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 

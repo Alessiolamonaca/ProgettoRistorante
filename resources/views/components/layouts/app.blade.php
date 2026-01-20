@@ -101,6 +101,13 @@
             padding: 16px;
         }
 
+        /* Footer a tutta larghezza, come la navbar */
+        footer .container {
+            max-width: 100%;      /* niente limite 1100px */
+            padding-left: 16px;   /* margine interno sinistro */
+            padding-right: 16px;  /* margine interno destro */
+        }
+
         /* Spazio globale sotto la navbar fissa (solo desktop/tablet) */
         main {
             padding-top: 72px;  /* altezza approssimativa dell'header */
@@ -734,7 +741,140 @@
             border-top: 1px solid rgba(255,255,255,.08);
             margin-top: 40px;
             padding: 20px 0;
+            opacity: .9;
+            font-size: 14px;      /* base un pò più grande (mobile compreso) */
+        }
+
+        /* solo desktop */
+        @media (min-width: 800px) {
+            footer {
+                font-size: 15px;
+            }
+        }
+        
+        /* layout a 3 colonne sulla stessa linea (desktop) */
+        .footer-layout {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        /* Colonna sinistra del footer: tutto a sinistra */
+        .footer-left {
+            flex: 1 1 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: left;
+        }
+        
+        /* Logo + testo tutti sulla stessa riga */
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            column-gap: 4px;
+            row-gap: 0;
+            text-align: left;
+        }
+
+        @media (min-width: 900px) {
+            .footer-contact {
+                white-space: nowrap;   /* non andare a capo finché c'è spazio */
+                flex-wrap: nowrap;
+            }
+        }
+
+        
+        /* Logo nel footer, in linea con il testo */
+        .footer-logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 6px;
+        }
+        
+        .footer-logo {
+            height: 60px;  /* puoi aumentare se lo vuoi un po' più grande (es. 20–22px) */
+            width: auto;
+            display: block;
+        }
+
+        
+        /* destra: copyright + privacy */
+        .footer-right {
+            flex: 1 1 0;
+            display: flex;
+            justify-content: flex-end;
+            text-align: right;
+        }
+        
+        /* copyright + link privacy in linea */
+        .footer-meta {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        
+        .footer-dot {
+            opacity: .6;
+        }
+        
+        .footer-link {
+            text-decoration: underline;
             opacity: .85;
+        }
+        
+        /* social icons */
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .footer-social-link {
+            display: inline-flex;
+            width: 20px;
+            height: 20px;
+            align-items: center;
+            justify-content: center;
+            opacity: .8;
+            transition: opacity .2s ease, transform .2s ease;
+        }
+        
+        .footer-social-link svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .footer-social-link:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+        
+        /* Mobile: tutto impilato e allineato a sinistra */
+        @media (max-width: 640px) {
+            .footer-layout {
+                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                flex: 0 0 auto;
+                text-align: left;
+                justify-content: flex-start;
+            }
+        
+            .footer-meta {
+                justify-content: flex-start;
+            }
         }
 
         /* === STILI SPECIFICI PAGINA MENU === */
@@ -803,55 +943,128 @@
                 height: 100px;
             }
         
-            /* link centrali più "importanti" */
+            /* link centrali più "importanti" (solo desktop) */
             .nav-center .nav-main-link {
-                font-size: 15px;
-                padding: 6px 14px;
+                font-size: 20px;
+                padding: 10px 20px;
             }
         
             /* pulsante Prenota più grande */
             .pill.primary {
                 padding: 8px 16px;
-                font-size: 14px;
+                font-size: 16px;
             }
         
             /* select lingua più comoda da cliccare */
             .lang-select {
                 padding: 6px 12px;
-                font-size: 13px;
+                font-size: 15px;
             }
         }
 
-        /* --- Home: sezione informativa con 3 card */
+        /* --- Home: 3 sezioni a tutta larghezza con sfondo immagine --- */
         .home-info {
-            padding-top: 24px;
-            padding-bottom: 32px;
+            padding: 56px 0 72px;
+            border-top: 1px solid rgba(255,255,255,.08);
         }
-
-        /* Titolo delle card nella sezione home */
-        .home-card-title {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 18px;
+        
+        /* ogni blocco occupa quasi tutta la pagina in orizzontale (100% della .container) */
+        .home-feature {
+            position: relative;
+            width: 100%;
+            min-height: 220px;
+            margin-bottom: 24px;
+            border-radius: 26px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            box-shadow: 0 18px 38px rgba(0,0,0,.75);
+            display: flex;
+            align-items: center;
         }
-
-        /* Su desktop la griglia .grid-3 va a tre colonne */
-        @media (min-width: 800px){
-            .grid-3 {
-                grid-template-columns: repeat(3, minmax(0,1fr));
-            }
+        
+        /* sfumatura per rendere leggibile il testo */
+        .home-feature::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(0,0,0,.75),
+                rgba(0,0,0,.30),
+                rgba(0,0,0,0)
+            );
+            z-index: 0;
         }
-
-        /* --- Menu: adattamento piatti/prezzi su schermi piccoli --- */
-        @media (max-width: 480px) {
-            .menu-dish-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
+        
+        /* contenuto testuale sopra l’immagine */
+        .home-feature-inner {
+            position: relative;
+            z-index: 1;
+            padding: 28px 28px 32px;
+            max-width: 520px;
+        }
+        
+        /* titoli delle 3 sezioni */
+        .home-feature-title {
+            margin: 0 0 10px;
+            font-size: 20px;
+            letter-spacing: .02em;
+        }
+        
+        /* testo descrittivo */
+        .home-feature-text {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: .92;
+        }
+        
+        /* ultimo blocco senza margine in fondo */
+        .home-feature:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Mobile: un po’ più compatto, ma sempre una card sotto l’altra */
+        @media (max-width: 640px) {
+            .home-feature {
+                min-height: 200px;
             }
         
-            .menu-dish-price {
-                margin-top: 2px;
+            .home-feature-inner {
+                padding: 22px 20px 24px;
+            }
+        
+            .home-feature-title {
+                font-size: 18px;
+            }
+        
+            .home-feature-text {
+                font-size: 14px;
+            }
+        }
+
+        /* Desktop: contenuto delle 3 sezioni centrato */
+        @media (min-width: 800px) {
+            .home-feature {
+                justify-content: center;  /* il contenuto sta al centro del blocco */
+            }
+        
+            .home-feature-inner {
+                margin: 0 auto;
+                text-align: center;       /* titolo + testo centrati */
+                max-width: 640px;         /* un po' più larga la colonna di testo */
+            }
+        
+            /* sfumatura più centrale per accompagnare il testo al centro */
+            .home-feature::before {
+                background: radial-gradient(
+                    circle at 50% 50%,
+                    rgba(0,0,0,.80),
+                    rgba(0,0,0,.35),
+                    rgba(0,0,0,0)
+                );
             }
         }
     </style>
@@ -980,46 +1193,106 @@
         - Mostra nome ristorante, indirizzo, telefono, email
         - Link alla pagina privacy nella lingua corrente
     --}}
-    <footer>
-        <div class="container">
-            @php
-                $restaurantName = config('restaurant.name', 'Ristorante');
-                $addressLine    = config('restaurant.address_line');
-                $phone          = config('restaurant.phone');
-                $email          = config('restaurant.email');
+<footer>
+    <div class="container footer-layout">
+        @php
+            $restaurantName = config('restaurant.name', 'Ristorante');
+            $addressLine    = config('restaurant.address_line');
+            $phone          = config('restaurant.phone');
+            $email          = config('restaurant.email');
 
-                $locale = request()->route('locale') ?? config('locales.default', 'it');
-            @endphp
+            $locale   = request()->route('locale') ?? config('locales.default', 'it');
+            $logoPath = config('restaurant.logo'); // stesso logo della navbar
 
-            <div class="muted">
-                <div>
+            // URL social (puoi spostarli in config/restaurant.php se vuoi)
+            $instagramUrl = 'https://www.instagram.com/torrediblaga';
+            $facebookUrl  = 'https://www.facebook.com/torrediblaga';
+        @endphp
+
+        {{-- Colonna sinistra: logo + dati ristorante --}}
+        <div class="footer-left muted">
+            <div class="footer-contact">
+                @if($logoPath)
+                    <span class="footer-logo-wrap">
+                        <img
+                            src="{{ asset($logoPath) }}"
+                            alt="{{ $restaurantName }}"
+                            class="footer-logo"
+                        >
+                    </span>
+                @else
                     <strong>{{ $restaurantName }}</strong>
-                    @if($addressLine)
-                        — {{ $addressLine }}
-                    @endif
-                    @if($phone)
-                        — Tel: {{ $phone }}
-                    @endif
-                    @if($email)
-                        — Email: {{ $email }}
-                    @endif
-                </div>
+                @endif
 
-                <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
-                    <span>© {{ date('Y') }} — Tutti i diritti riservati</span>
-
-                    <span style="opacity:.6;">•</span>
-
-                    <a
-                        href="/{{ $locale }}/privacy"
-                        class="muted"
-                        style="text-decoration:underline; opacity:.8;"
-                    >
-                        {{ __('pages.footer_privacy') }}
-                    </a>
-                </div>
+                @if($addressLine)
+                    — {{ $addressLine }}
+                @endif
+                @if($phone)
+                    — Tel: {{ $phone }}
+                @endif
+                @if($email)
+                    — Email: {{ $email }}
+                @endif
             </div>
         </div>
-    </footer>
+
+        {{-- Colonna centrale: social --}}
+        <div class="footer-center">
+            <div class="footer-social">
+                @if($instagramUrl)
+                    <a
+                        href="{{ $instagramUrl }}"
+                        class="footer-social-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram {{ $restaurantName }}"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                                    fill="none" stroke="currentColor" stroke-width="1.6" />
+                            <circle cx="12" cy="12" r="4.3"
+                                    fill="none" stroke="currentColor" stroke-width="1.6" />
+                            <circle cx="17" cy="7" r="1.2" fill="currentColor" />
+                        </svg>
+                    </a>
+                @endif
+
+                @if($facebookUrl)
+                    <a
+                        href="{{ $facebookUrl }}"
+                        class="footer-social-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook {{ $restaurantName }}"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-1.1.4-1.6 1.7-1.6H16V4.7
+                                    C15.6 4.6 14.7 4.5 13.7 4.5c-2.7 0-4.4 1.6-4.4 4.6V11H7.5v3h1.8v7h4.2z"
+                                    fill="currentColor" />
+                        </svg>
+                    </a>
+                @endif
+            </div>
+        </div>
+
+        {{-- Colonna destra: copyright + privacy --}}
+        <div class="footer-right">
+            <div class="footer-meta muted">
+                <span>© {{ date('Y') }} — Tutti i diritti riservati</span>
+
+                <span class="footer-dot">•</span>
+
+                <a
+                    href="/{{ $locale }}/privacy"
+                    class="footer-link"
+                >
+                    {{ __('pages.footer_privacy') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
 </body>
 </html>
