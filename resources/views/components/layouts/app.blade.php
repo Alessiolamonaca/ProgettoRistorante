@@ -1,37 +1,37 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    {{-- 
-        SEZIONE: CALCOLO VARIABILI PER SEO E OPEN GRAPH
-        - Impostiamo titolo pagina, descrizione, URL corrente
-        - Prevediamo valori per i tag Open Graph (per condivisione social)
-        - Prepariamo i dati per i tag hreflang (versioni in più lingue)
-    --}}
+    {{-- SEO + OPEN GRAPH + HREFLANG --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     @php
-        // Titolo e meta base
-        $pageTitle = $title ?? config('restaurant.name', 'Ristorante');
+        // Locale corrente
+        $locale = app()->getLocale();
+
+        // Path richiesta (es: "it/menu") e parte dopo la lingua (es: "menu")
+        $path    = request()->path();
+        $rest    = preg_replace('#^[a-z]{2}(/|$)#', '', $path);
+        $rest    = ltrim((string) $rest, '/');
+
+        // Base URL
+        $rootUrl = request()->root();
+
+        // Lingue supportate + default
+        $locales       = config('locales.supported', ['it']);
+        $defaultLocale = config('locales.default', 'it');
+
+        // SEO di base
+        $pageTitle  = $title ?? config('restaurant.name', 'Ristorante');
         $currentUrl = request()->fullUrl();
         $metaDesc   = $metaDescription ?? null;
 
         // Open Graph
         $ogImage  = config('restaurant.og_image');
         $siteName = config('restaurant.site_name', config('restaurant.name', 'Ristorante'));
-        $ogLocale = str_replace('-', '_', app()->getLocale()) . '_' . strtoupper(app()->getLocale()); // es: it_IT
-
-        // Dati per hreflang
-        $path      = request()->path(); // es: "it/menu"
-        // rimuove il prefisso lingua (it/..., en/..., ecc.)
-        $rest      = preg_replace('#^[a-z]{2}(/|$)#', '', $path);
-        $rest      = ltrim((string) $rest, '/'); // es: "menu" oppure stringa vuota
-        $rootUrl   = request()->root();          // es: http://127.0.0.1:8000
-        $locales   = config('locales.supported', ['it']);
-        $default   = config('locales.default', 'it');
+        $ogLocale = str_replace('-', '_', $locale) . '_' . strtoupper($locale); // es: it_IT
     @endphp
 
-    {{-- SEZIONE: TAG <title> E DESCRIZIONE --}}
     <title>{{ $pageTitle }}</title>
 
     @if($metaDesc)
@@ -40,14 +40,10 @@
 
     <meta name="robots" content="index,follow">
 
-    {{-- SEZIONE: CANONICAL URL --}}
+    {{-- Canonical --}}
     <link rel="canonical" href="{{ $currentUrl }}">
 
-    {{-- 
-        SEZIONE: HREFLANG
-        - Per ogni lingua supportata aggiungiamo un link alternate
-        - Utile per SEO multilingua
-    --}}
+    {{-- Hreflang per tutte le lingue --}}
     @foreach ($locales as $lang)
         @php
             $href = $rootUrl . '/' . $lang . ($rest ? '/' . $rest : '');
@@ -55,18 +51,14 @@
         <link rel="alternate" hreflang="{{ $lang }}" href="{{ $href }}">
     @endforeach
 
-    {{-- hreflang x-default (versione di default) --}}
+    {{-- x-default --}}
     <link
         rel="alternate"
         hreflang="x-default"
-        href="{{ $rootUrl . '/' . $default . ($rest ? '/' . $rest : '') }}"
+        href="{{ $rootUrl . '/' . $defaultLocale . ($rest ? '/' . $rest : '') }}"
     >
 
-    {{-- 
-        SEZIONE: OPEN GRAPH BASE
-        - Tipologia, titolo, descrizione, URL, immagine
-        - Utilizzato dai social (Facebook, WhatsApp, ecc.)
-    --}}
+    {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $pageTitle }}">
     @if($metaDesc)
@@ -79,13 +71,7 @@
     <meta property="og:site_name" content="{{ $siteName }}">
     <meta property="og:locale" content="{{ $ogLocale }}">
 
-    {{-- 
-        SEZIONE: STILI GLOBALI
-        - Layout base
-        - Navbar (desktop + mobile)
-        - Hero, card, gallery
-        - Stili specifici per la pagina Menu
-    --}}
+    {{-- STILI GLOBALI (layout, navbar, hero, pagine interne, footer) --}}
     <style>
         /* === BASE LAYOUT E TIPOGRAFIA === */
         body {
@@ -103,32 +89,38 @@
 
         /* Footer a tutta larghezza, come la navbar */
         footer .container {
-            max-width: 100%;      /* niente limite 1100px */
-            padding-left: 16px;   /* margine interno sinistro */
-            padding-right: 16px;  /* margine interno destro */
+            max-width: 100%;
+            padding-left: 16px;
+            padding-right: 16px;
         }
 
-        /* Spazio globale sotto la navbar fissa (solo desktop/tablet) */
+        /* Spazio globale sotto la navbar fissa (desktop/tablet) */
         main {
-            padding-top: 72px;  /* altezza approssimativa dell'header */
+            padding-top: 72px;
         }
 
-        /* Spaziatura pagine interne (Il Menu, Il Ristorante, ecc.) */
+        /* Pagine interne (ristorante, menu, ecc.) */
         .page {
             position: relative;
-            z-index: 1;          /* il contenuto resta comunque sotto la navbar (che ha z-index maggiore) */
-            padding-top: 48px;   /* così i contenuti partono più sotto, come la hero in home */
+            z-index: 1;
+            padding-top: 48px;
             padding-bottom: 32px;
         }
 
         .page-header {
             margin-top: 0;
-            margin-bottom: 24px;
+            margin-bottom: 40px;
             padding-top: 16px;
             border-top: 1px solid rgba(255,255,255,.08);
+            transition: opacity .25s ease, transform .25s ease;
         }
 
-        /* Titoli delle sezioni nelle pagine interne (es. "Il Ristorante") */
+        .page-header--collapsed {
+            opacity: 0;
+            transform: translateY(-12px);
+            pointer-events: none;
+        }
+
         .page-section-title {
             margin-top: 0;
             margin-bottom: 8px;
@@ -177,13 +169,13 @@
             box-shadow: 0 8px 18px rgba(0,0,0,.45);
         }
 
-        .primary {
+        .pill.primary {
             background: #f5f5f5;
-            color:#111;
+            color: #111;
             border-color: transparent;
         }
 
-        /* === UTILITÀ ACCESSIBILITÀ (per etichette solo per screen reader) === */
+        /* Utilità accessibilità */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -196,25 +188,17 @@
             border: 0;
         }
 
-        /* === HEADER E NAVBAR (DESKTOP + MOBILE) === */
+        /* === HEADER + NAVBAR === */
         header {
             position: sticky;
             top: 0;
-            /* Fonde il colore della navbar con lo sfondo sottostante */
-            background: linear-gradient(
-                to bottom,
-                rgba(10,10,10,0.90),
-                rgba(10,10,10,0.55),
-                rgba(10,10,10,0.00)
-            );
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,.04);
+            background: linear-gradient(to bottom, #101010, #080808, #050505);
+            border-bottom: 1px solid rgba(255,255,255,.06);
+            box-shadow: 0 6px 18px rgba(0,0,0,.65);
             z-index: 1000;
             isolation: isolate;
         }
-        
 
-        /* SOLO NELL'HEADER: container a tutta larghezza (come avevamo già) */
         header .container {
             max-width: 100%;
         }
@@ -227,7 +211,6 @@
             flex-wrap: wrap;
         }
 
-        /* 3 SEZIONI DELLA NAVBAR*/
         .nav-left,
         .nav-center,
         .nav-right {
@@ -235,28 +218,24 @@
             align-items: center;
         }
 
-        /* Logo a sinistra */
         .nav-left {
             flex: 0 0 auto;
             justify-content: flex-start;
             gap: 12px;
         }
 
-        /* Link centrali */
         .nav-center {
             flex: 1 1 auto;
             justify-content: center;
             gap: 16px;
         }
 
-        /* Prenota + lingua a destra */
         .nav-right {
             flex: 0 0 auto;
             justify-content: flex-end;
             gap: 12px;
         }
 
-        /* Logo/brand: solo immagine al posto del testo */
         .brand {
             display: flex;
             align-items: center;
@@ -275,7 +254,6 @@
             font-size: 13px;
         }
 
-        /* Link principali di navigazione (Ristorante, Menu, Dove siamo, Contatti) */
         .nav-main-link {
             padding: 6px 10px;
             border-radius: 999px;
@@ -292,7 +270,6 @@
             background: rgba(255,255,255,.10);
         }
 
-        /* === SELETTORE LINGUA A TENDINA (valido per desktop e mobile) === */
         .lang-dropdown {
             display: flex;
             align-items: center;
@@ -308,7 +285,6 @@
             line-height: 1.2;
         }
 
-        /* Rendere leggibile le opzioni quando apri il menu (testo scuro su sfondo chiaro) */
         .lang-select option {
             color: #111;
             background: #ffffff;
@@ -319,34 +295,29 @@
             box-shadow: 0 0 0 1px rgba(255,255,255,.35);
         }
 
-        /* === RESPONSIVE: NAVBAR E TIPOGRAFIA MOBILE === */
+        /* Navbar / layout mobile */
         @media (max-width: 640px) {
             body {
                 font-size: 15px;
             }
 
-            /* Su mobile il header non resta sticky in alto */
             header {
                 position: static;
             }
 
-            /* Su mobile non serve il padding extra sul main */
             main {
                 padding-top: 0;
             }
 
-            /* Su mobile teniamo un po' meno spazio per non allungare troppo la pagina */
             .page {
                 padding-top: 32px;
             }
 
-            /* Impiliamo le 3 sezioni una sotto l'altra */
             nav {
                 flex-direction: column;
                 align-items: stretch;
             }
 
-            /* 1) Logo centrato */
             .nav-left {
                 justify-content: center;
                 width: 100%;
@@ -357,7 +328,6 @@
                 margin: 0 auto;
             }
 
-            /* 2) Link centrati sotto il logo */
             .nav-center {
                 justify-content: center;
                 flex-wrap: wrap;
@@ -366,14 +336,12 @@
                 row-gap: 6px;
             }
 
-            /* 3) Prenota + lingua in basso, uno a sinistra e uno a destra */
             .nav-right {
                 justify-content: space-between;
                 width: 100%;
                 margin-top: 10px;
             }
 
-            /* Nav sinistra e destra occupano tutta la larghezza e vanno a righe */
             .nav-left,
             .nav-right {
                 width: 100%;
@@ -385,7 +353,7 @@
                 padding: 7px 10px;
             }
 
-            .primary {
+            .pill.primary {
                 font-weight: 600;
             }
 
@@ -394,7 +362,38 @@
             }
         }
 
-        /* === HERO GENERICA (usata nelle varie pagine) === */
+        /* Navbar desktop più alta/leggibile */
+        @media (min-width: 800px) {
+            header .container {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+
+            nav {
+                min-height: 64px;
+            }
+
+            .brand img {
+                height: 100px;
+            }
+
+            .nav-center .nav-main-link {
+                font-size: 20px;
+                padding: 10px 20px;
+            }
+
+            .pill.primary {
+                padding: 8px 16px;
+                font-size: 16px;
+            }
+
+            .lang-select {
+                padding: 6px 12px;
+                font-size: 15px;
+            }
+        }
+
+        /* === HERO GENERICA + CARD === */
         .hero {
             padding: 56px 0;
             border-bottom: 1px solid rgba(255,255,255,.08);
@@ -422,7 +421,6 @@
             }
         }
 
-        /* Card generiche (per box contenuti, sezioni, ecc.) */
         .card {
             border: 1px solid rgba(255,255,255,.10);
             border-radius: 16px;
@@ -442,7 +440,6 @@
             background: rgba(255,255,255,.04);
         }
 
-        /* === HERO SPECIFICA HOME PAGE (heading, testo, bottoni) === */
         .hero-heading {
             margin: 0 0 12px;
             font-size: 40px;
@@ -470,7 +467,6 @@
             }
         }
 
-        /* === IMMAGINI HERO E GALLERY FOTO === */
         .hero-image {
             border-radius: 20px;
             overflow: hidden;
@@ -510,121 +506,45 @@
             opacity: .95;
         }
 
-                @media (max-width: 640px) {
+        @media (max-width: 640px) {
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* === CAROUSEL HERO HOME (3 foto ristorante) === */
-        .hero-carousel {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            min-height: 260px;
-            background: #111;
-            box-shadow: 0 18px 36px rgba(0,0,0,.7);
-        }
-        
-        .hero-carousel-track {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        
-        /* Ogni slide occupa tutto lo spazio, con fade + leggero zoom */
-        .hero-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transform: scale(1.02);
-            transition: opacity .5s ease, transform .5s ease;
-        }
-        
-        .hero-slide.is-active {
-            opacity: 1;
-            transform: scale(1);
-            z-index: 1;
-        }
-        
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        /* Pallini di navigazione in basso */
-        .hero-carousel-dots {
-            position: absolute;
-            left: 50%;
-            bottom: 12px;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 6px;
-        }
-        
-        .hero-carousel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,.85);
-            background: rgba(0,0,0,.4);
-            padding: 0;
-            cursor: pointer;
-        }
-        
-        .hero-carousel-dot.is-active {
-            background: #ffffff;
-        }
-        
-        /* Mobile: altezza leggermente più bassa e un po' di spazio sopra */
-        @media (max-width: 640px) {
-            .hero-carousel {
-                min-height: 220px;
-                margin-top: 16px;
-            }
-        }
-
-
-        /* === HERO HOME CON SFONDO A CAROUSEL === */
+        /* === HERO HOME CON SFONDO A CAROUSEL (nuova versione) === */
         .hero-home {
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,.08);
-            /* copre praticamente tutto lo schermo */
             min-height: 90vh;
             padding: 0;
             margin: 0;
             background: #050505;
-            /* elimina lo spazio nero sotto la navbar (compensa il padding-top del main) */
-            margin-top: -72px;
+            margin-top: -72px; /* compensa il padding-top del main */
         }
-        
-        /* sfondo: track con le slide */
+
         .hero-bg-track {
             position: absolute;
             inset: 0;
             overflow: hidden;
             z-index: 0;
         }
-        
-        /* ogni slide come background full-bleed */
+
         .hero-bg-slide {
             position: absolute;
             inset: 0;
-            background-size: cover;         /* nessun zoom extra oltre il necessario per coprire */
+            background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             opacity: 0;
-            transition: opacity .6s ease;   /* niente transform -> nessun effetto “sfocato” */
+            transition: opacity .6s ease;
         }
-        
+
         .hero-bg-slide.is-active {
             opacity: 1;
         }
-        
-        /* sfumatura leggera per leggibilità del testo senza rovinare troppo la foto */
+
         .hero-home::after {
             content: "";
             position: absolute;
@@ -636,8 +556,7 @@
             );
             z-index: 1;
         }
-        
-        /* wrapper del contenuto: centrato ma più in alto della metà esatta */
+
         .hero-content-center {
             position: relative;
             z-index: 2;
@@ -645,26 +564,24 @@
             height: 100%;
             min-height: 90vh;
             display: flex;
-            align-items: flex-start;   /* aggancia in alto */
+            align-items: flex-start;
             justify-content: center;
-            padding-top: 18vh;         /* alza il blocco “Torre di Blaga” */
+            padding-top: 18vh;
         }
-        
-        /* testo centrato */
+
         .hero-heading-center,
         .hero-lead-center {
             text-align: center;
         }
-        
+
         .hero-heading-center {
             margin-bottom: 12px;
         }
-        
+
         .hero-lead-center {
             margin-top: 0;
         }
-        
-        /* FRECCE DI NAVIGAZIONE LATERALI (come prima) */
+
         .hero-bg-arrow {
             position: absolute;
             top: 50%;
@@ -673,8 +590,8 @@
             width: 40px;
             height: 40px;
             border-radius: 999px;
-            border: none;                /* niente bordo */
-            background: transparent;     /* completamente trasparente */
+            border: none;
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -682,202 +599,433 @@
             padding: 0;
             backdrop-filter: blur(4px);
         }
-        
+
         .hero-bg-arrow span {
-            font-size: 50px;             /* un po' più grande per essere ben visibile */
+            font-size: 50px;
             line-height: 1;
             color: rgba(255,255,255,.55);
         }
-        
+
         .hero-bg-arrow-left {
             left: 24px;
         }
-        
+
         .hero-bg-arrow-right {
             right: 24px;
         }
-        
+
         .hero-bg-arrow:hover span {
-            background: rgba(255,255,255,.09);    /* nessun cambio di fondo nemmeno in hover */
+            background: rgba(255,255,255,.09);
         }
-        
-        /* Responsive mobile */
+
         @media (max-width: 640px) {
             .hero-home {
-                /* su mobile il main non ha padding-top, quindi niente margine negativo */
                 margin-top: 0;
-                min-height: 75vh;  /* invece di calc(100vh - 56px) */
+                min-height: 75vh;
             }
-        
+
             .hero-content-center {
-            min-height: 75vh;
-            padding-top: 16vh;
+                min-height: 75vh;
+                padding-top: 16vh;
             }
-        
+
             .hero-heading-center {
                 font-size: 28px;
             }
-        
+
             .hero-lead-center {
                 font-size: 15px;
             }
-        
+
             .hero-bg-arrow {
                 width: 32px;
                 height: 32px;
             }
-        
+
             .hero-bg-arrow-left {
                 left: 12px;
             }
-        
+
             .hero-bg-arrow-right {
                 right: 12px;
             }
         }
 
-        /* === FOOTER SITO === */
-        footer {
-            border-top: 1px solid rgba(255,255,255,.08);
-            margin-top: 40px;
-            padding: 20px 0;
-            opacity: .9;
-            font-size: 14px;      /* base un pò più grande (mobile compreso) */
-        }
+/* ===============    HOME INFO - BLEND CON HERO + CARD PIÙ FOTOGRAFICHE     ================== */
 
-        /* solo desktop */
-        @media (min-width: 800px) {
-            footer {
-                font-size: 15px;
-            }
-        }
-        
-        /* layout a 3 colonne sulla stessa linea (desktop) */
-        .footer-layout {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
+.home-info {
+    position: relative;
+    margin-top: -90px;
+    padding: clamp(8rem, 11vw, 10rem) 0 clamp(5rem, 8vw, 8rem);
+    overflow: hidden;
+    background:
+        linear-gradient(
+            180deg,
+            #1b130d 0%,
+            #120d09 16%,
+            #0d0a08 38%,
+            #090909 68%,
+            #070707 100%
+        );
+}
 
-        /* Colonna sinistra del footer: tutto a sinistra */
-        .footer-left {
-            flex: 1 1 0;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: left;
-        }
-        
-        /* Logo + testo tutti sulla stessa riga */
-        .footer-contact {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            column-gap: 4px;
-            row-gap: 0;
-            text-align: left;
-        }
+.home-info::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -140px;
+    height: 240px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(120, 82, 42, 0.38) 0%,
+            rgba(78, 49, 24, 0.22) 36%,
+            rgba(20, 14, 10, 0.10) 72%,
+            rgba(7, 7, 7, 0) 100%
+        );
+    filter: blur(34px);
+    pointer-events: none;
+}
 
-        @media (min-width: 900px) {
-            .footer-contact {
-                white-space: nowrap;   /* non andare a capo finché c'è spazio */
-                flex-wrap: nowrap;
-            }
-        }
+.home-info::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            900px 360px at 14% 10%,
+            rgba(214, 165, 96, 0.09),
+            transparent 68%
+        ),
+        radial-gradient(
+            760px 340px at 88% 18%,
+            rgba(255, 255, 255, 0.035),
+            transparent 72%
+        );
+    pointer-events: none;
+}
 
-        
-        /* Logo nel footer, in linea con il testo */
-        .footer-logo-wrap {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 6px;
-        }
-        
-        .footer-logo {
-            height: 60px;  /* puoi aumentare se lo vuoi un po' più grande (es. 20–22px) */
-            width: auto;
-            display: block;
-        }
+.home-info .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1360px;
+}
 
-        
-        /* destra: copyright + privacy */
-        .footer-right {
-            flex: 1 1 0;
-            display: flex;
-            justify-content: flex-end;
-            text-align: right;
-        }
-        
-        /* copyright + link privacy in linea */
-        .footer-meta {
-            display: inline-flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 8px;
-        }
-        
-        .footer-dot {
-            opacity: .6;
-        }
-        
-        .footer-link {
-            text-decoration: underline;
-            opacity: .85;
-        }
-        
-        /* social icons */
-        .footer-social {
-            display: flex;
-            gap: 12px;
-        }
-        
-        .footer-social-link {
-            display: inline-flex;
-            width: 20px;
-            height: 20px;
-            align-items: center;
-            justify-content: center;
-            opacity: .8;
-            transition: opacity .2s ease, transform .2s ease;
-        }
-        
-        .footer-social-link svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        
-        .footer-social-link:hover {
-            opacity: 1;
-            transform: translateY(-1px);
-        }
-        
-        /* Mobile: tutto impilato e allineato a sinistra */
-        @media (max-width: 640px) {
-            .footer-layout {
-                flex-wrap: wrap;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-        
-            .footer-left,
-            .footer-center,
-            .footer-right {
-                flex: 0 0 auto;
-                text-align: left;
-                justify-content: flex-start;
-            }
-        
-            .footer-meta {
-                justify-content: flex-start;
-            }
-        }
+.home-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.6rem;
+}
 
-        /* === STILI SPECIFICI PAGINA MENU === */
+.home-feature {
+    position: relative;
+    border-radius: 36px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(246, 239, 230, 0.95) 0%,
+            rgba(235, 221, 203, 0.93) 100%
+        );
+    border: 1px solid rgba(214, 165, 96, 0.16);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.18),
+        0 10px 28px rgba(0, 0, 0, 0.09);
+    backdrop-filter: blur(8px);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.home-feature:hover {
+    transform: translateY(-4px);
+    border-color: rgba(214, 165, 96, 0.28);
+    box-shadow:
+        0 36px 80px rgba(0, 0, 0, 0.22),
+        0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+.home-feature::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.14) 0%,
+            rgba(255, 255, 255, 0.04) 34%,
+            rgba(138, 90, 43, 0.04) 100%
+        );
+    pointer-events: none;
+}
+
+.home-feature-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(360px, 0.8fr) minmax(0, 1.2fr);
+    gap: 1.6rem;
+    align-items: stretch;
+    min-height: 430px;
+    padding: 1.2rem;
+}
+
+.home-feature-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: clamp(2rem, 4vw, 3.2rem);
+    padding-right: clamp(1rem, 2vw, 1.8rem);
+    border-radius: 28px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(248, 242, 235, 0.92) 0%,
+            rgba(244, 236, 227, 0.86) 100%
+        );
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+.home-feature-accent {
+    display: block;
+    width: 82px;
+    height: 4px;
+    margin: 0 0 1.3rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #8a5a2b, #d6a560);
+    box-shadow: 0 0 18px rgba(214, 165, 96, 0.18);
+}
+
+.home-feature-title {
+    margin: 0 0 1rem;
+    max-width: 640px;
+    font-size: clamp(1.75rem, 2.4vw, 2.45rem);
+    font-weight: 800;
+    line-height: 1.14;
+    color: #1d140d;
+    text-wrap: balance;
+}
+
+.home-feature-text {
+    margin: 0;
+    max-width: 640px;
+    font-size: clamp(1rem, 1.08vw, 1.08rem);
+    line-height: 1.9;
+    color: #433427;
+    text-wrap: pretty;
+}
+
+.home-feature-gallery {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.28fr) minmax(170px, 0.62fr);
+    gap: 1rem;
+    min-height: 100%;
+}
+
+.home-feature-gallery::before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    background: linear-gradient(
+        90deg,
+        rgba(243, 235, 225, 0.78)
+        rgba(243, 235, 225, 0.52)
+        rgba(243, 235, 225, 0.18)
+        rgba(243, 235, 225, 0) 100%
+    );
+    filter: blur(12px);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.home-feature-reverse .home-feature-gallery::before {
+    left: auto;
+    right: -30px;
+    background: linear-gradient(
+        270deg,
+        rgba(243, 235, 225, 0.92) 0%,
+        rgba(243, 235, 225, 0.72) 28%,
+        rgba(243, 235, 225, 0.32) 58%,
+        rgba(243, 235, 225, 0) 100%
+    );
+}
+
+.home-feature-shot-stack {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+}
+
+.home-feature-shot {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    min-height: 170px;
+    background: rgba(138, 90, 43, 0.08);
+    box-shadow:
+        0 14px 30px rgba(61, 42, 24, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.home-feature-shot-main {
+    min-height: 100%;
+}
+
+.home-feature-shot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0.02) 22%,
+            rgba(0, 0, 0, 0.05) 100%
+        );
+    pointer-events: none;
+}
+
+.home-feature-shot img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(1.08) saturate(1.06) contrast(1.02);
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+.home-feature:hover .home-feature-shot img {
+    transform: scale(1.035);
+    filter: brightness(1.11) saturate(1.08) contrast(1.03);
+}
+
+@media (min-width: 1000px) {
+    .home-feature-reverse .home-feature-copy {
+        order: 2;
+    }
+
+    .home-feature-reverse .home-feature-gallery {
+        order: 1;
+    }
+}
+
+@media (max-width: 1100px) {
+    .home-info {
+        margin-top: -60px;
+        padding-top: 7rem;
+    }
+
+    .home-feature-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .home-feature-copy {
+        padding-right: clamp(2rem, 4vw, 3rem);
+    }
+
+    .home-feature-gallery {
+        min-height: auto;
+        grid-template-columns: minmax(0, 1.18fr) minmax(150px, 0.72fr);
+    }
+
+    .home-feature-gallery::before,
+    .home-feature-reverse .home-feature-gallery::before {
+        left: 0;
+        right: 0;
+        top: -20px;
+        bottom: auto;
+        width: auto;
+        height: 90px;
+        background: linear-gradient(
+            180deg,
+            rgba(243, 235, 225, 0.75) 0%,
+            rgba(243, 235, 225, 0.22) 52%,
+            rgba(243, 235, 225, 0) 100%
+        );
+    }
+
+    .home-feature-reverse .home-feature-copy,
+    .home-feature-reverse .home-feature-gallery {
+        order: initial;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-info {
+        margin-top: -30px;
+        padding: 4rem 0 3.8rem;
+    }
+
+    .home-info-grid {
+        gap: 1.4rem;
+    }
+
+    .home-feature {
+        border-radius: 24px;
+    }
+
+    .home-feature-inner {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .home-feature-copy {
+        align-items: center;
+        text-align: center;
+        padding: 1.7rem 1.3rem;
+        border-radius: 20px;
+    }
+
+    .home-feature-title {
+        font-size: 1.42rem;
+        max-width: 100%;
+    }
+
+    .home-feature-text {
+        font-size: 0.98rem;
+        line-height: 1.72;
+        max-width: 100%;
+    }
+
+    .home-feature-accent {
+        width: 58px;
+        margin-bottom: 1rem;
+    }
+
+    .home-feature-gallery {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .home-feature-shot-main {
+        min-height: 240px;
+    }
+
+    .home-feature-shot-stack {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: none;
+        gap: 0.8rem;
+    }
+
+    .home-feature-shot {
+        min-height: 130px;
+        border-radius: 18px;
+    }
+}
+
+        /* === PAGINA MENU === */
         .menu-category-title {
             margin: 0 0 6px;
             font-size: 20px;
@@ -925,197 +1073,311 @@
             font-size: 13px;
         }
 
-        /* === NAVBAR PIÙ ALTA E PIÙ LEGGIBILE SU DESKTOP === */
+        /* === PAGINA RISTORANTE (STILE RUSTICO) === */
+        .restaurant-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .restaurant-feature {
+            position: relative;
+            border-radius: 24px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,.14);
+            background:
+                radial-gradient(
+                    900px 600px at 0% 0%,
+                    rgba(255,255,255,.08),
+                    rgba(255,255,255,.02)
+                );
+            box-shadow: 0 20px 40px rgba(0,0,0,.75);
+            display: grid;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .restaurant-feature::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            border: 1px dashed rgba(255,255,255,.08);
+            pointer-events: none;
+        }
+
+        .restaurant-feature-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .restaurant-feature-title {
+            margin: 0 0 6px;
+            font-size: 20px;
+            letter-spacing: .03em;
+        }
+
+        .restaurant-feature-body {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: .92;
+        }
+
+        .restaurant-feature-image {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .restaurant-feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: scale(1.02);
+            transition: transform .25s ease;
+        }
+
+        .restaurant-feature:hover .restaurant-feature-image img {
+            transform: scale(1.06);
+        }
+
+        @media (min-width: 900px) {
+            .restaurant-feature {
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+                padding: 22px;
+            }
+
+            .restaurant-feature.restaurant-feature-alt {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+            }
+
+            .restaurant-feature.restaurant-feature-alt .restaurant-feature-text {
+                order: 2;
+                text-align: right;
+            }
+
+            .restaurant-feature.restaurant-feature-alt .restaurant-feature-body {
+                text-align: right;
+            }
+
+            .restaurant-feature.restaurant-feature-alt .restaurant-feature-image {
+                order: 1;
+            }
+        }
+
+        .restaurant-facts {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 24px auto 0;
+            padding-top: 0;
+            border-top: none;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .restaurant-fact {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            align-items: center;
+            min-width: 220px;
+        }
+
+        .restaurant-fact-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            opacity: .7;
+        }
+
+        .restaurant-fact-value {
+            font-size: 14px;
+        }
+
+        /* === FOOTER === */
+        footer {
+            border-top: 1px solid rgba(255,255,255,.08);
+            margin-top: 40px;
+            padding: 20px 0;
+            opacity: .9;
+            font-size: 14px;
+        }
+
         @media (min-width: 800px) {
-            /* più spazio verticale nel container dell'header */
-            header .container {
-                padding-top: 12px;
-                padding-bottom: 12px;
-            }
-        
-            /* altezza minima della barra di navigazione */
-            nav {
-                min-height: 64px;
-            }
-        
-            /* logo un po' più grande */
-            .brand img {
-                height: 100px;
-            }
-        
-            /* link centrali più "importanti" (solo desktop) */
-            .nav-center .nav-main-link {
-                font-size: 20px;
-                padding: 10px 20px;
-            }
-        
-            /* pulsante Prenota più grande */
-            .pill.primary {
-                padding: 8px 16px;
-                font-size: 16px;
-            }
-        
-            /* select lingua più comoda da cliccare */
-            .lang-select {
-                padding: 6px 12px;
+            footer {
                 font-size: 15px;
             }
         }
 
-        /* --- Home: 3 sezioni a tutta larghezza con sfondo immagine --- */
-        .home-info {
-            padding: 56px 0 72px;
-            border-top: 1px solid rgba(255,255,255,.08);
+        .footer-layout {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
         }
-        
-        /* ogni blocco occupa quasi tutta la pagina in orizzontale (100% della .container) */
-        .home-feature {
-            position: relative;
-            width: 100%;
-            min-height: 220px;
-            margin-bottom: 24px;
-            border-radius: 26px;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            box-shadow: 0 18px 38px rgba(0,0,0,.75);
+
+        .footer-left {
+            flex: 1 1 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: left;
+        }
+
+        .footer-contact {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            column-gap: 4px;
+            row-gap: 0;
+            text-align: left;
         }
-        
-        /* sfumatura per rendere leggibile il testo */
-        .home-feature::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to right,
-                rgba(0,0,0,.75),
-                rgba(0,0,0,.30),
-                rgba(0,0,0,0)
-            );
-            z-index: 0;
-        }
-        
-        /* contenuto testuale sopra l’immagine */
-        .home-feature-inner {
-            position: relative;
-            z-index: 1;
-            padding: 28px 28px 32px;
-            max-width: 520px;
-        }
-        
-        /* titoli delle 3 sezioni */
-        .home-feature-title {
-            margin: 0 0 10px;
-            font-size: 20px;
-            letter-spacing: .02em;
-        }
-        
-        /* testo descrittivo */
-        .home-feature-text {
-            margin: 0;
-            font-size: 15px;
-            line-height: 1.6;
-            opacity: .92;
-        }
-        
-        /* ultimo blocco senza margine in fondo */
-        .home-feature:last-child {
-            margin-bottom: 0;
-        }
-        
-        /* Mobile: un po’ più compatto, ma sempre una card sotto l’altra */
-        @media (max-width: 640px) {
-            .home-feature {
-                min-height: 200px;
-            }
-        
-            .home-feature-inner {
-                padding: 22px 20px 24px;
-            }
-        
-            .home-feature-title {
-                font-size: 18px;
-            }
-        
-            .home-feature-text {
-                font-size: 14px;
+
+        @media (min-width: 900px) {
+            .footer-contact {
+                white-space: nowrap;
+                flex-wrap: nowrap;
             }
         }
 
-        /* Desktop: contenuto delle 3 sezioni centrato */
-        @media (min-width: 800px) {
-            .home-feature {
-                justify-content: center;  /* il contenuto sta al centro del blocco */
+        .footer-logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 6px;
+        }
+
+        .footer-logo {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .footer-right {
+            flex: 1 1 0;
+            display: flex;
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .footer-meta {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .footer-dot {
+            opacity: .6;
+        }
+
+        .footer-link {
+            text-decoration: underline;
+            opacity: .85;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social-link {
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+            opacity: .8;
+            transition: opacity .2s ease, transform .2s ease;
+        }
+
+        .footer-social-link svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .footer-social-link:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+            .footer-layout {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                text-align: center;
             }
-        
-            .home-feature-inner {
+
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                flex: 0 0 auto;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .footer-contact {
+                display: block;
+                text-align: center;
+            }
+
+            .footer-logo-wrap {
+                display: block;
+                margin-bottom: 6px;
+            }
+
+            .footer-logo {
                 margin: 0 auto;
-                text-align: center;       /* titolo + testo centrati */
-                max-width: 640px;         /* un po' più larga la colonna di testo */
             }
-        
-            /* sfumatura più centrale per accompagnare il testo al centro */
-            .home-feature::before {
-                background: radial-gradient(
-                    circle at 50% 50%,
-                    rgba(0,0,0,.80),
-                    rgba(0,0,0,.35),
-                    rgba(0,0,0,0)
-                );
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-meta {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    {{-- 
-        SEZIONE: HEADER + NAVBAR PRINCIPALE
-        - Contiene il logo
-        - I link principali di navigazione
-        - Il pulsante di prenotazione
-        - Il selettore lingua a tendina (desktop + mobile)
-    --}}
+    {{-- HEADER + NAVBAR --}}
     <header>
         <div class="container">
             <nav>
                 @php
-                    // Lingua corrente e path senza prefisso lingua
-                    $locale        = request()->route('locale') ?? config('locales.default', 'it');
-                    $path          = request()->path(); // es: "it/menu"
-                    $rest          = preg_replace('#^[a-z]{2}(/|$)#', '', $path);
-                    $rest          = ltrim((string) $rest, '/');
-                    $currentRoute  = Route::currentRouteName();
-
-                    // Dati ristorante
+                    $currentRoute    = Route::currentRouteName();
                     $restaurantName  = config('restaurant.name', 'Ristorante');
                     $restaurantPhone = config('restaurant.phone');
-
-                    // Link per il pulsante "Prenota"
                     $phoneHref = $restaurantPhone
                         ? 'tel:' . preg_replace('/\D+/', '', $restaurantPhone)
                         : '/' . $locale . '/contatti';
+                    $logoPath = config('restaurant.logo');
                 @endphp
 
-                {{-- COLONNA SINISTRA: SOLO LOGO --}}
+                {{-- Logo a sinistra --}}
                 <div class="nav-left">
                     <a class="brand" href="/{{ $locale }}" aria-label="{{ $restaurantName }}">
-                        @php
-                            $logoPath = config('restaurant.logo'); // es: images/logo-torre-blaga.svg
-                        @endphp
-                
                         @if($logoPath)
-                            {{-- Logo immagine --}}
                             <img src="{{ asset($logoPath) }}" alt="{{ $restaurantName }}">
                         @else
-                            {{-- Fallback: testo brand se il logo non è configurato correttamente --}}
                             <span class="brand-text">{{ $restaurantName }}</span>
                         @endif
                     </a>
                 </div>
-                
-                {{-- COLONNA CENTRALE: LINK PRINCIPALI --}}
+
+                {{-- Link centrali --}}
                 <div class="nav-center">
                     <a
                         href="/{{ $locale }}/ristorante"
@@ -1146,7 +1408,7 @@
                     </a>
                 </div>
 
-                {{-- COLONNA DESTRA: PRENOTA + LINGUA A TENDINA --}}
+                {{-- Prenota + lingua --}}
                 <div class="nav-right">
                     <a class="pill primary" href="{{ $phoneHref }}">
                         {{ __('pages.nav.book') }}
@@ -1180,119 +1442,168 @@
         </div>
     </header>
 
-    {{-- 
-        SEZIONE: CONTENUTO PRINCIPALE DINAMICO
-        - Qui viene iniettato il contenuto delle singole pagine (slot Blade)
-    --}}
+    {{-- CONTENUTO DELLE PAGINE --}}
     <main>
         {{ $slot }}
     </main>
 
-    {{-- 
-        SEZIONE: FOOTER
-        - Mostra nome ristorante, indirizzo, telefono, email
-        - Link alla pagina privacy nella lingua corrente
-    --}}
-<footer>
-    <div class="container footer-layout">
-        @php
-            $restaurantName = config('restaurant.name', 'Ristorante');
-            $addressLine    = config('restaurant.address_line');
-            $phone          = config('restaurant.phone');
-            $email          = config('restaurant.email');
+    {{-- FOOTER --}}
+    <footer>
+        <div class="container footer-layout">
+            @php
+                $restaurantName = config('restaurant.name', 'Ristorante');
+                $addressLine    = config('restaurant.address_line');
+                $phone          = config('restaurant.phone');
+                $email          = config('restaurant.email');
+    
+                $locale   = request()->route('locale') ?? config('locales.default', 'it');
+                $logoPath = config('restaurant.logo'); // stesso logo della navbar
+    
+                // URL social presi dalla config
+                $instagramUrl = config('restaurant.instagram');
+                $facebookUrl  = config('restaurant.facebook');
+            @endphp
 
-            $locale   = request()->route('locale') ?? config('locales.default', 'it');
-            $logoPath = config('restaurant.logo'); // stesso logo della navbar
 
-            // URL social (puoi spostarli in config/restaurant.php se vuoi)
-            $instagramUrl = 'https://www.instagram.com/torrediblaga';
-            $facebookUrl  = 'https://www.facebook.com/torrediblaga';
-        @endphp
+            <div class="footer-left muted">
+                <div class="footer-contact">
+                    @if($logoPath)
+                        <span class="footer-logo-wrap">
+                            <img
+                                src="{{ asset($logoPath) }}"
+                                alt="{{ $restaurantName }}"
+                                class="footer-logo"
+                            >
+                        </span>
+                    @else
+                        <strong>{{ $restaurantName }}</strong>
+                    @endif
 
-        {{-- Colonna sinistra: logo + dati ristorante --}}
-        <div class="footer-left muted">
-            <div class="footer-contact">
-                @if($logoPath)
-                    <span class="footer-logo-wrap">
-                        <img
-                            src="{{ asset($logoPath) }}"
-                            alt="{{ $restaurantName }}"
-                            class="footer-logo"
+                    @if($addressLine)
+                        — {{ $addressLine }}
+                    @endif
+                    @if($phone)
+                        — Tel: {{ $phone }}
+                    @endif
+                    @if($email)
+                        — Email: {{ $email }}
+                    @endif
+                </div>
+            </div>
+
+            <div class="footer-center">
+                <div class="footer-social">
+                    @if($instagramUrl)
+                        <a
+                            href="{{ $instagramUrl }}"
+                            class="footer-social-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram {{ $restaurantName }}"
                         >
-                    </span>
-                @else
-                    <strong>{{ $restaurantName }}</strong>
-                @endif
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                                        fill="none" stroke="currentColor" stroke-width="1.6" />
+                                <circle cx="12" cy="12" r="4.3"
+                                        fill="none" stroke="currentColor" stroke-width="1.6" />
+                                <circle cx="17" cy="7" r="1.2" fill="currentColor" />
+                            </svg>
+                        </a>
+                    @endif
 
-                @if($addressLine)
-                    — {{ $addressLine }}
-                @endif
-                @if($phone)
-                    — Tel: {{ $phone }}
-                @endif
-                @if($email)
-                    — Email: {{ $email }}
-                @endif
+                    @if($facebookUrl)
+                        <a
+                            href="{{ $facebookUrl }}"
+                            class="footer-social-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Facebook {{ $restaurantName }}"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-1.1.4-1.6 1.7-1.6H16V4.7
+                                        C15.6 4.6 14.7 4.5 13.7 4.5c-2.7 0-4.4 1.6-4.4 4.6V11H7.5v3h1.8v7h4.2z"
+                                        fill="currentColor" />
+                            </svg>
+                        </a>
+                    @endif
+                </div>
             </div>
-        </div>
 
-        {{-- Colonna centrale: social --}}
-        <div class="footer-center">
-            <div class="footer-social">
-                @if($instagramUrl)
+            <div class="footer-right">
+                <div class="footer-meta muted">
+                    <span>© {{ date('Y') }} — Tutti i diritti riservati</span>
+                    <span class="footer-dot">•</span>
                     <a
-                        href="{{ $instagramUrl }}"
-                        class="footer-social-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Instagram {{ $restaurantName }}"
+                        href="/{{ $locale }}/privacy"
+                        class="footer-link"
                     >
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-                                    fill="none" stroke="currentColor" stroke-width="1.6" />
-                            <circle cx="12" cy="12" r="4.3"
-                                    fill="none" stroke="currentColor" stroke-width="1.6" />
-                            <circle cx="17" cy="7" r="1.2" fill="currentColor" />
-                        </svg>
+                        {{ __('pages.footer_privacy') }}
                     </a>
-                @endif
-
-                @if($facebookUrl)
-                    <a
-                        href="{{ $facebookUrl }}"
-                        class="footer-social-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Facebook {{ $restaurantName }}"
-                    >
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-1.1.4-1.6 1.7-1.6H16V4.7
-                                    C15.6 4.6 14.7 4.5 13.7 4.5c-2.7 0-4.4 1.6-4.4 4.6V11H7.5v3h1.8v7h4.2z"
-                                    fill="currentColor" />
-                        </svg>
-                    </a>
-                @endif
+                </div>
             </div>
         </div>
+    </footer>
 
-        {{-- Colonna destra: copyright + privacy --}}
-        <div class="footer-right">
-            <div class="footer-meta muted">
-                <span>© {{ date('Y') }} — Tutti i diritti riservati</span>
+    {{-- JS: HERO HOME + COLLASSO INTRO RISTORANTE --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hero home: slider di sfondo
+            (function () {
+                var hero = document.querySelector('[data-hero-bg]');
+                if (!hero) return;
 
-                <span class="footer-dot">•</span>
+                var slides = hero.querySelectorAll('.hero-bg-slide');
+                if (!slides.length) return;
 
-                <a
-                    href="/{{ $locale }}/privacy"
-                    class="footer-link"
-                >
-                    {{ __('pages.footer_privacy') }}
-                </a>
-            </div>
-        </div>
-    </div>
-</footer>
+                var index = 0;
+                slides[0].classList.add('is-active');
+                if (slides.length === 1) return;
 
+                function setActive(nextIndex) {
+                    slides[index].classList.remove('is-active');
+                    index = (nextIndex + slides.length) % slides.length;
+                    slides[index].classList.add('is-active');
+                }
 
+                var prevBtn = hero.querySelector('[data-hero-bg-prev]');
+                var nextBtn = hero.querySelector('[data-hero-bg-next]');
+
+                function goPrev() { setActive(index - 1); }
+                function goNext() { setActive(index + 1); }
+
+                if (prevBtn) prevBtn.addEventListener('click', goPrev);
+                if (nextBtn) nextBtn.addEventListener('click', goNext);
+
+                var timer = setInterval(goNext, 3000);
+
+                hero.addEventListener('mouseenter', function () {
+                    clearInterval(timer);
+                });
+
+                hero.addEventListener('mouseleave', function () {
+                    timer = setInterval(goNext, 3000);
+                });
+            })();
+
+            // Pagina Ristorante: collasso del blocco introduttivo allo scroll
+            (function () {
+                var restaurantPage = document.querySelector('.page-restaurant');
+                if (!restaurantPage) return;
+
+                var headerBlock = restaurantPage.querySelector('.page-header');
+                if (!headerBlock) return;
+
+                var hideOffset = headerBlock.offsetHeight * 1.2;
+
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > hideOffset) {
+                        headerBlock.classList.add('page-header--collapsed');
+                    } else {
+                        headerBlock.classList.remove('page-header--collapsed');
+                    }
+                }, { passive: true });
+            })();
+        });
+    </script>
 </body>
 </html>

@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Mail\ContactRequestMail;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Models\Category;
-use App\Mail\ContactRequestMail;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +19,7 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/sitemap.xml', function () {
     $locales = config('locales.supported', ['it']);
+
     $pages = [
         '',            // home
         'ristorante',
@@ -36,6 +36,7 @@ Route::get('/sitemap.xml', function () {
     foreach ($locales as $locale) {
         foreach ($pages as $slug) {
             $path = '/' . $locale;
+
             if ($slug !== '') {
                 $path .= '/' . $slug;
             }
@@ -82,64 +83,71 @@ Route::get('/', function () {
 Route::group([
     'prefix'     => '{locale}',
     'middleware' => 'setLocale',
-    'where'      => ['locale' => '[a-z]{2}'],
+    'where'      => [
+        // accetta solo i codici lingua effettivamente configurati
+        'locale' => implode('|', config('locales.supported', ['it'])),
+    ],
 ], function () {
-
     // Home: /it, /en, /de, ...
-    Route::get('/', function () {
+    Route::get('/', function (string $locale) {
         return view('pages.home');
     })->name('home');
 
     // Il Ristorante
-    Route::get('/ristorante', function () {
+    Route::get('/ristorante', function (string $locale) {
         return view('pages.ristorante');
     })->name('ristorante');
 
     // Menu
-    Route::get('/menu', function () {
-        $categories = Category::with(['dishes' => function ($query) {
-                $query->where('is_active', true)
-                        ->orderBy('position');
-            }])
+    Route::get('/menu', function (string $locale) {
+        $categories = Category::with([
+                'dishes' => function ($query) {
+                    $query->where('is_active', true)
+                          ->orderBy('position');
+                },
+            ])
             ->orderBy('position')
             ->get();
 
         return view('pages.menu', compact('categories'));
     })->name('menu');
 
-
     // Dove siamo
-    Route::get('/dove-siamo', function () {
+    Route::get('/dove-siamo', function (string $locale) {
         return view('pages.dove-siamo');
     })->name('dove-siamo');
 
     // Contatti (GET)
-    Route::get('/contatti', function () {
+    Route::get('/contatti', function (string $locale) {
         return view('pages.contatti');
     })->name('contatti');
 
     // Privacy & Cookie
-    Route::get('/privacy', function () {
+    Route::get('/privacy', function (string $locale) {
         return view('pages.privacy');
     })->name('privacy');
 
     // Contatti (POST) – invio form
     Route::post('/contatti', function (Request $request, string $locale) {
+        // assicuriamoci che la lingua dei messaggi di validazione sia corretta
         app()->setLocale($locale);
 
-        $validated = $request->validate([
-            'name'    => ['required', 'string', 'max:255'],
-            'email'   => ['required', 'email', 'max:255'],
-            'message' => ['required', 'string', 'max:2000'],
-        ], [
-            'name.required'    => __('validation_contact.name_required'),
-            'name.max'         => __('validation_contact.name_max', ['max' => 255]),
-            'email.required'   => __('validation_contact.email_required'),
-            'email.email'      => __('validation_contact.email_email'),
-            'email.max'        => __('validation_contact.email_max', ['max' => 255]),
-            'message.required' => __('validation_contact.message_required'),
-            'message.max'      => __('validation_contact.message_max', ['max' => 2000]),
-        ]);
+        $validated = $request->validate(
+            [
+                'name'    => ['required', 'string', 'max:255'],
+                'email'   => ['required', 'email', 'max:255'],
+                'message' => ['required', 'string', 'max:2000'],
+            ],
+            [
+                'name.required'    => __('validation_contact.name_required'),
+                'name.max'         => __('validation_contact.name_max', ['max' => 255]),
+                'email.required'   => __('validation_contact.email_required'),
+                'email.email'      => __('validation_contact.email_email'),
+                'email.max'        => __('validation_contact.email_max', ['max' => 255]),
+                'message.required' => __('validation_contact.message_required'),
+                'message.max'      => __('validation_contact.message_max', ['max' => 2000]),
+            ]
+        );
 
         // Log per debug
         Log::info('Contact form request', [
@@ -165,7 +173,6 @@ Route::group([
         return back()->with('success', __('pages.contacts.success'));
     })->name('contatti.submit');
 
-
     /*
     |--------------------------------------------------------------------------
     | Fallback 404 per la lingua corrente
@@ -175,9 +182,8 @@ Route::group([
     | finisce qui. Ritorniamo la view "pages.not-found" con status 404.
     |
     */
-
     Route::fallback(function (string $locale) {
-        // Il middleware SetLocale ha già impostato la lingua corretta
+        // Il middleware setLocale ha già impostato la lingua corretta
         return response()
             ->view('pages.not-found', [], 404);
     })->name('not-found');

@@ -2,43 +2,27 @@
 
 return [
     'home' => [
-        'title'       => 'Torre di Blaga – Ristorante di cucina tradizionale',
-        'description' => 'Ristorante Torre di Blaga: cucina di territorio, prodotti freschi di stagione e ambienti accoglienti. Scopri il menu e prenota il tuo tavolo.',
+        'title'       => 'Torre di Blaga – Agriturismo con cucina tipica abruzzese',
+        'description' => 'Agriturismo Torre di Blaga: cucina tipica abruzzese, carne alla brace, arrosticini e pizza. Ambiente di campagna, atmosfera informale e prodotti di stagione.',
     ],
 
     'restaurant' => [
         'title'       => 'Il ristorante – Torre di Blaga',
-        'description' => 'Storia, filosofia e atmosfera del ristorante Torre di Blaga: un luogo dove cucina, accoglienza e territorio si incontrano.',
+        'description' => 'Scopri il ristorante Torre di Blaga: sala accogliente, brace a vista e cucina abruzzese con ingredienti freschi e locali, tra vigneti, ulivi e colline.',
     ],
 
     'menu' => [
-        'title'       => 'Menu – Torre di Blaga',
-        'description' => 'Consulta il menu del ristorante Torre di Blaga: antipasti, primi, secondi di carne e pesce, dessert fatti in casa e proposte del giorno.',
+        'title'       => 'Il menu – Torre di Blaga',
+        'description' => 'Il menu di Torre di Blaga: antipasti, primi piatti, carne alla brace, arrosticini, pizze e dessert. Proposte che cambiano con le stagioni e i prodotti del territorio.',
     ],
 
     'where' => [
         'title'       => 'Dove siamo – Torre di Blaga',
-        'description' => 'Come raggiungere il ristorante Torre di Blaga: indirizzo, mappa e indicazioni utili per arrivare facilmente.',
+        'description' => 'Come raggiungere l’agriturismo Torre di Blaga. Indicazioni, indirizzo e link a Google Maps per arrivare facilmente al ristorante di campagna.',
     ],
 
     'contacts' => [
         'title'       => 'Contatti e prenotazioni – Torre di Blaga',
-        'description' => 'Prenota un tavolo al ristorante Torre di Blaga o richiedi informazioni: telefono, email, WhatsApp e modulo di contatto.',
+        'description' => 'Contatta l’agriturismo Torre di Blaga per informazioni e prenotazioni: telefono, email, WhatsApp e modulo di richiesta online.',
     ],
-
-        'not_found' => [
-        'title'       => 'Pagina non trovata – Torre di Blaga',
-        'description' => 'La pagina che stai cercando non è disponibile. Torna alla home del ristorante Torre di Blaga per scoprire il menu e le nostre proposte.',
-    ],
-
-    'privacy' => [
-        'title'       => 'Privacy e cookie – Torre di Blaga',
-        'description' => 'Informazioni di base sul trattamento dei dati personali e sull’utilizzo dei cookie sul sito del ristorante Torre di Blaga.',
-    ],
-
-    'privacy' => [
-        'title'       => 'Privacy and cookies – Torre di Blaga',
-        'description' => 'Basic information about personal data processing and cookie usage on the Torre di Blaga restaurant website.',
-    ],
-
 ];

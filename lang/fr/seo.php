@@ -2,38 +2,27 @@
 
 return [
     'home' => [
-        'title'       => 'Torre di Blaga – Restaurant de cuisine traditionnelle',
-        'description' => 'Restaurant Torre di Blaga : cuisine du terroir, produits de saison et atmosphère chaleureuse. Découvrez la carte et réservez votre table.',
+        'title'       => 'Torre di Blaga – Restaurant de campagne cuisine des Abruzzes',
+        'description' => 'Torre di Blaga est un restaurant de campagne proposant une cuisine typique des Abruzzes : viandes grillées, arrosticini et pizza, dans une atmosphère chaleureuse.',
     ],
 
     'restaurant' => [
         'title'       => 'Le restaurant – Torre di Blaga',
-        'description' => 'Histoire, philosophie et ambiance du restaurant Torre di Blaga : un lieu où se rencontrent cuisine, accueil et terroir.',
+        'description' => 'Découvrez Torre di Blaga : une salle intime, un gril au charbon de bois et des plats inspirés du terroir des Abruzzes, préparés avec des ingrédients frais et de saison.',
     ],
 
     'menu' => [
-        'title'       => 'Menu – Torre di Blaga',
-        'description' => 'Consultez le menu du restaurant Torre di Blaga : entrées, premiers plats, plats de viande et de poisson et desserts maison.',
+        'title'       => 'Le menu – Torre di Blaga',
+        'description' => 'Le menu de Torre di Blaga : entrées, premiers plats, viandes grillées, arrosticini, pizzas et desserts, avec des propositions qui suivent les saisons.',
     ],
 
     'where' => [
-        'title'       => 'Où nous trouver – Torre di Blaga',
-        'description' => 'Comment rejoindre le restaurant Torre di Blaga : adresse, carte et indications utiles pour venir facilement.',
+        'title'       => 'Nous trouver – Torre di Blaga',
+        'description' => 'Comment rejoindre Torre di Blaga. Adresse, indications et lien direct vers Google Maps pour trouver facilement notre restaurant de campagne.',
     ],
 
     'contacts' => [
         'title'       => 'Contacts et réservations – Torre di Blaga',
-        'description' => 'Réservez une table au restaurant Torre di Blaga ou demandez des informations : téléphone, e-mail, WhatsApp et formulaire de contact.',
+        'description' => 'Contactez Torre di Blaga pour toute information ou réservation : téléphone, e-mail, WhatsApp et formulaire de contact en ligne.',
     ],
-
-        'not_found' => [
-        'title'       => 'Page introuvable – Torre di Blaga',
-        'description' => 'La page que vous recherchez n’est pas disponible. Retournez à la page d’accueil de Torre di Blaga pour découvrir le menu et nos propositions.',
-    ],
-
-    'privacy' => [
-        'title'       => 'Confidentialité et cookies – Torre di Blaga',
-        'description' => 'Informations de base sur le traitement des données personnelles et l’utilisation des cookies sur le site du restaurant Torre di Blaga.',
-    ],
-
 ];

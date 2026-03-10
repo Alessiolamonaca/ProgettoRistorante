@@ -1,25 +1,26 @@
 <x-layouts.app
-    :title="__('seo.not_found.title')"
-    :meta-description="__('seo.not_found.description')"
+    :title="__('pages.not_found.title')"
+    :meta-description="__('pages.not_found.text')"
 >
-    <div class="container" style="padding-top: 24px;">
-        <div class="card">
-            <h1 style="margin-top:0;">
-                {{ __('pages.not_found.title') }}
-            </h1>
-            <p class="muted">
-                {{ __('pages.not_found.text') }}
-            </p>
+    <section class="page">
+        <div class="container">
+            <header class="page-header">
+                <h1>{{ __('pages.not_found.title') }}</h1>
+                <p class="muted">
+                    {{ __('pages.not_found.text') }}
+                </p>
+            </header>
 
             @php
-                $locale = request()->route('locale') ?? config('locales.default', 'it');
+                $locale = request()->route('locale')
+                    ?? config('locales.default', 'it');
             @endphp
 
-            <div style="margin-top:16px;">
-                <a class="pill primary" href="/{{ $locale }}">
+            <div>
+                <a href="/{{ $locale }}" class="pill primary">
                     {{ __('pages.not_found.back_home') }}
                 </a>
             </div>
         </div>
-    </div>
+    </section>
 </x-layouts.app>

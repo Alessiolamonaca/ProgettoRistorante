@@ -2,49 +2,36 @@
     :title="__('seo.home.title')"
     :meta-description="__('seo.home.description')"
 >
-    {{-- 
-        SEZIONE HERO HOME
-        - Sfondo con 3 immagini in rotazione
-        - Testo centrato (titolo + sottotitolo)
-        - Navigazione con frecce laterali + autoplay
-    --}}
     <section class="hero hero-home" data-hero-bg>
-        {{-- Sfondo con 3 immagini in rotazione --}}
         <div class="hero-bg-track">
             <div
                 class="hero-bg-slide is-active"
-                data-hero-bg-slide
                 style="background-image: url('{{ asset('images/ristorante-esterno.jpg') }}');"
             ></div>
 
             <div
                 class="hero-bg-slide"
-                data-hero-bg-slide
                 style="background-image: url('{{ asset('images/sala.jpg') }}');"
             ></div>
 
             <div
                 class="hero-bg-slide"
-                data-hero-bg-slide
                 style="background-image: url('{{ asset('images/braceria-2.jpg') }}');"
             ></div>
         </div>
 
-        {{-- Contenuto centrato sopra lo sfondo --}}
         <div class="hero-content-center">
             <div class="container">
                 <h1 class="hero-heading hero-heading-center">
-                    Torre di Blaga
+                    {{ __('pages.home.title') }}
                 </h1>
 
                 <p class="hero-lead hero-lead-center">
-                    Agriturismo con cucina tipica abruzzese:
-                    carne alla brace, arrosticini e pizza.
+                    {{ __('pages.home.subtitle') }}
                 </p>
             </div>
         </div>
 
-        {{-- Frecce di navigazione laterali --}}
         <button
             type="button"
             class="hero-bg-arrow hero-bg-arrow-left"
@@ -64,133 +51,106 @@
         </button>
     </section>
 
-    {{-- 
-        SEZIONE INFORMATIVA (3 CARD)
-        - Info generali (testo introduttivo)
-        - Stile cucina / ambiente
-        - Prenotazioni / note pratiche
-        - Su mobile: 1 colonna
-        - Su desktop: 3 colonne affiancate
-    --}}
-    <section class="home-info">
-        <div class="container">
-    
-            {{-- Blocco 1: Cucina tipica abruzzese --}}
-            <article
-                class="home-feature"
-                style="background-image: url('{{ asset('images/home-cucina.jpg') }}');"
-            >
+    {{-- SEZIONE INFORMATIVA: 3 blocchi fotografici migliorati --}}
+<section class="home-info">
+    <div class="container">
+        <div class="home-info-grid">
+            <article class="home-feature">
                 <div class="home-feature-inner">
-                    <h3 class="home-feature-title">
-                        {{ __('pages.home.info_title') }}
-                    </h3>
-                    <p class="home-feature-text">
-                        {{ __('pages.home.info_text') }}
-                    </p>
+                    <div class="home-feature-copy">
+                        <span class="home-feature-accent" aria-hidden="true"></span>
+
+                        <h3 class="home-feature-title">
+                            {{ __('pages.home.info_title') }}
+                        </h3>
+
+                        <p class="home-feature-text">
+                            {{ __('pages.home.info_text') }}
+                        </p>
+                    </div>
+
+                    <div class="home-feature-gallery" aria-hidden="true">
+                        <figure class="home-feature-shot home-feature-shot-main">
+                            <img src="{{ asset('images/pallotte cace e ovo.jpg') }}" alt="" loading="lazy">
+                        </figure>
+
+                        <div class="home-feature-shot-stack">
+                            <figure class="home-feature-shot">
+                                <img src="{{ asset('images/sagne e ceci.jpg') }}" alt="" loading="lazy">
+                            </figure>
+
+                            <figure class="home-feature-shot">
+                                <img src="{{ asset('images/tagliatelle al pomodoro.jpg') }}" alt="" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
                 </div>
             </article>
-    
-            {{-- Blocco 2: Carne alla brace e arrosticini --}}
-            <article
-                class="home-feature"
-                style="background-image: url('{{ asset('images/home-brace.jpg') }}');"
-            >
+
+            <article class="home-feature home-feature-reverse">
                 <div class="home-feature-inner">
-                    <h3 class="home-feature-title">
-                        {{ __('pages.home.style_title') }}
-                    </h3>
-                    <p class="home-feature-text">
-                        {{ __('pages.home.style_text') }}
-                    </p>
+                    <div class="home-feature-copy">
+                        <span class="home-feature-accent" aria-hidden="true"></span>
+
+                        <h3 class="home-feature-title">
+                            {{ __('pages.home.style_title') }}
+                        </h3>
+
+                        <p class="home-feature-text">
+                            {{ __('pages.home.style_text') }}
+                        </p>
+                    </div>
+
+                    <div class="home-feature-gallery" aria-hidden="true">
+                        <figure class="home-feature-shot home-feature-shot-main">
+                            <img src="{{ asset('images/braceria-2.jpg') }}" alt="" loading="lazy">
+                        </figure>
+
+                        <div class="home-feature-shot-stack">
+                            <figure class="home-feature-shot">
+                                <img src="{{ asset('images/carne alla brace.jpg') }}" alt="" loading="lazy">
+                            </figure>
+
+                            <figure class="home-feature-shot">
+                                <img src="{{ asset('images/arrosticini.jpg') }}" alt="" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
                 </div>
             </article>
-    
-            {{-- Blocco 3: Pizzeria e serate tra amici --}}
-            <article
-                class="home-feature"
-                style="background-image: url('{{ asset('images/home-pizzeria.jpg') }}');"
-            >
+
+            <article class="home-feature">
                 <div class="home-feature-inner">
-                    <h3 class="home-feature-title">
-                        {{ __('pages.home.book_title') }}
-                    </h3>
-                    <p class="home-feature-text">
-                        {{ __('pages.home.book_text') }}
-                    </p>
+                    <div class="home-feature-copy">
+                        <span class="home-feature-accent" aria-hidden="true"></span>
+
+                        <h3 class="home-feature-title">
+                            {{ __('pages.home.book_title') }}
+                        </h3>
+
+                        <p class="home-feature-text">
+                            {{ __('pages.home.book_text') }}
+                        </p>
+                    </div>
+
+                    <div class="home-feature-gallery" aria-hidden="true">
+                        <figure class="home-feature-shot home-feature-shot-main">
+                            <img src="{{ asset('images/pizza.jpg') }}" alt="" loading="lazy">
+                        </figure>
+
+                        <div class="home-feature-shot-stack">
+                            <figure class="home-feature-shot">
+                                <img src="{{ asset('images/pizza2.jpg') }}" alt="" loading="lazy">
+                            </figure>
+
+                            <figure class="home-feature-shot">
+                                <img src="{{ asset('images/pizza3.jpg') }}" alt="" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
                 </div>
             </article>
         </div>
-    </section>
-
-    {{-- SCRIPT: carousel di sfondo hero (desktop + mobile) --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const hero = document.querySelector('[data-hero-bg]');
-            if (!hero) return;
-
-            const slides = hero.querySelectorAll('[data-hero-bg-slide]');
-            const prevBtn = hero.querySelector('[data-hero-bg-prev]');
-            const nextBtn = hero.querySelector('[data-hero-bg-next]');
-
-            if (slides.length <= 1) return;
-
-            let currentIndex = 0;
-            let timerId = null;
-
-            function showSlide(index) {
-                slides[currentIndex].classList.remove('is-active');
-
-                // gestione indice circolare
-                const total = slides.length;
-                currentIndex = ((index % total) + total) % total;
-
-                slides[currentIndex].classList.add('is-active');
-            }
-
-            function nextSlide() {
-                showSlide(currentIndex + 1);
-            }
-
-            function prevSlide() {
-                showSlide(currentIndex - 1);
-            }
-
-            function startAutoPlay() {
-                stopAutoPlay();
-                // cambia sfondo ogni 3 secondi
-                timerId = setInterval(nextSlide, 3000);
-            }
-
-            function stopAutoPlay() {
-                if (timerId !== null) {
-                    clearInterval(timerId);
-                    timerId = null;
-                }
-            }
-
-            // click freccia destra
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function () {
-                    nextSlide();
-                    startAutoPlay();
-                });
-            }
-
-            // click freccia sinistra
-            if (prevBtn) {
-                prevBtn.addEventListener('click', function () {
-                    prevSlide();
-                    startAutoPlay();
-                });
-            }
-
-            // pausa al passaggio del mouse (solo desktop)
-            hero.addEventListener('mouseenter', stopAutoPlay);
-            hero.addEventListener('mouseleave', startAutoPlay);
-
-            // inizializzazione
-            showSlide(0);
-            startAutoPlay();
-        });
-    </script>
+    </div>
+</section>
 </x-layouts.app>

@@ -2,72 +2,103 @@
     :title="__('seo.restaurant.title')"
     :meta-description="__('seo.restaurant.description')"
 >
-    {{-- 
-        SEZIONE PAGINA: "IL RISTORANTE"
-        - Contenitore principale della pagina
-        - Usa .page per avere padding verticale coerente con il resto del sito
-    --}}
-    <div class="container page">
-        
-        {{-- 
-            BLOCCO: HEADER DELLA PAGINA
-            - Titolo principale (H1)
-            - Testo introduttivo (paragrafo muted)
-        --}}
-        <header class="page-header">
-            <h1>{{ __('pages.restaurant.title') }}</h1>
-            <p class="muted">
-                {{ __('pages.restaurant.intro') }}
-            </p>
-        </header>
-
-        {{-- 
-            BLOCCO: CONTENUTI PRINCIPALI (4 CARD)
-            - Ogni card racconta un aspetto del ristorante:
-                1) Storia
-                2) Cucina
-                3) Sala
-                4) Territorio
-            - Layout:
-                - Mobile: una card per riga (grid a 1 colonna)
-                - Desktop: 2 card per riga (grid a 2 colonne, già gestito da .grid)
-        --}}
-        <section class="grid">
-            <article class="card">
-                <h2 class="page-section-title">
-                    {{ __('pages.restaurant.story_title') }}
-                </h2>
-                <p class="muted">
-                    {{ __('pages.restaurant.story_text') }}
+    <section class="page page-restaurant">
+        <div class="container">
+            {{-- Header pagina --}}
+            <header class="page-header">
+                <p class="page-section-title">
+                    {{ __('pages.restaurant.title') }}
                 </p>
-            </article>
 
-            <article class="card">
-                <h2 class="page-section-title">
-                    {{ __('pages.restaurant.kitchen_title') }}
-                </h2>
-                <p class="muted">
-                    {{ __('pages.restaurant.kitchen_text') }}
-                </p>
-            </article>
+                <h1>
+                    {{ __('pages.restaurant.hero_title') }}
+                </h1>
 
-            <article class="card">
-                <h2 class="page-section-title">
-                    {{ __('pages.restaurant.room_title') }}
-                </h2>
                 <p class="muted">
-                    {{ __('pages.restaurant.room_text') }}
+                    {{ __('pages.restaurant.intro') }}
                 </p>
-            </article>
+            </header>
 
-            <article class="card">
-                <h2 class="page-section-title">
-                    {{ __('pages.restaurant.territory_title') }}
-                </h2>
-                <p class="muted">
-                    {{ __('pages.restaurant.territory_text') }}
-                </p>
-            </article>
-        </section>
-    </div>
+            {{-- Sezioni descrittive --}}
+            <section class="restaurant-sections">
+                {{-- Sezione 1: La sala --}}
+                <article class="restaurant-feature">
+                    <div class="restaurant-feature-text">
+                        <h2 class="restaurant-feature-title">
+                            {{ __('pages.restaurant.room_title') }}
+                        </h2>
+                        <p class="restaurant-feature-body">
+                            {{ __('pages.restaurant.room_text') }}
+                        </p>
+                    </div>
+
+                    <div class="restaurant-feature-image">
+                        <img
+                            src="{{ asset('images/ristorante-sala.jpg') }}"
+                            alt="{{ __('pages.restaurant.room_title') }} Torre di Blaga"
+                        >
+                    </div>
+                </article>
+
+                {{-- Sezione 2: La brace e la cucina --}}
+                <article class="restaurant-feature restaurant-feature-alt">
+                    <div class="restaurant-feature-text">
+                        <h2 class="restaurant-feature-title">
+                            {{ __('pages.restaurant.kitchen_title') }}
+                        </h2>
+                        <p class="restaurant-feature-body">
+                            {{ __('pages.restaurant.kitchen_text') }}
+                        </p>
+                    </div>
+
+                    <div class="restaurant-feature-image">
+                        <img
+                            src="{{ asset('images/ristorante-brace.jpg') }}"
+                            alt="{{ __('pages.restaurant.kitchen_title') }} Torre di Blaga"
+                        >
+                    </div>
+                </article>
+
+                {{-- Sezione 3: L’agriturismo e la campagna --}}
+                <article class="restaurant-feature">
+                    <div class="restaurant-feature-text">
+                        <h2 class="restaurant-feature-title">
+                            {{ __('pages.restaurant.territory_title') }}
+                        </h2>
+                        <p class="restaurant-feature-body">
+                            {{ __('pages.restaurant.territory_text') }}
+                        </p>
+                    </div>
+
+                    <div class="restaurant-feature-image">
+                        <img
+                            src="{{ asset('images/ristorante-esterno-2.jpg') }}"
+                            alt="{{ __('pages.restaurant.territory_title') }} Torre di Blaga"
+                        >
+                    </div>
+                </article>
+            </section>
+
+            {{-- Dati riassuntivi --}}
+            <section class="restaurant-facts">
+                <div class="restaurant-fact">
+                    <span class="restaurant-fact-label">
+                        {{ __('pages.restaurant.facts_specialties_label') }}
+                    </span>
+                    <span class="restaurant-fact-value">
+                        {{ __('pages.restaurant.facts_specialties_value') }}
+                    </span>
+                </div>
+
+                <div class="restaurant-fact">
+                    <span class="restaurant-fact-label">
+                        {{ __('pages.restaurant.facts_seasonality_label') }}
+                    </span>
+                    <span class="restaurant-fact-value">
+                        {{ __('pages.restaurant.facts_seasonality_value') }}
+                    </span>
+                </div>
+            </section>
+        </div>
+    </section>
 </x-layouts.app>
