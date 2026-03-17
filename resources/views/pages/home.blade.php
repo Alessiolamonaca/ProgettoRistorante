@@ -73,15 +73,6 @@
                         <figure class="home-feature-shot home-feature-shot-main">
                             <img src="{{ asset('images/pallotte cace e ovo.jpg') }}" alt="" loading="lazy">
                         </figure>
-
-                        <div class="home-feature-shot-stack">
-                            <figure class="home-feature-shot">
-                                <img src="{{ asset('images/sagne e ceci.jpg') }}" alt="" loading="lazy">
-                            </figure>
-
-                            <figure class="home-feature-shot">
-                                <img src="{{ asset('images/tagliatelle al pomodoro.jpg') }}" alt="" loading="lazy">
-                            </figure>
                         </div>
                     </div>
                 </div>
@@ -103,17 +94,8 @@
 
                     <div class="home-feature-gallery" aria-hidden="true">
                         <figure class="home-feature-shot home-feature-shot-main">
-                            <img src="{{ asset('images/braceria-2.jpg') }}" alt="" loading="lazy">
-                        </figure>
-
-                        <div class="home-feature-shot-stack">
-                            <figure class="home-feature-shot">
-                                <img src="{{ asset('images/carne alla brace.jpg') }}" alt="" loading="lazy">
-                            </figure>
-
-                            <figure class="home-feature-shot">
                                 <img src="{{ asset('images/arrosticini.jpg') }}" alt="" loading="lazy">
-                            </figure>
+                        </figure>
                         </div>
                     </div>
                 </div>
@@ -135,17 +117,8 @@
 
                     <div class="home-feature-gallery" aria-hidden="true">
                         <figure class="home-feature-shot home-feature-shot-main">
-                            <img src="{{ asset('images/pizza.jpg') }}" alt="" loading="lazy">
-                        </figure>
-
-                        <div class="home-feature-shot-stack">
-                            <figure class="home-feature-shot">
-                                <img src="{{ asset('images/pizza2.jpg') }}" alt="" loading="lazy">
-                            </figure>
-
-                            <figure class="home-feature-shot">
                                 <img src="{{ asset('images/pizza3.jpg') }}" alt="" loading="lazy">
-                            </figure>
+                        </figure>
                         </div>
                     </div>
                 </div>
