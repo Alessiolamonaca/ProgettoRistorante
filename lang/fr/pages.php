@@ -9,6 +9,7 @@ return [
         'where'      => 'Nous trouver',
         'contacts'   => 'Contacts',
         'book'       => 'Réserver',
+        'language'   => 'Langue',
     ],
 
     'home' => [
@@ -24,8 +25,10 @@ return [
         'book_title' => 'Pizza et soirées entre amis',
         'book_text'  => 'Pâte légère, longue levée et four bien chaud : notre pizza est pensée pour des soirées conviviales entre amis et en famille, avec un choix de saveurs classiques et spéciales.',
 
-        'cta_menu'  => 'Voir le menu',
-        'cta_where' => 'Nous trouver',
+        'cta_menu'   => 'Voir le menu',
+        'cta_where'  => 'Nous trouver',
+        'prev_image' => 'Image précédente',
+        'next_image' => 'Image suivante',
     ],
 
     'where' => [
@@ -36,28 +39,28 @@ return [
     ],
 
     'restaurant' => [
-        'title'      => 'Le Restaurant',
-    
+        'title' => 'Le Restaurant',
+
         'hero_title' => 'Un restaurant de campagne, entre braise et tradition',
-    
+
         'intro' => 'Torre di Blaga est un restaurant de campagne où se rencontrent cuisine au gril, accueil chaleureux et terroir. Une salle intime, peu de tables et un service soigné, pensés pour vous faire sentir comme chez vous.',
-    
+
         'story_title' => 'Notre histoire',
         'story_text'  => 'Torre di Blaga est née comme une petite trattoria familiale et est devenue avec le temps un restaurant de campagne qui associe tradition des Abruzzes, cuisson au gril et souci du détail, sans perdre la chaleur de la maison.',
-    
+
         'kitchen_title' => 'Notre cuisine',
         'kitchen_text'  => 'Nous sélectionnons des ingrédients frais et de saison, en privilégiant les producteurs locaux. Le menu évolue au fil de l’année, suivant le rythme des saisons : entrées rustiques, premiers plats maison, viandes grillées, arrosticini et desserts artisanaux.',
-    
+
         'room_title' => 'La salle et l’atmosphère',
         'room_text'  => 'La salle est chaleureuse et conviviale, avec des tables en bois et une lumière tamisée. Nous souhaitons que chaque client puisse se détendre, discuter en toute tranquillité et profiter du repas sans se presser, dans une ambiance de ferme de campagne.',
-    
+
         'territory_title' => 'Terroir et tradition',
         'territory_text'  => 'Nous sommes profondément attachés à notre territoire : nous choisissons des vins, huiles et matières premières qui racontent notre région. Dans nos assiettes, vous retrouverez les saveurs reconnaissables de la cuisine des Abruzzes, interprétées avec respect et légèreté.',
-    
-        'facts_specialties_label'    => 'Spécialités',
-        'facts_specialties_value'    => 'viandes grillées, arrosticini, pizza',
-        'facts_seasonality_label'    => 'Saisonnalité',
-        'facts_seasonality_value'    => 'menu à base de produits frais et locaux',
+
+        'facts_specialties_label' => 'Spécialités',
+        'facts_specialties_value' => 'viandes grillées, arrosticini, pizza',
+        'facts_seasonality_label' => 'Saisonnalité',
+        'facts_seasonality_value' => 'menu à base de produits frais et locaux',
     ],
 
     'contacts' => [
@@ -108,4 +111,5 @@ return [
     ],
 
     'footer_privacy' => 'Confidentialité & cookies',
+    'footer_rights'  => 'Tous droits réservés',
 ];

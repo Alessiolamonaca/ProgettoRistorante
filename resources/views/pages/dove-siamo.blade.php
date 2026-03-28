@@ -26,11 +26,11 @@
 
             <section class="grid">
                 <article class="card">
-                    <h2 style="margin-top:0; font-size:20px;">
+                    <h2 style="margin-top: 0; font-size: 20px;">
                         {{ $restaurantName }}
                     </h2>
 
-                    <p class="muted" style="margin-bottom:16px;">
+                    <p class="muted" style="margin-bottom: 16px;">
                         @if ($addressLine)
                             {{ $addressLine }}<br>
                         @endif
@@ -46,7 +46,7 @@
                         @endif
                     </p>
 
-                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
+                    <div class="hero-actions">
                         <a
                             class="pill primary"
                             href="{{ $mapsUrl }}"

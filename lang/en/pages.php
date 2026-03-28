@@ -9,6 +9,7 @@ return [
         'where'      => 'Where we are',
         'contacts'   => 'Contacts',
         'book'       => 'Book',
+        'language'   => 'Language',
     ],
 
     'home' => [
@@ -24,8 +25,10 @@ return [
         'book_title' => 'Pizza and evenings with friends',
         'book_text'  => 'Light dough, long leavening and a hot oven: our pizza is designed for relaxed evenings with friends and family, with a choice of classic and special toppings.',
 
-        'cta_menu'  => 'View the menu',
-        'cta_where' => 'Find us',
+        'cta_menu'   => 'View the menu',
+        'cta_where'  => 'Find us',
+        'prev_image' => 'Previous image',
+        'next_image' => 'Next image',
     ],
 
     'where' => [
@@ -36,30 +39,30 @@ return [
     ],
 
     'restaurant' => [
-        'title'      => 'The Restaurant',
-    
+        'title' => 'The Restaurant',
+
         'hero_title' => 'A country restaurant between charcoal grill and tradition',
-    
+
         'intro' => 'Torre di Blaga is a country restaurant where charcoal cooking, warm hospitality and local territory come together. An intimate dining room, few tables and attentive service designed to make you feel at home.',
-    
+
         'story_title' => 'Our story',
         'story_text'  => 'Torre di Blaga started as a small family trattoria and over time has become a country restaurant that combines Abruzzo tradition, charcoal cooking and attention to detail, without losing its homely atmosphere.',
-    
+
         'kitchen_title' => 'Our cuisine',
         'kitchen_text'  => 'We select fresh, seasonal ingredients, giving priority to local producers. The menu changes throughout the year, following the rhythm of the seasons: rustic starters, homemade first courses, grilled meat, arrosticini and homemade desserts.',
-    
+
         'room_title' => 'The dining room and atmosphere',
         'room_text'  => 'The room is warm and cosy, with wooden tables and soft lighting. We want every guest to relax, talk in peace and enjoy lunch or dinner without haste, in a typical farmhouse atmosphere.',
-    
+
         'territory_title' => 'Territory and tradition',
         'territory_text'  => 'We are closely linked to our territory: we select wines, oils and raw materials that tell the story of our area. On the plate you will find the recognisable flavours of Abruzzo cuisine, interpreted with respect and lightness among vineyards, olive trees and hills.',
-    
-        'facts_specialties_label'    => 'Specialities',
-        'facts_specialties_value'    => 'charcoal-grilled meat, arrosticini, pizza',
-        'facts_seasonality_label'    => 'Seasonality',
-        'facts_seasonality_value'    => 'menu with fresh, local ingredients',
+
+        'facts_specialties_label' => 'Specialities',
+        'facts_specialties_value' => 'charcoal-grilled meat, arrosticini, pizza',
+        'facts_seasonality_label' => 'Seasonality',
+        'facts_seasonality_value' => 'menu with fresh, local ingredients',
     ],
-    
+
     'contacts' => [
         'title' => 'Contacts and reservations',
         'intro' => 'For information, reservations and special requests you can use the form below or contact us directly by phone, email or WhatsApp.',
@@ -108,4 +111,5 @@ return [
     ],
 
     'footer_privacy' => 'Privacy & cookies',
+    'footer_rights'  => 'All rights reserved',
 ];

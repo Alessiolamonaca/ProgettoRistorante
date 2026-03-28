@@ -34,8 +34,9 @@
 
                     <div class="restaurant-feature-image">
                         <img
-                            src="{{ asset('images/ristorante-sala.jpg') }}"
+                            src="{{ asset('images/sala interna.jpg') }}"
                             alt="{{ __('pages.restaurant.room_title') }} Torre di Blaga"
+                            loading="lazy"
                         >
                     </div>
                 </article>
@@ -53,8 +54,9 @@
 
                     <div class="restaurant-feature-image">
                         <img
-                            src="{{ asset('images/ristorante-brace.jpg') }}"
+                            src="{{ asset('images/cucina.jpg') }}"
                             alt="{{ __('pages.restaurant.kitchen_title') }} Torre di Blaga"
+                            loading="lazy"
                         >
                     </div>
                 </article>
@@ -72,8 +74,9 @@
 
                     <div class="restaurant-feature-image">
                         <img
-                            src="{{ asset('images/ristorante-esterno-2.jpg') }}"
+                            src="{{ asset('images/esterno3.jpg') }}"
                             alt="{{ __('pages.restaurant.territory_title') }} Torre di Blaga"
+                            loading="lazy"
                         >
                     </div>
                 </article>

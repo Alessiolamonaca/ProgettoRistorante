@@ -9,6 +9,7 @@ return [
         'where'      => 'Anfahrt',
         'contacts'   => 'Kontakt',
         'book'       => 'Reservieren',
+        'language'   => 'Sprache',
     ],
 
     'home' => [
@@ -24,8 +25,10 @@ return [
         'book_title' => 'Pizza und Abende mit Freunden',
         'book_text'  => 'Leichter Teig, lange Teigführung und ein heißer Ofen: Unsere Pizza ist ideal für entspannte Abende mit Freunden und Familie, mit einer Auswahl an klassischen und besonderen Varianten.',
 
-        'cta_menu'  => 'Speisekarte ansehen',
-        'cta_where' => 'So findest du uns',
+        'cta_menu'   => 'Speisekarte ansehen',
+        'cta_where'  => 'So findest du uns',
+        'prev_image' => 'Vorheriges Bild',
+        'next_image' => 'Nächstes Bild',
     ],
 
     'where' => [
@@ -34,30 +37,30 @@ return [
         'cta_maps'    => 'In Google Maps öffnen',
         'cta_contact' => 'Kontakt',
     ],
-    
+
     'restaurant' => [
-        'title'      => 'Das Restaurant',
-    
+        'title' => 'Das Restaurant',
+
         'hero_title' => 'Ein Landrestaurant zwischen Grill und Tradition',
-    
+
         'intro' => 'Torre di Blaga ist ein Landrestaurant, in dem sich Grillküche, Gastfreundschaft und Region treffen. Ein intimer Gastraum mit wenigen Tischen und aufmerksamen Service, damit Sie sich wie zu Hause fühlen.',
-    
+
         'story_title' => 'Unsere Geschichte',
         'story_text'  => 'Torre di Blaga entstand als kleines Familienlokal und hat sich im Laufe der Zeit zu einem Landrestaurant entwickelt, das Tradition aus den Abruzzen, Grillküche und Liebe zum Detail vereint, ohne die familiäre Atmosphäre zu verlieren.',
-    
+
         'kitchen_title' => 'Unsere Küche',
         'kitchen_text'  => 'Wir wählen frische, saisonale Zutaten und bevorzugen Produzenten aus der Region. Die Gerichte ändern sich im Laufe des Jahres und folgen dem Rhythmus der Jahreszeiten: rustikale Vorspeisen, hausgemachte erste Gänge, Grillfleisch, Arrosticini und hausgemachte Desserts.',
-    
+
         'room_title' => 'Der Gastraum und die Atmosphäre',
         'room_text'  => 'Der Raum ist warm und gemütlich, mit Holztischen und gedämpftem Licht. Wir möchten, dass sich jeder Gast entspannen, in Ruhe unterhalten und das Essen ohne Eile genießen kann – in typischer Landhaus-Atmosphäre.',
-    
+
         'territory_title' => 'Region und Tradition',
         'territory_text'  => 'Wir fühlen uns unserer Region eng verbunden: Wir wählen Weine, Öle und Produkte aus, die unsere Gegend widerspiegeln. Auf dem Teller finden Sie die wiedererkennbaren Aromen der Küche der Abruzzen, respektvoll und leicht interpretiert.',
-    
-        'facts_specialties_label'    => 'Spezialitäten',
-        'facts_specialties_value'    => 'Grillfleisch, Arrosticini, Pizza',
-        'facts_seasonality_label'    => 'Saisonalität',
-        'facts_seasonality_value'    => 'Speisekarte mit frischen, regionalen Produkten',
+
+        'facts_specialties_label' => 'Spezialitäten',
+        'facts_specialties_value' => 'Grillfleisch, Arrosticini, Pizza',
+        'facts_seasonality_label' => 'Saisonalität',
+        'facts_seasonality_value' => 'Speisekarte mit frischen, regionalen Produkten',
     ],
 
     'contacts' => [
@@ -108,4 +111,5 @@ return [
     ],
 
     'footer_privacy' => 'Datenschutz & Cookies',
+    'footer_rights'  => 'Alle Rechte vorbehalten',
 ];

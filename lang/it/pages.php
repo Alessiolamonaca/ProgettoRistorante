@@ -35,14 +35,14 @@ return [
         'cta_contact' => 'Contatti',
     ],
 
-    'restaurant' => [
+    'restaurant' => [ 
         'title'      => 'Il Ristorante',
     
         // H1 in alto nella pagina
         'hero_title' => 'Un agriturismo di campagna, tra brace e tradizione',
     
         // Paragrafo introduttivo sotto l’H1
-        'intro' => 'Torre di Blaga è un agriturismo di campagna dove cucina alla brace, accoglienza familiare e territorio si incontrano. Una sala intima, pochi coperti e un servizio curato, pensato per farti sentire a casa.',
+        'intro' => 'Torre di Blaga è un agriturismo di campagna dove cucina alla brace, accoglienza familiare e territorio si incontrano.',
     
         'story_title' => 'La nostra storia',
         'story_text'  => 'Torre di Blaga nasce come piccola trattoria di famiglia e, nel tempo, è diventata un ristorante di campagna che unisce tradizione abruzzese, cucina alla brace e attenzione ai dettagli, senza perdere il calore di casa.',
@@ -51,10 +51,10 @@ return [
         'kitchen_text'  => 'Selezioniamo ingredienti freschi e stagionali, privilegiando produttori del territorio. Il menu cambia durante l’anno seguendo il ritmo delle stagioni: antipasti rustici, primi piatti fatti in casa, carne alla brace, arrosticini e dolci artigianali.',
     
         'room_title' => 'La sala e l’atmosfera',
-        'room_text'  => 'L’ambiente è caldo e raccolto, con tavoli in legno e luci soffuse. Vogliamo che ogni ospite possa rilassarsi, chiacchierare in tranquillità e godersi un pranzo o una cena senza fretta, in un’atmosfera tipica di un agriturismo di campagna.',
+        'room_text'  => 'L’ambiente è caldo e raccolto e con tavoli in legno. Vogliamo che ogni ospite possa rilassarsi, chiacchierare in tranquillità e godersi un pranzo o una cena senza fretta, in un’atmosfera tipica di un agriturismo di campagna.',
     
         'territory_title' => 'Territorio e tradizione',
-        'territory_text'  => 'Siamo legati al nostro territorio: scegliamo vini, oli e materie prime che raccontano la nostra zona. Nei piatti ritroverai sapori riconoscibili della cucina abruzzese, interpretati con rispetto e leggerezza, tra vigneti, ulivi e colline.',
+        'territory_text'  => 'Siamo legati al nostro territorio: abbiamo vini e  oli prodotti dalla nostra famiglia e materie prime che raccontano la nostra zona. Nei piatti ritroverai sapori riconoscibili della cucina abruzzese, interpretati con rispetto e leggerezza, tra vigneti, ulivi e colline.',
     
         // Dati riassuntivi in fondo pagina
         'facts_specialties_label'    => 'Specialità',
@@ -111,4 +111,5 @@ return [
     ],
 
     'footer_privacy' => 'Privacy & cookie',
+    'footer_rights'  => 'Tutti i diritti sono riservati',
 ];

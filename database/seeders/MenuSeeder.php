@@ -90,6 +90,54 @@ class MenuSeeder extends Seeder
             'description_fr' => 'Produits du terroir sélectionnés.',
         ]);
 
+        Dish::create([
+            'category_id'    => $antipasti->id,
+            'position'       => 3,
+            'price'          => 9.00,
+            'name_it'        => 'Bruschette miste',
+            'name_en'        => 'Mixed bruschetta',
+            'name_de'        => 'Gemischte Bruschetta',
+            'name_es'        => 'Bruschettas mixtas',
+            'name_fr'        => 'Bruschettas variées',
+            'description_it' => 'Pane tostato con pomodoro, olive e crema di formaggio.',
+            'description_en' => 'Toasted bread with tomato, olives and cheese cream.',
+            'description_de' => 'Geröstetes Brot mit Tomaten, Oliven und Käsecreme.',
+            'description_es' => 'Pan tostado con tomate, aceitunas y crema de queso.',
+            'description_fr' => 'Pain grillé avec tomate, olives et crème de fromage.',
+        ]);
+        
+        Dish::create([
+            'category_id'    => $antipasti->id,
+            'position'       => 4,
+            'price'          => 11.00,
+            'name_it'        => 'Pallotte cacio e ova',
+            'name_en'        => 'Cheese and egg balls',
+            'name_de'        => 'Käse-Ei-Bällchen',
+            'name_es'        => 'Albóndigas de queso y huevo',
+            'name_fr'        => 'Boulettes au fromage et aux œufs',
+            'description_it' => 'Piatto tipico abruzzese servito con salsa al pomodoro.',
+            'description_en' => 'Traditional Abruzzese dish served with tomato sauce.',
+            'description_de' => 'Typisches Gericht aus den Abruzzen mit Tomatensauce.',
+            'description_es' => 'Plato típico de Abruzzo servido con salsa de tomate.',
+            'description_fr' => 'Plat typique des Abruzzes servi avec sauce tomate.',
+        ]);
+        
+        Dish::create([
+            'category_id'    => $antipasti->id,
+            'position'       => 5,
+            'price'          => 8.00,
+            'name_it'        => 'Verdure grigliate di stagione',
+            'name_en'        => 'Seasonal grilled vegetables',
+            'name_de'        => 'Gegrilltes Saisongemüse',
+            'name_es'        => 'Verduras de temporada a la parrilla',
+            'name_fr'        => 'Légumes de saison grillés',
+            'description_it' => 'Selezione di ortaggi grigliati con olio extravergine.',
+            'description_en' => 'Selection of grilled vegetables with extra virgin olive oil.',
+            'description_de' => 'Auswahl an gegrilltem Gemüse mit nativem Olivenöl extra.',
+            'description_es' => 'Selección de verduras a la parrilla con aceite de oliva virgen extra.',
+            'description_fr' => 'Sélection de légumes grillés à l’huile d’olive extra vierge.',
+        ]);
+
         // ==========================
         // PRIMI
         // ==========================
@@ -124,6 +172,54 @@ class MenuSeeder extends Seeder
             'description_de' => 'Mit saisonalen Zutaten zubereitet.',
             'description_es' => 'Preparado con ingredientes de temporada.',
             'description_fr' => 'Préparé avec des ingrédients de saison.',
+        ]);
+
+        Dish::create([
+            'category_id'    => $primi->id,
+            'position'       => 3,
+            'price'          => 13.00,
+            'name_it'        => 'Chitarra al ragù abruzzese',
+            'name_en'        => 'Chitarra pasta with Abruzzese meat sauce',
+            'name_de'        => 'Chitarra-Nudeln mit Abruzzen-Ragout',
+            'name_es'        => 'Pasta chitarra con ragú abruzzese',
+            'name_fr'        => 'Pâtes chitarra au ragù des Abruzzes',
+            'description_it' => 'Pasta fresca con sugo tradizionale di carne.',
+            'description_en' => 'Fresh pasta with traditional meat sauce.',
+            'description_de' => 'Frische Pasta mit traditioneller Fleischsauce.',
+            'description_es' => 'Pasta fresca con salsa tradicional de carne.',
+            'description_fr' => 'Pâtes fraîches avec sauce traditionnelle à la viande.',
+        ]);
+        
+        Dish::create([
+            'category_id'    => $primi->id,
+            'position'       => 4,
+            'price'          => 15.00,
+            'name_it'        => 'Gnocchi al sugo di castrato',
+            'name_en'        => 'Gnocchi with mutton sauce',
+            'name_de'        => 'Gnocchi mit Hammelsauce',
+            'name_es'        => 'Ñoquis con salsa de carnero',
+            'name_fr'        => 'Gnocchis avec sauce de mouton',
+            'description_it' => 'Piatto rustico dal sapore intenso della tradizione locale.',
+            'description_en' => 'Rustic local dish with a rich traditional flavour.',
+            'description_de' => 'Rustikales lokales Gericht mit kräftigem traditionellem Geschmack.',
+            'description_es' => 'Plato rústico local con sabor intenso y tradicional.',
+            'description_fr' => 'Plat rustique local au goût intense et traditionnel.',
+        ]);
+        
+        Dish::create([
+            'category_id'    => $primi->id,
+            'position'       => 5,
+            'price'          => 12.00,
+            'name_it'        => 'Sagne e ceci',
+            'name_en'        => 'Sagne pasta with chickpeas',
+            'name_de'        => 'Sagne mit Kichererbsen',
+            'name_es'        => 'Sagne con garbanzos',
+            'name_fr'        => 'Sagne aux pois chiches',
+            'description_it' => 'Primo semplice e genuino della cucina contadina.',
+            'description_en' => 'Simple and genuine traditional countryside first course.',
+            'description_de' => 'Einfaches und echtes traditionelles Bauerngericht.',
+            'description_es' => 'Primer plato sencillo y auténtico de la cocina campesina.',
+            'description_fr' => 'Premier plat simple et authentique de la cuisine paysanne.',
         ]);
 
         // ==========================
@@ -162,6 +258,38 @@ class MenuSeeder extends Seeder
             'description_fr' => 'Servie avec roquette et copeaux de parmesan.',
         ]);
 
+        Dish::create([
+            'category_id'    => $secondi->id,
+            'position'       => 3,
+            'price'          => 18.00,
+            'name_it'        => 'Arrosticini di pecora',
+            'name_en'        => 'Traditional lamb skewers',
+            'name_de'        => 'Traditionelle Schafspieße',
+            'name_es'        => 'Brochetas tradicionales de cordero',
+            'name_fr'        => 'Brochettes traditionnelles d’agneau',
+            'description_it' => 'Specialità abruzzese cotta alla brace e servita calda.',
+            'description_en' => 'Traditional Abruzzese speciality cooked on the grill and served hot.',
+            'description_de' => 'Traditionelle Spezialität aus den Abruzzen, gegrillt und heiß serviert.',
+            'description_es' => 'Especialidad tradicional de Abruzzo cocinada a la brasa y servida caliente.',
+            'description_fr' => 'Spécialité traditionnelle des Abruzzes cuite au gril et servie chaude.',
+        ]);
+        
+        Dish::create([
+            'category_id'    => $secondi->id,
+            'position'       => 4,
+            'price'          => 19.00,
+            'name_it'        => 'Agnello alla brace',
+            'name_en'        => 'Grilled lamb',
+            'name_de'        => 'Lamm vom Grill',
+            'name_es'        => 'Cordero a la parrilla',
+            'name_fr'        => 'Agneau grillé',
+            'description_it' => 'Carne tenera e saporita, cotta secondo tradizione.',
+            'description_en' => 'Tender and flavourful meat, grilled in traditional style.',
+            'description_de' => 'Zartes und aromatisches Fleisch, traditionell gegrillt.',
+            'description_es' => 'Carne tierna y sabrosa, cocinada según la tradición.',
+            'description_fr' => 'Viande tendre et savoureuse, cuite selon la tradition.',
+        ]);
+
         // ==========================
         // DESSERT
         // ==========================
@@ -196,6 +324,38 @@ class MenuSeeder extends Seeder
             'description_de' => 'Fragen Sie den Service nach dem Dessert des Tages.',
             'description_es' => 'Pregunta en sala por la propuesta del día.',
             'description_fr' => 'Demandez en salle le dessert du jour.',
+        ]);
+
+        Dish::create([
+            'category_id'    => $dessert->id,
+            'position'       => 3,
+            'price'          => 6.00,
+            'name_it'        => 'Panna cotta ai frutti di bosco',
+            'name_en'        => 'Panna cotta with berries',
+            'name_de'        => 'Panna cotta mit Waldbeeren',
+            'name_es'        => 'Panna cotta con frutos rojos',
+            'name_fr'        => 'Panna cotta aux fruits rouges',
+            'description_it' => 'Dessert delicato servito con salsa ai frutti di bosco.',
+            'description_en' => 'Delicate dessert served with berry sauce.',
+            'description_de' => 'Feines Dessert mit Waldbeerensauce.',
+            'description_es' => 'Postre delicado servido con salsa de frutos rojos.',
+            'description_fr' => 'Dessert délicat servi avec sauce aux fruits rouges.',
+        ]);
+        
+        Dish::create([
+            'category_id'    => $dessert->id,
+            'position'       => 4,
+            'price'          => 5.50,
+            'name_it'        => 'Crostata della casa',
+            'name_en'        => 'Homemade tart',
+            'name_de'        => 'Hausgemachte Tarte',
+            'name_es'        => 'Tarta casera',
+            'name_fr'        => 'Tarte maison',
+            'description_it' => 'Pasta frolla con confettura artigianale.',
+            'description_en' => 'Shortcrust pastry filled with homemade jam.',
+            'description_de' => 'Mürbeteig mit hausgemachter Konfitüre.',
+            'description_es' => 'Masa quebrada con mermelada casera.',
+            'description_fr' => 'Pâte sablée garnie de confiture maison.',
         ]);
     }
 }

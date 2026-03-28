@@ -6,7 +6,7 @@ return [
 
     // Recapiti principali
     'phone'        => '+39 333 9856412',
-    'email'        => 'info@torrediblaga.it',
+    'email'        => 'info@ttttorrrrediblaga.it',
 
     // Numero WhatsApp mostrato nella pagina contatti
     // Sostituisci con il numero reale oppure imposta a null se non vuoi mostrarlo

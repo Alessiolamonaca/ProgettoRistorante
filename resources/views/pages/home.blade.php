@@ -36,7 +36,7 @@
             type="button"
             class="hero-bg-arrow hero-bg-arrow-left"
             data-hero-bg-prev
-            aria-label="Immagine precedente"
+            aria-label="{{ __('pages.home.prev_image') }}"
         >
             <span>&lsaquo;</span>
         </button>
@@ -45,85 +45,82 @@
             type="button"
             class="hero-bg-arrow hero-bg-arrow-right"
             data-hero-bg-next
-            aria-label="Immagine successiva"
+            aria-label="{{ __('pages.home.next_image') }}"
         >
             <span>&rsaquo;</span>
         </button>
     </section>
 
-    {{-- SEZIONE INFORMATIVA: 3 blocchi fotografici migliorati --}}
-<section class="home-info">
-    <div class="container">
-        <div class="home-info-grid">
-            <article class="home-feature">
-                <div class="home-feature-inner">
-                    <div class="home-feature-copy">
-                        <span class="home-feature-accent" aria-hidden="true"></span>
+    {{-- SEZIONE INFORMATIVA: 3 blocchi fotografici --}}
+    <section class="home-info">
+        <div class="container">
+            <div class="home-info-grid">
+                <article class="home-feature">
+                    <div class="home-feature-inner">
+                        <div class="home-feature-copy">
+                            <span class="home-feature-accent" aria-hidden="true"></span>
 
-                        <h3 class="home-feature-title">
-                            {{ __('pages.home.info_title') }}
-                        </h3>
+                            <h3 class="home-feature-title">
+                                {{ __('pages.home.info_title') }}
+                            </h3>
 
-                        <p class="home-feature-text">
-                            {{ __('pages.home.info_text') }}
-                        </p>
-                    </div>
+                            <p class="home-feature-text">
+                                {{ __('pages.home.info_text') }}
+                            </p>
+                        </div>
 
-                    <div class="home-feature-gallery" aria-hidden="true">
-                        <figure class="home-feature-shot home-feature-shot-main">
-                            <img src="{{ asset('images/pallotte cace e ovo.jpg') }}" alt="" loading="lazy">
-                        </figure>
+                        <div class="home-feature-gallery" aria-hidden="true">
+                            <figure class="home-feature-shot home-feature-shot-main">
+                                <img src="{{ asset('images/pallotte cace e ovo.jpg') }}" alt="" loading="lazy">
+                            </figure>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <article class="home-feature home-feature-reverse">
-                <div class="home-feature-inner">
-                    <div class="home-feature-copy">
-                        <span class="home-feature-accent" aria-hidden="true"></span>
+                <article class="home-feature home-feature-reverse">
+                    <div class="home-feature-inner">
+                        <div class="home-feature-copy">
+                            <span class="home-feature-accent" aria-hidden="true"></span>
 
-                        <h3 class="home-feature-title">
-                            {{ __('pages.home.style_title') }}
-                        </h3>
+                            <h3 class="home-feature-title">
+                                {{ __('pages.home.style_title') }}
+                            </h3>
 
-                        <p class="home-feature-text">
-                            {{ __('pages.home.style_text') }}
-                        </p>
-                    </div>
+                            <p class="home-feature-text">
+                                {{ __('pages.home.style_text') }}
+                            </p>
+                        </div>
 
-                    <div class="home-feature-gallery" aria-hidden="true">
-                        <figure class="home-feature-shot home-feature-shot-main">
+                        <div class="home-feature-gallery" aria-hidden="true">
+                            <figure class="home-feature-shot home-feature-shot-main">
                                 <img src="{{ asset('images/arrosticini.jpg') }}" alt="" loading="lazy">
-                        </figure>
+                            </figure>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <article class="home-feature">
-                <div class="home-feature-inner">
-                    <div class="home-feature-copy">
-                        <span class="home-feature-accent" aria-hidden="true"></span>
+                <article class="home-feature">
+                    <div class="home-feature-inner">
+                        <div class="home-feature-copy">
+                            <span class="home-feature-accent" aria-hidden="true"></span>
 
-                        <h3 class="home-feature-title">
-                            {{ __('pages.home.book_title') }}
-                        </h3>
+                            <h3 class="home-feature-title">
+                                {{ __('pages.home.book_title') }}
+                            </h3>
 
-                        <p class="home-feature-text">
-                            {{ __('pages.home.book_text') }}
-                        </p>
-                    </div>
+                            <p class="home-feature-text">
+                                {{ __('pages.home.book_text') }}
+                            </p>
+                        </div>
 
-                    <div class="home-feature-gallery" aria-hidden="true">
-                        <figure class="home-feature-shot home-feature-shot-main">
+                        <div class="home-feature-gallery" aria-hidden="true">
+                            <figure class="home-feature-shot home-feature-shot-main">
                                 <img src="{{ asset('images/pizza3.jpg') }}" alt="" loading="lazy">
-                        </figure>
+                            </figure>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 </x-layouts.app>

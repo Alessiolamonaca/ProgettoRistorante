@@ -9,6 +9,7 @@ return [
         'where'      => 'Cómo llegar',
         'contacts'   => 'Contacto',
         'book'       => 'Reservar',
+        'language'   => 'Idioma',
     ],
 
     'home' => [
@@ -24,8 +25,10 @@ return [
         'book_title' => 'Pizza y noches entre amigos',
         'book_text'  => 'Masa ligera, larga fermentación y horno siempre caliente: nuestra pizza está pensada para veladas informales entre amigos y familia, con una selección de sabores clásicos y especiales.',
 
-        'cta_menu'  => 'Ver el menú',
-        'cta_where' => 'Dónde estamos',
+        'cta_menu'   => 'Ver el menú',
+        'cta_where'  => 'Dónde estamos',
+        'prev_image' => 'Imagen anterior',
+        'next_image' => 'Imagen siguiente',
     ],
 
     'where' => [
@@ -36,28 +39,28 @@ return [
     ],
 
     'restaurant' => [
-        'title'      => 'El Restaurante',
-    
+        'title' => 'El Restaurante',
+
         'hero_title' => 'Un restaurante de campo, entre brasa y tradición',
-    
+
         'intro' => 'Torre di Blaga es un restaurante de campo donde se unen cocina a la brasa, hospitalidad cercana y territorio. Un comedor íntimo, pocas mesas y un servicio cuidado pensado para que te sientas como en casa.',
-    
+
         'story_title' => 'Nuestra historia',
         'story_text'  => 'Torre di Blaga nació como una pequeña trattoria familiar y con el tiempo se ha convertido en un restaurante de campo que une la tradición de Abruzos, la cocina a la brasa y la atención al detalle, sin perder el calor de hogar.',
-    
+
         'kitchen_title' => 'Nuestra cocina',
         'kitchen_text'  => 'Seleccionamos ingredientes frescos y de temporada, dando prioridad a los productores locales. El menú cambia a lo largo del año siguiendo el ritmo de las estaciones: entrantes rústicos, primeros platos caseros, carne a la brasa, arrosticini y postres artesanales.',
-    
+
         'room_title' => 'La sala y el ambiente',
         'room_text'  => 'El ambiente es cálido y acogedor, con mesas de madera y luces suaves. Queremos que cada huésped pueda relajarse, conversar con tranquilidad y disfrutar de la comida sin prisas, en un entorno típico de restaurante de campo.',
-    
+
         'territory_title' => 'Territorio y tradición',
         'territory_text'  => 'Estamos muy ligados a nuestro territorio: seleccionamos vinos, aceites y materias primas que cuentan la historia de nuestra zona. En los platos encontrarás sabores reconocibles de la cocina de Abruzos, interpretados con respeto y ligereza.',
-    
-        'facts_specialties_label'    => 'Especialidades',
-        'facts_specialties_value'    => 'carne a la brasa, arrosticini, pizza',
-        'facts_seasonality_label'    => 'Estacionalidad',
-        'facts_seasonality_value'    => 'menú con productos frescos y locales',
+
+        'facts_specialties_label' => 'Especialidades',
+        'facts_specialties_value' => 'carne a la brasa, arrosticini, pizza',
+        'facts_seasonality_label' => 'Estacionalidad',
+        'facts_seasonality_value' => 'menú con productos frescos y locales',
     ],
 
     'contacts' => [
@@ -108,4 +111,5 @@ return [
     ],
 
     'footer_privacy' => 'Privacidad y cookies',
+    'footer_rights'  => 'Todos los derechos reservados',
 ];
