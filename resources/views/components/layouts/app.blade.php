@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     {{-- SEO + OPEN GRAPH + HREFLANG --}}
@@ -1316,6 +1316,21 @@
             box-sizing: border-box;
             font: inherit;
         }
+
+        .page-contacts .conctact-action,
+        .page-contacts .form-action {
+            display: flex;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .page-contacts .conctact-action .pill,
+        .page-contacts .form-action .pill,
+        .page-contacts .form-action button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
         
         @media (max-width: 799px) {
             .page-contacts .grid {
@@ -1325,7 +1340,7 @@
         }
 
         /* =========================
-        PAGINA RISTORANTE: HEADER CENTRATO + PIÙ SPAZIO TRA CARD
+        PAGINA RISTORANTE: HEADER CENTRATO + PIÃ™ SPAZIO TRA CARD
         ======================== */
         .page-restaurant .page-header {
             text-align: center;
@@ -2028,6 +2043,438 @@
             background: linear-gradient(90deg, var(--agri-accent), var(--agri-accent-warm));
             box-shadow: 0 0 14px rgba(138, 106, 66, 0.16);
         }
+
+        /* =========================
+        SECTION REFINEMENTS
+        ========================= */
+        .home-feature-copy,
+        .restaurant-feature-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .home-feature-copy {
+            gap: 1rem;
+            max-width: 520px;
+            padding: clamp(1.4rem, 2.2vw, 1.9rem);
+            border: 1px solid var(--agri-border);
+            border-radius: 24px;
+            background: linear-gradient(
+                180deg,
+                rgba(37, 30, 23, 0.78) 0%,
+                rgba(27, 22, 17, 0.72) 100%
+            );
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(4px);
+        }
+
+        .home-feature-kicker,
+        .restaurant-feature-kicker,
+        .contact-card-kicker {
+            margin: 0;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--agri-text-muted);
+        }
+
+        .home-feature-title,
+        .restaurant-feature-title,
+        .contact-card-title,
+        .contact-card-intro {
+            margin: 0;
+        }
+
+        .home-feature-detail,
+        .restaurant-feature-detail {
+            margin: 0;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--agri-border);
+            color: var(--agri-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .home-feature-action {
+            display: inline-flex;
+            align-self: flex-start;
+            margin-top: 0.25rem;
+        }
+
+        .home-feature-gallery {
+            align-items: stretch;
+        }
+
+        .home-feature-shot-stack {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            grid-template-rows: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            width: min(100%, 620px);
+            min-height: 420px;
+        }
+
+        .home-feature-shot-main {
+            grid-row: 1 / span 2;
+            min-height: 100%;
+        }
+
+        .home-feature-shot-secondary {
+            min-height: 200px;
+        }
+
+        .home-feature-shot {
+            border: 1px solid var(--agri-border);
+            background: rgba(20, 16, 13, 0.42);
+            box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+        }
+
+        .page-restaurant .page-header {
+            max-width: 780px;
+            margin: 0 auto 4.5rem;
+        }
+
+        .page-restaurant .page-header h1 {
+            margin: 0 0 0.75rem;
+        }
+
+        .page-restaurant .page-header .muted {
+            max-width: 640px;
+            margin: 1rem auto 0;
+        }
+
+        .page-restaurant .page-section-title {
+            margin-bottom: 0.75rem;
+        }
+
+        .page-restaurant .restaurant-sections {
+            gap: clamp(4rem, 7vw, 6rem);
+            margin-top: clamp(2.5rem, 5vw, 3.5rem);
+        }
+
+        .restaurant-feature {
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+            gap: clamp(2rem, 5vw, 4rem);
+        }
+
+        .restaurant-feature-text {
+            gap: 1rem;
+            max-width: 520px;
+            padding: clamp(1.35rem, 2.2vw, 1.9rem);
+            border: 1px solid var(--agri-border);
+            border-radius: 24px;
+            background: linear-gradient(
+                180deg,
+                rgba(35, 29, 22, 0.84) 0%,
+                rgba(24, 20, 16, 0.78) 100%
+            );
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+        }
+
+        .restaurant-feature-title {
+            font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+            line-height: 1.15;
+        }
+
+        .restaurant-feature-image {
+            min-height: 360px;
+            border: 1px solid var(--agri-border);
+        }
+
+        .restaurant-feature-alt .restaurant-feature-text {
+            order: 2;
+            justify-self: end;
+        }
+
+        .restaurant-feature-alt .restaurant-feature-image {
+            order: 1;
+        }
+
+        .restaurant-facts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin: clamp(4rem, 7vw, 5.5rem) auto 0;
+        }
+
+        .restaurant-fact {
+            align-items: flex-start;
+            gap: 0.55rem;
+            min-width: 0;
+            padding: 1.35rem 1.4rem;
+            text-align: left;
+            border: 1px solid var(--agri-border);
+            border-radius: 20px;
+            background: linear-gradient(
+                180deg,
+                rgba(35, 29, 22, 0.86) 0%,
+                rgba(26, 21, 17, 0.82) 100%
+            );
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
+        }
+
+        .restaurant-fact-value {
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .restaurant-fact-text {
+            margin: 0;
+            color: var(--agri-text-muted);
+            font-size: 0.94rem;
+            line-height: 1.7;
+        }
+
+        .page-contacts .page-header {
+            max-width: 760px;
+            margin: 0 auto 4rem;
+        }
+
+        .page-contacts .page-header h1 {
+            margin: 0 0 0.75rem;
+        }
+
+        .page-contacts .page-header .muted {
+            max-width: 620px;
+            margin: 1rem auto 0;
+        }
+
+        .page-contacts .grid {
+            align-items: stretch;
+            gap: clamp(1.25rem, 3vw, 2rem);
+        }
+
+        .contact-status {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-status p,
+        .contact-status ul {
+            margin-bottom: 0;
+        }
+
+        .contact-status-success {
+            border-color: rgba(46, 204, 113, 0.55);
+            background: rgba(46, 204, 113, 0.08);
+        }
+
+        .contact-status-error {
+            border-color: rgba(231, 76, 60, 0.55);
+            background: rgba(231, 76, 60, 0.08);
+        }
+
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+            padding: clamp(1.4rem, 2.5vw, 2rem);
+        }
+
+        .contact-card-intro {
+            line-height: 1.8;
+        }
+
+        .contact-card-section,
+        .contact-form-note {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--agri-border);
+        }
+
+        .contact-card-section-title {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--agri-text);
+        }
+
+        .contact-check-list {
+            display: grid;
+            gap: 0.75rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .contact-check-list li {
+            position: relative;
+            padding-left: 1.2rem;
+            color: var(--agri-text-soft);
+            line-height: 1.7;
+        }
+
+        .contact-check-list li::before {
+            content: "";
+            position: absolute;
+            top: 0.7rem;
+            left: 0;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--agri-accent), var(--agri-accent-warm));
+        }
+
+        .contact-info-list {
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .contact-info-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .contact-info-label {
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--agri-text-muted);
+        }
+
+        .contact-info-value {
+            color: var(--agri-text);
+            line-height: 1.7;
+        }
+
+        .contact-card-actions,
+        .contact-form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .contact-card-actions .pill,
+        .contact-form-actions .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .contact-label {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .contact-input,
+        .contact-textarea {
+            padding: 0.85rem 0.95rem;
+            border-radius: 12px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .contact-textarea {
+            min-height: 140px;
+        }
+
+        .contact-input.is-invalid,
+        .contact-textarea.is-invalid {
+            border-color: rgba(231, 76, 60, 0.65);
+            box-shadow: 0 0 0 1px rgba(231, 76, 60, 0.16);
+        }
+
+        .contact-field-error {
+            margin: 0;
+            color: #f0b3a8;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .contact-form-note p,
+        .contact-form-confirmation {
+            margin: 0;
+            color: var(--agri-text-muted);
+            line-height: 1.75;
+        }
+
+        .contact-check-list-compact {
+            gap: 0.6rem;
+        }
+
+        @media (max-width: 1100px) {
+            .restaurant-feature {
+                grid-template-columns: 1fr;
+            }
+
+            .restaurant-feature-text,
+            .restaurant-feature-alt .restaurant-feature-text {
+                order: 1;
+                justify-self: stretch;
+                max-width: 100%;
+            }
+
+            .restaurant-feature-image,
+            .restaurant-feature-alt .restaurant-feature-image {
+                order: 2;
+            }
+
+            .restaurant-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home-feature-copy,
+            .restaurant-feature-text,
+            .contact-card {
+                padding: 1.25rem;
+            }
+
+            .home-feature-action {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-card-actions,
+            .contact-form-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .contact-card-actions .pill,
+            .contact-form-actions .pill {
+                width: 100%;
+            }
+
+            .home-feature-shot-stack {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                width: 100%;
+                min-height: 0;
+            }
+
+            .home-feature-shot-main {
+                grid-column: 1 / -1;
+                grid-row: auto;
+                min-height: 250px;
+            }
+
+            .home-feature-shot-secondary {
+                min-height: 160px;
+            }
+
+            .page-contacts .page-header,
+            .page-restaurant .page-header {
+                margin-bottom: 2.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2309,21 +2756,24 @@
             })();
 
             (function () {
-                var restaurantPage = document.querySelector('.page-restaurant');
-                if (!restaurantPage) return;
+                var collapsibleHeaders = document.querySelectorAll('[data-collapse-on-scroll]');
+                if (!collapsibleHeaders.length) return;
 
-                var headerBlock = restaurantPage.querySelector('.page-header');
-                if (!headerBlock) return;
+                function updateHeaders() {
+                    collapsibleHeaders.forEach(function (headerBlock) {
+                        var hideOffset = Math.max(64, headerBlock.offsetHeight * 1.2);
 
-                var hideOffset = headerBlock.offsetHeight * 1.2;
+                        if (window.scrollY > hideOffset) {
+                            headerBlock.classList.add('page-header--collapsed');
+                        } else {
+                            headerBlock.classList.remove('page-header--collapsed');
+                        }
+                    });
+                }
 
-                window.addEventListener('scroll', function () {
-                    if (window.scrollY > hideOffset) {
-                        headerBlock.classList.add('page-header--collapsed');
-                    } else {
-                        headerBlock.classList.remove('page-header--collapsed');
-                    }
-                }, { passive: true });
+                updateHeaders();
+                window.addEventListener('scroll', updateHeaders, { passive: true });
+                window.addEventListener('resize', updateHeaders);
             })();
         });
     </script>

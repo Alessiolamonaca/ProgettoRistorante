@@ -7,12 +7,12 @@
 <body>
     <h2>Nuova richiesta dal sito {{ config('restaurant.name', 'Ristorante') }}</h2>
 
-    <p><strong>Nome:</strong> {{ $data['name'] ?? '-' }}</p>
-    <p><strong>Email:</strong> {{ $data['email'] ?? '-' }}</p>
+    <p><strong>Nome:</strong> {{ $contactRequest->name }}</p>
+    <p><strong>Email:</strong> {{ $contactRequest->email }}</p>
 
     <p><strong>Messaggio:</strong></p>
     <p style="white-space: pre-line;">
-        {{ $data['message'] ?? '' }}
+        {{ $contactRequest->message }}
     </p>
 
     <hr>

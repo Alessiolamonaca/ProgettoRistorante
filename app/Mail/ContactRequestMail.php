@@ -2,32 +2,37 @@
 
 namespace App\Mail;
 
+use App\Data\ContactRequestData;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class ContactRequestMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public array $data;
-
-    /**
-     * Create a new message instance.
-     */
-    public function __construct(array $data)
-    {
-        $this->data = $data;
+    public function __construct(
+        public ContactRequestData $contactRequest,
+    ) {
     }
 
-    /**
-     * Build the message.
-     */
-    public function build(): self
+    public function envelope(): Envelope
     {
-        $subject = 'Nuova richiesta dal sito ' . config('restaurant.name', 'Ristorante');
+        return new Envelope(
+            subject: 'Nuova richiesta dal sito '.config('restaurant.name', 'Ristorante'),
+            replyTo: [
+                new Address($this->contactRequest->email, $this->contactRequest->name),
+            ],
+        );
+    }
 
-        return $this->subject($subject)
-            ->view('emails.contact_request');
+    public function content(): Content
+    {
+        return new Content(
+            view: 'email.contact_request',
+        );
     }
 }

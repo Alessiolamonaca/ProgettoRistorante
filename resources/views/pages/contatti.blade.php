@@ -4,37 +4,37 @@
 >
     @php
         $restaurantName = config('restaurant.name', 'Ristorante');
-        $addressLine    = config('restaurant.address_line');
-        $phone          = config('restaurant.phone');
-        $email          = config('restaurant.email');
-        $whatsapp       = config('restaurant.whatsapp');
+        $addressLine = config('restaurant.address_line');
+        $phone = config('restaurant.phone');
+        $email = config('restaurant.email');
+        $whatsapp = config('restaurant.whatsapp');
 
-        $waNumber  = $whatsapp ? preg_replace('/\D+/', '', $whatsapp) : null;
-        $phoneHref = $phone ? 'tel:' . preg_replace('/\D+/', '', $phone) : null;
+        $waNumber = $whatsapp ? preg_replace('/\D+/', '', $whatsapp) : null;
+        $phoneHref = $phone ? 'tel:'.preg_replace('/\D+/', '', $phone) : null;
 
         $locale = request()->route('locale') ?? config('locales.default', 'it');
         $action = route('contatti.submit', ['locale' => $locale]);
+        $contactServices = trans('pages.contacts.services_list');
+        $contactMessageTips = trans('pages.contacts.form_tips_list');
     @endphp
 
     <section class="page page-contacts">
         <div class="container">
-            <header class="page-header">
+            <header class="page-header" data-collapse-on-scroll>
                 <h1>{{ __('pages.contacts.title') }}</h1>
                 <p class="muted">
                     {{ __('pages.contacts.intro') }}
                 </p>
             </header>
 
-            {{-- Messaggio di successo --}}
             @if (session('success'))
-                <div class="card" style="border-color: rgba(46,204,113,.7); background: rgba(46,204,113,.08); margin-bottom:20px;">
+                <div class="card contact-status contact-status-success">
                     {{ session('success') }}
                 </div>
             @endif
 
-            {{-- Errori di validazione --}}
             @if ($errors->any())
-                <div class="card" style="border-color: rgba(231,76,60,.7); background: rgba(231,76,60,.08); margin-bottom:20px;">
+                <div class="card contact-status contact-status-error">
                     <p style="margin-top:0; font-weight:600;">
                         {{ __('pages.contacts.form_error_title') ?? 'Per favore controlla i campi evidenziati.' }}
                     </p>
@@ -47,117 +47,229 @@
             @endif
 
             <div class="grid">
-                {{-- Colonna informazioni di contatto --}}
-                <article class="card">
-                    <h2 style="margin-top:0; font-size:20px;">
+                <article class="card contact-card contact-card-info">
+                    <p class="contact-card-kicker">
+                        {{ __('pages.contacts.info_kicker') }}
+                    </p>
+
+                    <h2 class="contact-card-title">
                         {{ __('pages.contacts.info_title') }}
                     </h2>
 
-                    <p class="muted">
+                    <p class="muted contact-card-intro">
                         {{ __('pages.contacts.info_text') }}
                     </p>
 
-                    <div style="margin-top:16px;">
-                        @if ($addressLine)
-                            <p class="muted" style="margin:0 0 8px;">
-                                <strong>{{ $restaurantName }}</strong><br>
-                                {{ $addressLine }}
-                            </p>
-                        @endif
+                    @if (is_array($contactServices) && $contactServices !== [])
+                        <section class="contact-card-section">
+                            <h3 class="contact-card-section-title">
+                                {{ __('pages.contacts.services_title') }}
+                            </h3>
 
-                        @if ($phone)
-                            <p style="margin:0 0 6px;">
-                                <strong>{{ __('pages.contacts.phone_label') }}:</strong>
-                                <a href="{{ $phoneHref ?? '#' }}">{{ $phone }}</a>
-                            </p>
-                        @endif
+                            <ul class="contact-check-list">
+                                @foreach ($contactServices as $service)
+                                    <li>{{ $service }}</li>
+                                @endforeach
+                            </ul>
+                        </section>
+                    @endif
 
-                        @if ($email)
-                            <p style="margin:0 0 6px;">
-                                <strong>{{ __('pages.contacts.email_label') }}:</strong>
-                                <a href="mailto:{{ $email }}">{{ $email }}</a>
-                            </p>
+                    <section class="contact-card-section">
+                        <h3 class="contact-card-section-title">
+                            {{ __('pages.contacts.direct_title') }}
+                        </h3>
+
+                        <div class="contact-info-list">
+                            @if ($addressLine)
+                                <div class="contact-info-row">
+                                    <span class="contact-info-label">{{ $restaurantName }}</span>
+                                    <span class="contact-info-value">{{ $addressLine }}</span>
+                                </div>
+                            @endif
+
+                            @if ($phone)
+                                <div class="contact-info-row">
+                                    <span class="contact-info-label">{{ __('pages.contacts.phone_label') }}</span>
+                                    <a class="contact-info-value" href="{{ $phoneHref ?? '#' }}">{{ $phone }}</a>
+                                </div>
+                            @endif
+
+                            @if ($email)
+                                <div class="contact-info-row">
+                                    <span class="contact-info-label">{{ __('pages.contacts.email_label') }}</span>
+                                    <a class="contact-info-value" href="mailto:{{ $email }}">{{ $email }}</a>
+                                </div>
+                            @endif
+
+                            @if ($waNumber)
+                                <div class="contact-info-row">
+                                    <span class="contact-info-label">{{ __('pages.contacts.whatsapp_label') }}</span>
+                                    <a
+                                        class="contact-info-value"
+                                        href="https://wa.me/{{ $waNumber }}"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        {{ $whatsapp }}
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
+                    </section>
+
+                    <section class="contact-card-section">
+                        <h3 class="contact-card-section-title">
+                            {{ __('pages.contacts.response_title') }}
+                        </h3>
+
+                        <p class="muted contact-card-intro">
+                            {{ __('pages.contacts.response_text') }}
+                        </p>
+                    </section>
+
+                    <div class="contact-card-actions">
+                        @if ($phoneHref)
+                            <a href="{{ $phoneHref }}" class="pill primary">
+                                {{ __('pages.contacts.call_cta') }}
+                            </a>
                         @endif
 
                         @if ($waNumber)
-                            <p style="margin:0 0 6px;">
-                                <strong>{{ __('pages.contacts.whatsapp_label') }}:</strong>
-                                <a href="https://wa.me/{{ $waNumber }}" target="_blank" rel="noopener">
-                                    {{ $whatsapp }}
-                                </a>
-                            </p>
+                            <a href="https://wa.me/{{ $waNumber }}" class="pill" target="_blank" rel="noopener">
+                                {{ __('pages.contacts.whatsapp_cta') }}
+                            </a>
                         @endif
                     </div>
-
-                    @if ($phoneHref)
-                        <div style="margin-top:18px;">
-                            <a href="{{ $phoneHref }}" class="pill primary">
-                                {{ __('pages.nav.book') }}
-                            </a>
-                        </div>
-                    @endif
                 </article>
 
-                {{-- Colonna form contatti --}}
-                <article class="card">
-                    <h2 style="margin-top:0; font-size:20px;">
+                <article class="card contact-card contact-card-form">
+                    <p class="contact-card-kicker">
+                        {{ __('pages.contacts.form_kicker') }}
+                    </p>
+
+                    <h2 class="contact-card-title">
                         {{ __('pages.contacts.form_title') }}
                     </h2>
+
+                    <p class="muted contact-card-intro">
+                        {{ __('pages.contacts.form_intro') }}
+                    </p>
 
                     <form
                         method="POST"
                         action="{{ $action }}"
-                        style="margin-top:12px; display:flex; flex-direction:column; gap:12px;"
+                        class="contact-form"
                     >
                         @csrf
 
-                        <div>
-                            <label for="name" style="display:block; margin-bottom:4px;">
+                        <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+                            <label for="company">Company</label>
+                            <input
+                                id="company"
+                                name="company"
+                                type="text"
+                                tabindex="-1"
+                                autocomplete="off"
+                                value=""
+                            >
+                        </div>
+
+                        <div class="contact-field">
+                            <label for="name" class="contact-label">
                                 {{ __('pages.contacts.form_name') }}
                             </label>
+
                             <input
                                 id="name"
                                 name="name"
                                 type="text"
+                                class="contact-input{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                 value="{{ old('name') }}"
-                                style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:#141414; color:#f5f5f5;"
+                                autocomplete="name"
+                                maxlength="255"
+                                required
+                                aria-invalid="{{ $errors->has('name') ? 'true' : 'false' }}"
+                                @if ($errors->has('name'))
+                                    aria-describedby="name-error"
+                                @endif
                             >
+
+                            @error('name')
+                                <p id="name-error" class="contact-field-error">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        <div>
-                            <label for="email" style="display:block; margin-bottom:4px;">
+                        <div class="contact-field">
+                            <label for="email" class="contact-label">
                                 {{ __('pages.contacts.form_email') }}
                             </label>
+
                             <input
                                 id="email"
                                 name="email"
                                 type="email"
+                                class="contact-input{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                 value="{{ old('email') }}"
-                                style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:#141414; color:#f5f5f5;"
+                                autocomplete="email"
+                                maxlength="255"
+                                required
+                                aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}"
+                                @if ($errors->has('email'))
+                                    aria-describedby="email-error"
+                                @endif
                             >
+
+                            @error('email')
+                                <p id="email-error" class="contact-field-error">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        <div>
-                            <label for="message" style="display:block; margin-bottom:4px;">
+                        <div class="contact-field">
+                            <label for="message" class="contact-label">
                                 {{ __('pages.contacts.form_message') }}
                             </label>
+
                             <textarea
                                 id="message"
                                 name="message"
+                                class="contact-textarea{{ $errors->has('message') ? ' is-invalid' : '' }}"
                                 rows="4"
-                                style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:#141414; color:#f5f5f5; resize:vertical;"
+                                maxlength="2000"
+                                required
+                                aria-invalid="{{ $errors->has('message') ? 'true' : 'false' }}"
+                                @if ($errors->has('message'))
+                                    aria-describedby="message-error"
+                                @endif
                             >{{ old('message') }}</textarea>
+
+                            @error('message')
+                                <p id="message-error" class="contact-field-error">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        <div style="margin-top:4px;">
+                        <div class="contact-form-actions">
                             <button type="submit" class="pill primary">
                                 {{ __('pages.contacts.form_submit') }}
                             </button>
                         </div>
                     </form>
 
+                    @if (is_array($contactMessageTips) && $contactMessageTips !== [])
+                        <section class="contact-form-note">
+                            <h3 class="contact-card-section-title">
+                                {{ __('pages.contacts.form_tips_title') }}
+                            </h3>
+
+                            <ul class="contact-check-list contact-check-list-compact">
+                                @foreach ($contactMessageTips as $tip)
+                                    <li>{{ $tip }}</li>
+                                @endforeach
+                            </ul>
+                        </section>
+                    @endif
+
                     @if(__('pages.contacts.note') !== 'pages.contacts.note')
-                        <p class="muted" style="margin-top:12px;">
+                        <p class="contact-form-confirmation">
                             {{ __('pages.contacts.note') }}
                         </p>
                     @endif
