@@ -1,25 +1,36 @@
-# Torre di Blaga
+# RISTORANTE
 
-Sito vetrina multilingua per ristorante/agriturismo costruito con Laravel 12, Filament 3 e Vite.
+Sito vetrina multilingua per ristorante, costruito con Laravel 12, Filament 3 e Vite.
 
 ## Stack
 
 - PHP 8.2+
 - Laravel 12
 - Filament 3.3
-- SQLite/MySQL
+- MySQL o SQLite
 - Vite
 
-## Avvio locale
+## Avvio locale con Bash
+
+```bash
+cd /c/Users/lamon/Desktop/ProgettoRistorante/ristorante
+```
 
 ```bash
 composer install
-copy .env.example .env
+cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed
 npm install
+composer run dev
+```
+
+Il comando `composer run dev` avvia Laravel su `http://127.0.0.1:8000`, la coda, i log e Vite.
+
+## Build
+
+```bash
 npm run build
-php artisan serve
 ```
 
 ## Test
@@ -40,6 +51,7 @@ Imposta almeno queste variabili prima del deploy:
 - `APP_KEY`
 - `DB_*`
 - `MAIL_*`
+- `RESTAURANT_*`
 - `ADMIN_EMAIL`
 - `ADMIN_PASSWORD`
 
@@ -60,4 +72,4 @@ Imposta almeno queste variabili prima del deploy:
 
 - Il form contatti è protetto da CSRF, honeypot e rate limiting.
 - Gli header HTTP di sicurezza vengono aggiunti dal middleware applicativo.
-- L'accesso al pannello admin è consentito solo all'utente configurato.
+- L'accesso al pannello admin è consentito solo all'utente configurato.# ProgettoRistorante
