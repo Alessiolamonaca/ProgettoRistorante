@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand' => 'Torre di Blaga',
+    'brand' => 'RISTORANTE',
 
     'nav' => [
         'restaurant' => 'El Restaurante',
@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'title'    => 'Torre di Blaga',
+        'title'    => 'RISTORANTE',
         'subtitle' => 'Restaurante de campo con cocina tipica de Abruzos: carne a la brasa, arrosticini y pizza.',
 
         'info_title'  => 'Cocina tipica de Abruzos',
@@ -39,7 +39,7 @@ return [
 
     'where' => [
         'title'       => 'Como llegar',
-        'text'        => 'El restaurante de campo Torre di Blaga se encuentra en una zona rural de facil acceso en coche. Con el enlace de abajo puedes abrir directamente Google Maps con nuestra direccion ya configurada.',
+        'text'        => 'El restaurante de campo RISTORANTE se encuentra en una zona rural de facil acceso en coche. Con el enlace de abajo puedes abrir directamente Google Maps con nuestra direccion ya configurada.',
         'cta_maps'    => 'Abrir en Google Maps',
         'cta_contact' => 'Contacto',
     ],
@@ -48,10 +48,10 @@ return [
         'title' => 'El Restaurante',
 
         'hero_title' => 'Un restaurante de campo, entre brasa y tradicion',
-        'intro'      => 'Torre di Blaga es un restaurante de campo donde se unen cocina a la brasa, hospitalidad cercana y territorio. Un comedor intimo, pocas mesas y un servicio cuidado pensado para que te sientas como en casa.',
+        'intro'      => 'RISTORANTE es un restaurante de campo donde se unen cocina a la brasa, hospitalidad cercana y territorio. Un comedor intimo, pocas mesas y un servicio cuidado pensado para que te sientas como en casa.',
 
         'story_title' => 'Nuestra historia',
-        'story_text'  => 'Torre di Blaga nacio como una pequena trattoria familiar y con el tiempo se ha convertido en un restaurante de campo que une la tradicion de Abruzos, la cocina a la brasa y la atencion al detalle, sin perder el calor de hogar.',
+        'story_text'  => 'RISTORANTE nacio como una pequena trattoria familiar y con el tiempo se ha convertido en un restaurante de campo que une la tradicion de Abruzos, la cocina a la brasa y la atencion al detalle, sin perder el calor de hogar.',
 
         'kitchen_title'  => 'Nuestra cocina',
         'kitchen_text'   => 'Seleccionamos ingredientes frescos y de temporada, dando prioridad a los productores locales. El menu cambia a lo largo del ano siguiendo el ritmo de las estaciones: entrantes rusticos, primeros platos caseros, carne a la brasa, arrosticini y postres artesanales.',
@@ -126,7 +126,7 @@ return [
 
     'menu_page' => [
         'title' => 'El Menu',
-        'intro' => 'El menu de Torre di Blaga incluye entrantes rusticos, primeros platos caseros, carne a la brasa, arrosticini, pizzas y postres. Las propuestas cambian segun la temporada y la disponibilidad de productos locales.',
+        'intro' => 'El menu de RISTORANTE incluye entrantes rusticos, primeros platos caseros, carne a la brasa, arrosticini, pizzas y postres. Las propuestas cambian segun la temporada y la disponibilidad de productos locales.',
         'note'  => 'Los platos y precios pueden variar segun la temporada y la disponibilidad de los productos. Pregunta al personal por las sugerencias del dia y los posibles platos fuera de carta.',
     ],
 

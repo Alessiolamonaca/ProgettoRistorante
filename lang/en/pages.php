@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand' => 'Torre di Blaga',
+    'brand' => 'RISTORANTE',
 
     'nav' => [
         'restaurant' => 'The Restaurant',
@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'title'    => 'Torre di Blaga',
+        'title'    => 'RISTORANTE',
         'subtitle' => 'Country restaurant with traditional Abruzzo cuisine: grilled meat, arrosticini and pizza.',
 
         'info_title'  => 'Traditional Abruzzo cuisine',
@@ -39,7 +39,7 @@ return [
 
     'where' => [
         'title'       => 'Where we are',
-        'text'        => 'Torre di Blaga is located in the countryside and can be easily reached by car. With the link below you can open Google Maps directly with our address already set.',
+        'text'        => 'RISTORANTE is located in the countryside and can be easily reached by car. With the link below you can open Google Maps directly with our address already set.',
         'cta_maps'    => 'Open in Google Maps',
         'cta_contact' => 'Contacts',
     ],
@@ -48,10 +48,10 @@ return [
         'title' => 'The Restaurant',
 
         'hero_title' => 'A country restaurant between charcoal grill and tradition',
-        'intro'      => 'Torre di Blaga is a country restaurant where charcoal cooking, warm hospitality and local territory come together. An intimate dining room, few tables and attentive service designed to make you feel at home.',
+        'intro'      => 'RISTORANTE is a country restaurant where charcoal cooking, warm hospitality and local territory come together. An intimate dining room, few tables and attentive service designed to make you feel at home.',
 
         'story_title' => 'Our story',
-        'story_text'  => 'Torre di Blaga started as a small family trattoria and over time has become a country restaurant that combines Abruzzo tradition, charcoal cooking and attention to detail, without losing its homely atmosphere.',
+        'story_text'  => 'RISTORANTE started as a small family trattoria and over time has become a country restaurant that combines Abruzzo tradition, charcoal cooking and attention to detail, without losing its homely atmosphere.',
 
         'kitchen_title'  => 'Our cuisine',
         'kitchen_text'   => 'We select fresh, seasonal ingredients, giving priority to local producers. The menu changes throughout the year, following the rhythm of the seasons: rustic starters, homemade first courses, grilled meat, arrosticini and homemade desserts.',
@@ -126,7 +126,7 @@ return [
 
     'menu_page' => [
         'title' => 'The Menu',
-        'intro' => 'The menu of Torre di Blaga includes rustic starters, homemade first courses, grilled meat, arrosticini, pizzas and desserts. Proposals change according to the season and the availability of local products.',
+        'intro' => 'The menu of RISTORANTE includes rustic starters, homemade first courses, grilled meat, arrosticini, pizzas and desserts. Proposals change according to the season and the availability of local products.',
         'note'  => 'Dishes and prices may change according to the season and product availability. Please ask the staff for today’s specials and any off-menu dishes.',
     ],
 

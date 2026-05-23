@@ -3,6 +3,12 @@
     :meta-description="__('seo.restaurant.description')"
 >
     @php
+        $restaurantHighlights = trans('luxury.restaurant.highlights');
+        $restaurantHighlights = is_array($restaurantHighlights) ? $restaurantHighlights : [];
+
+        $restaurantRituals = trans('luxury.restaurant.rituals');
+        $restaurantRituals = is_array($restaurantRituals) ? $restaurantRituals : [];
+
         $restaurantFeatures = [
             [
                 'eyebrow' => __('pages.restaurant.room_kicker'),
@@ -58,9 +64,28 @@
                 </h1>
 
                 <p class="muted">
-                    {{ __('pages.restaurant.intro') }}
+                    {{ __('luxury.restaurant.hero_intro') }}
                 </p>
             </header>
+
+            @if ($restaurantHighlights !== [])
+                <section class="restaurant-highlight-section" aria-labelledby="restaurant-highlights-title">
+                    <div class="section-header">
+                        <p class="section-kicker">{{ __('luxury.restaurant.highlights_kicker') }}</p>
+                        <h2 id="restaurant-highlights-title" class="section-title">{{ __('luxury.restaurant.highlights_title') }}</h2>
+                    </div>
+
+                    <div class="restaurant-highlight-grid">
+                        @foreach ($restaurantHighlights as $highlight)
+                            <article class="restaurant-highlight">
+                                <span>{{ $highlight['label'] ?? '' }}</span>
+                                <h3>{{ $highlight['title'] ?? '' }}</h3>
+                                <p>{{ $highlight['text'] ?? '' }}</p>
+                            </article>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
 
             <section class="restaurant-sections">
                 @foreach ($restaurantFeatures as $feature)
@@ -86,13 +111,55 @@
                         <div class="restaurant-feature-image">
                             <img
                                 src="{{ $feature['image'] }}"
-                                alt="{{ $feature['title'] }} Torre di Blaga"
+                                alt="{{ $feature['title'] }} RISTORANTE"
                                 loading="lazy"
                             >
                         </div>
                     </article>
                 @endforeach
             </section>
+
+            <section class="restaurant-gallery-band" aria-labelledby="restaurant-gallery-title">
+                <div class="section-header section-header-left">
+                    <p class="section-kicker">{{ __('luxury.restaurant.gallery_kicker') }}</p>
+                    <h2 id="restaurant-gallery-title" class="section-title">{{ __('luxury.restaurant.gallery_title') }}</h2>
+                    <p class="section-lead">{{ __('luxury.restaurant.gallery_text') }}</p>
+                </div>
+
+                <div class="image-mosaic restaurant-image-mosaic">
+                    <figure class="mosaic-image mosaic-image-large">
+                        <img src="{{ asset('images/sala interna2.jpg') }}" alt="Sala elegante RISTORANTE" loading="lazy">
+                    </figure>
+                    <figure class="mosaic-image">
+                        <img src="{{ asset('images/piatto-3.jpg') }}" alt="Piatto stagionale RISTORANTE" loading="lazy">
+                    </figure>
+                    <figure class="mosaic-image">
+                        <img src="{{ asset('images/arrosticini2.jpg') }}" alt="Arrosticini RISTORANTE" loading="lazy">
+                    </figure>
+                    <figure class="mosaic-image mosaic-image-wide">
+                        <img src="{{ asset('images/carne alla brace 2.jpg') }}" alt="Carne alla brace RISTORANTE" loading="lazy">
+                    </figure>
+                </div>
+            </section>
+
+            @if ($restaurantRituals !== [])
+                <section class="restaurant-rituals" aria-labelledby="restaurant-rituals-title">
+                    <div class="section-header">
+                        <p class="section-kicker">{{ __('luxury.restaurant.rituals_kicker') }}</p>
+                        <h2 id="restaurant-rituals-title" class="section-title">{{ __('luxury.restaurant.rituals_title') }}</h2>
+                    </div>
+
+                    <div class="flow-steps flow-steps-three">
+                        @foreach ($restaurantRituals as $ritual)
+                            <article class="flow-step">
+                                <span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                                <h3>{{ $ritual['title'] ?? '' }}</h3>
+                                <p>{{ $ritual['text'] ?? '' }}</p>
+                            </article>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
 
             <section class="restaurant-facts">
                 @foreach ($restaurantFacts as $fact)

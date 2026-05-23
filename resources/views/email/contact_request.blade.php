@@ -5,7 +5,7 @@
     <title>Nuova richiesta dal sito</title>
 </head>
 <body>
-    <h2>Nuova richiesta dal sito {{ config('restaurant.name', 'Ristorante') }}</h2>
+    <h2>Nuova richiesta dal sito {{ config('restaurant.name', 'RISTORANTE') }}</h2>
 
     <p><strong>Nome:</strong> {{ $contactRequest->name }}</p>
     <p><strong>Email:</strong> {{ $contactRequest->email }}</p>
@@ -17,7 +17,7 @@
 
     <hr>
     <p style="font-size:12px; color:#666;">
-        Messaggio inviato dal form contatti del sito {{ config('restaurant.name', 'Ristorante') }}.
+        Messaggio inviato dal form contatti del sito {{ config('restaurant.name', 'RISTORANTE') }}.
     </p>
 </body>
 </html>

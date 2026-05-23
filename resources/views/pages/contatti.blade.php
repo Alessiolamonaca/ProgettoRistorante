@@ -3,7 +3,7 @@
     :meta-description="__('seo.contacts.description')"
 >
     @php
-        $restaurantName = config('restaurant.name', 'Ristorante');
+        $restaurantName = config('restaurant.name', 'RISTORANTE');
         $addressLine = config('restaurant.address_line');
         $phone = config('restaurant.phone');
         $email = config('restaurant.email');
@@ -16,6 +16,12 @@
         $action = route('contatti.submit', ['locale' => $locale]);
         $contactServices = trans('pages.contacts.services_list');
         $contactMessageTips = trans('pages.contacts.form_tips_list');
+
+        $bookingSteps = trans('luxury.contacts.steps');
+        $bookingSteps = is_array($bookingSteps) ? $bookingSteps : [];
+
+        $occasionCards = trans('luxury.contacts.occasions');
+        $occasionCards = is_array($occasionCards) ? $occasionCards : [];
     @endphp
 
     <section class="page page-contacts">
@@ -23,9 +29,43 @@
             <header class="page-header" data-collapse-on-scroll>
                 <h1>{{ __('pages.contacts.title') }}</h1>
                 <p class="muted">
-                    {{ __('pages.contacts.intro') }}
+                    {{ __('luxury.contacts.intro') }}
                 </p>
             </header>
+
+            <section class="booking-brief" aria-labelledby="booking-brief-title">
+                <div class="booking-brief-main">
+                    <p class="section-kicker">{{ __('luxury.contacts.booking_kicker') }}</p>
+                    <h2 id="booking-brief-title" class="section-title">{{ __('luxury.contacts.booking_title') }}</h2>
+                    <p>{{ __('luxury.contacts.booking_text') }}</p>
+
+                    <div class="contact-card-actions">
+                        @if ($phoneHref)
+                            <a href="{{ $phoneHref }}" class="pill primary">
+                                {{ __('pages.contacts.call_cta') }}
+                            </a>
+                        @endif
+
+                        @if ($waNumber)
+                            <a href="https://wa.me/{{ $waNumber }}" class="pill" target="_blank" rel="noopener">
+                                {{ __('pages.contacts.whatsapp_cta') }}
+                            </a>
+                        @endif
+                    </div>
+                </div>
+
+                @if ($bookingSteps !== [])
+                    <div class="booking-steps">
+                        @foreach ($bookingSteps as $step)
+                            <article class="booking-step">
+                                <span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                                <h3>{{ $step['title'] ?? '' }}</h3>
+                                <p>{{ $step['text'] ?? '' }}</p>
+                            </article>
+                        @endforeach
+                    </div>
+                @endif
+            </section>
 
             @if (session('success'))
                 <div class="card contact-status contact-status-success">
@@ -36,7 +76,7 @@
             @if ($errors->any())
                 <div class="card contact-status contact-status-error">
                     <p style="margin-top:0; font-weight:600;">
-                        {{ __('pages.contacts.form_error_title') ?? 'Per favore controlla i campi evidenziati.' }}
+                        {{ __('pages.contacts.form_error_title') }}
                     </p>
                     <ul style="margin:0; padding-left:18px;">
                         @foreach ($errors->all() as $error)
@@ -126,6 +166,23 @@
                             {{ __('pages.contacts.response_text') }}
                         </p>
                     </section>
+
+                    @if ($occasionCards !== [])
+                        <section class="contact-card-section">
+                            <h3 class="contact-card-section-title">
+                                {{ __('luxury.contacts.occasions_title') }}
+                            </h3>
+
+                            <div class="contact-occasion-grid">
+                                @foreach ($occasionCards as $occasion)
+                                    <article class="contact-occasion">
+                                        <h4>{{ $occasion['title'] ?? '' }}</h4>
+                                        <p>{{ $occasion['text'] ?? '' }}</p>
+                                    </article>
+                                @endforeach
+                            </div>
+                        </section>
+                    @endif
 
                     <div class="contact-card-actions">
                         @if ($phoneHref)
@@ -268,7 +325,7 @@
                         </section>
                     @endif
 
-                    @if(__('pages.contacts.note') !== 'pages.contacts.note')
+                    @if (Lang::has('pages.contacts.note'))
                         <p class="contact-form-confirmation">
                             {{ __('pages.contacts.note') }}
                         </p>

@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'brand' => 'Torre di Blaga',
+    'brand' => 'RISTORANTE',
 
     'nav' => [
-        'restaurant' => 'Il Ristorante',
+        'restaurant' => 'Il RISTORANTE',
         'menu'       => 'Il Menu',
         'where'      => 'Dove siamo',
         'contacts'   => 'Contatti',
@@ -13,8 +13,8 @@ return [
     ],
 
     'home' => [
-        'title'    => 'Torre di Blaga',
-        'subtitle' => 'Agriturismo di campagna con cucina tipica abruzzese: carne alla brace, arrosticini e pizza.',
+        'title'    => 'RISTORANTE',
+        'subtitle' => 'RISTORANTE con cucina tipica abruzzese: carne alla brace, arrosticini e pizza.',
 
         'info_title'  => 'Cucina tipica abruzzese',
         'info_text'   => 'In tavola portiamo i piatti della tradizione abruzzese: pasta fatta in casa, salumi e formaggi selezionati, contorni di stagione e ricette che ricordano la cucina di una volta.',
@@ -39,19 +39,19 @@ return [
 
     'where' => [
         'title'       => 'Dove siamo',
-        'text'        => 'L’agriturismo Torre di Blaga si trova in una zona di campagna facilmente raggiungibile in auto. Con il link qui sotto apri direttamente Google Maps con il nostro indirizzo già impostato.',
+        'text'        => 'RISTORANTE si trova in una zona di campagna facilmente raggiungibile in auto. Con il link qui sotto apri direttamente Google Maps con il nostro indirizzo già impostato.',
         'cta_maps'    => 'Apri in Google Maps',
         'cta_contact' => 'Contatti',
     ],
 
     'restaurant' => [
-        'title' => 'Il Ristorante',
+        'title' => 'Il RISTORANTE',
 
-        'hero_title' => 'Un agriturismo di campagna, tra brace e tradizione',
-        'intro'      => 'Torre di Blaga è un agriturismo di campagna dove cucina alla brace, accoglienza familiare e territorio si incontrano.',
+        'hero_title' => 'Un ristorante di campagna, tra brace e tradizione',
+        'intro'      => 'RISTORANTE è un ristorante di campagna dove cucina alla brace, accoglienza familiare e territorio si incontrano.',
 
         'story_title' => 'La nostra storia',
-        'story_text'  => 'Torre di Blaga nasce come piccola trattoria di famiglia e, nel tempo, è diventata un ristorante di campagna che unisce tradizione abruzzese, cucina alla brace e attenzione ai dettagli, senza perdere il calore di casa.',
+        'story_text'  => 'RISTORANTE nasce come piccola trattoria di famiglia e, nel tempo, è diventata un ristorante di campagna che unisce tradizione abruzzese, cucina alla brace e attenzione ai dettagli, senza perdere il calore di casa.',
 
         'kitchen_title'  => 'La nostra cucina',
         'kitchen_text'   => 'Selezioniamo ingredienti freschi e stagionali, privilegiando produttori del territorio. Il menu cambia durante l’anno seguendo il ritmo delle stagioni: antipasti rustici, primi piatti fatti in casa, carne alla brace, arrosticini e dolci artigianali.',
@@ -59,7 +59,7 @@ return [
         'kitchen_detail' => 'La cucina lavora su pochi riferimenti chiari: brace, stagioni e piatti che sanno di Abruzzo.',
 
         'room_title'  => 'La sala e l’atmosfera',
-        'room_text'   => 'L’ambiente è caldo e raccolto e con tavoli in legno. Vogliamo che ogni ospite possa rilassarsi, chiacchierare in tranquillità e godersi un pranzo o una cena senza fretta, in un’atmosfera tipica di un agriturismo di campagna.',
+        'room_text'   => 'L’ambiente è caldo e raccolto e con tavoli in legno. Vogliamo che ogni ospite possa rilassarsi, chiacchierare in tranquillità e godersi un pranzo o una cena senza fretta, in un’atmosfera tipica di un ristorante di campagna.',
         'room_kicker' => 'La sala',
         'room_detail' => 'L’obiettivo è far sentire ogni tavolo accolto, con un ritmo rilassato e uno spazio che invita a fermarsi.',
 
@@ -126,7 +126,7 @@ return [
 
     'menu_page' => [
         'title' => 'Il Menu',
-        'intro' => 'Nel menu di Torre di Blaga trovi antipasti rustici, primi piatti fatti in casa, carne alla brace, arrosticini, pizze e dessert. Le proposte cambiano in base alla stagione e ai prodotti locali disponibili.',
+        'intro' => 'Nel menu di RISTORANTE trovi antipasti rustici, primi piatti fatti in casa, carne alla brace, arrosticini, pizze e dessert. Le proposte cambiano in base alla stagione e ai prodotti locali disponibili.',
         'note'  => 'Il menu e i prezzi possono variare in base alla stagione e alla disponibilità delle materie prime. Chiedi sempre al personale le proposte del giorno e gli eventuali piatti fuori carta.',
     ],
 

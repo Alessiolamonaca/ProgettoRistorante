@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand' => 'Torre di Blaga',
+    'brand' => 'RISTORANTE',
 
     'nav' => [
         'restaurant' => 'Das Restaurant',
@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'title'    => 'Torre di Blaga',
+        'title'    => 'RISTORANTE',
         'subtitle' => 'Landrestaurant mit typischer Kuche aus den Abruzzen: Grillfleisch, Arrosticini und Pizza.',
 
         'info_title'  => 'Typische Kuche aus den Abruzzen',
@@ -39,7 +39,7 @@ return [
 
     'where' => [
         'title'       => 'Anfahrt',
-        'text'        => 'Das Landrestaurant Torre di Blaga liegt in einer landlichen Gegend, die bequem mit dem Auto erreichbar ist. Uber den Link unten offnest du Google Maps direkt mit unserer Adresse.',
+        'text'        => 'Das Landrestaurant RISTORANTE liegt in einer landlichen Gegend, die bequem mit dem Auto erreichbar ist. Uber den Link unten offnest du Google Maps direkt mit unserer Adresse.',
         'cta_maps'    => 'In Google Maps offnen',
         'cta_contact' => 'Kontakt',
     ],
@@ -48,10 +48,10 @@ return [
         'title' => 'Das Restaurant',
 
         'hero_title' => 'Ein Landrestaurant zwischen Grill und Tradition',
-        'intro'      => 'Torre di Blaga ist ein Landrestaurant, in dem sich Grillkuche, Gastfreundschaft und Region treffen. Ein intimer Gastraum mit wenigen Tischen und aufmerksamen Service, damit Sie sich wie zu Hause fuhlen.',
+        'intro'      => 'RISTORANTE ist ein Landrestaurant, in dem sich Grillkuche, Gastfreundschaft und Region treffen. Ein intimer Gastraum mit wenigen Tischen und aufmerksamen Service, damit Sie sich wie zu Hause fuhlen.',
 
         'story_title' => 'Unsere Geschichte',
-        'story_text'  => 'Torre di Blaga entstand als kleines Familienlokal und hat sich im Laufe der Zeit zu einem Landrestaurant entwickelt, das Tradition aus den Abruzzen, Grillkuche und Liebe zum Detail vereint, ohne die familiare Atmosphare zu verlieren.',
+        'story_text'  => 'RISTORANTE entstand als kleines Familienlokal und hat sich im Laufe der Zeit zu einem Landrestaurant entwickelt, das Tradition aus den Abruzzen, Grillkuche und Liebe zum Detail vereint, ohne die familiare Atmosphare zu verlieren.',
 
         'kitchen_title'  => 'Unsere Kuche',
         'kitchen_text'   => 'Wir wahlen frische, saisonale Zutaten und bevorzugen Produzenten aus der Region. Die Gerichte andern sich im Laufe des Jahres und folgen dem Rhythmus der Jahreszeiten: rustikale Vorspeisen, hausgemachte erste Gange, Grillfleisch, Arrosticini und hausgemachte Desserts.',
@@ -126,7 +126,7 @@ return [
 
     'menu_page' => [
         'title' => 'Die Speisekarte',
-        'intro' => 'Die Speisekarte von Torre di Blaga umfasst rustikale Vorspeisen, hausgemachte erste Gange, Grillfleisch, Arrosticini, Pizzen und Desserts. Die Angebote variieren je nach Saison und Verfugbarkeit regionaler Produkte.',
+        'intro' => 'Die Speisekarte von RISTORANTE umfasst rustikale Vorspeisen, hausgemachte erste Gange, Grillfleisch, Arrosticini, Pizzen und Desserts. Die Angebote variieren je nach Saison und Verfugbarkeit regionaler Produkte.',
         'note'  => 'Speisen und Preise konnen je nach Saison und Verfugbarkeit der Produkte variieren. Fragen Sie das Personal nach den Empfehlungen des Tages und moglichen Gerichten ausserhalb der Karte.',
     ],
 

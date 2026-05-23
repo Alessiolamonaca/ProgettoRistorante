@@ -22,7 +22,7 @@ class ContactRequestMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Nuova richiesta dal sito '.config('restaurant.name', 'Ristorante'),
+            subject: 'Nuova richiesta dal sito '.config('restaurant.name', 'RISTORANTE'),
             replyTo: [
                 new Address($this->contactRequest->email, $this->contactRequest->name),
             ],

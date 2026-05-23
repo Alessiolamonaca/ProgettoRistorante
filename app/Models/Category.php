@@ -30,13 +30,13 @@ class Category extends Model
      */
     public function getNameAttribute(): string
     {
-        $locale = app()->getLocale() ?? 'it';
+        $locale = app()->getLocale();
         $column = 'name_' . $locale;
 
         if (!empty($this->{$column})) {
             return $this->{$column};
         }
 
-        return $this->name_it;
+        return $this->name_it ?? '';
     }
 }

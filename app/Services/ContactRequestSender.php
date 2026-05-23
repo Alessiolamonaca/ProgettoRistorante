@@ -15,8 +15,8 @@ class ContactRequestSender
             Mail::to($recipient)->send(new ContactRequestMail($contactRequest));
         } catch (\Throwable $exception) {
             Log::error('Contact request delivery failed.', [
-                'locale' => $locale,
-                'error' => $exception->getMessage(),
+                'locale'    => $locale,
+                'exception' => $exception,
             ]);
 
             return false;

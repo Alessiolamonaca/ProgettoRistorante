@@ -3,60 +3,65 @@
     :meta-description="__('seo.menu.description')"
 >
     @php
-        /**
-         * @var \Illuminate\Support\Collection|\App\Models\Category[] $categories
-         *
-         * $categories è una collection di categorie, ognuna con:
-         * - name   => nome della categoria (es. Antipasti, Primi)
-         * - dishes => elenco piatti collegati
-         */
-        $menuNote = __('pages.menu_page.note'); // eventuale nota finale sul menu
+        /** @var \Illuminate\Support\Collection|\App\Models\Category[] $categories */
+        $menuJourneys = trans('luxury.menu.journeys');
+        $menuJourneys = is_array($menuJourneys) ? $menuJourneys : [];
+
+        $pairings = trans('luxury.menu.pairings');
+        $pairings = is_array($pairings) ? $pairings : [];
     @endphp
 
-    {{-- 
-        CONTENITORE PRINCIPALE PAGINA MENU
-        - Usa .page per avere padding verticale coerente con il resto del sito
-        - Tutto il contenuto del menu è dentro questa .container
-    --}}
     <section class="page page-menu">
         <div class="container">
-
-            {{-- 
-                BLOCCO HEADER PAGINA MENU
-                - Titolo H1
-                - Testo introduttivo (descrizione generale del menu)
-            --}}
             <header class="page-header">
+                <p class="page-section-title">{{ __('luxury.menu.journey_kicker') }}</p>
                 <h1>{{ __('pages.menu_page.title') }}</h1>
                 <p class="muted">
-                    {{ __('pages.menu_page.intro') }}
+                    {{ __('luxury.menu.intro') }}
                 </p>
             </header>
 
-            {{-- 
-                BLOCCO PRINCIPALE: CATEGORIE E PIATTI
-                - Ogni categoria viene mostrata come una "card"
-                - Dentro ogni card c'è l'elenco dei piatti:
-                  * nome piatto
-                  * descrizione (se presente)
-                  * prezzo (se presente)
-                - Layout:
-                  * Mobile: 1 colonna
-                  * Desktop: 2 colonne (gestito da .grid nel layout)
-            --}}
-            <section class="grid">
-                @foreach ($categories as $category)
-                    <article class="card">
-                        {{-- Nome categoria (es. Antipasti, Primi, Secondi, Dolci, ecc.) --}}
+            @if ($menuJourneys !== [])
+                <section class="menu-journeys" aria-labelledby="menu-journeys-title">
+                    <div class="section-header">
+                        <p class="section-kicker">{{ __('luxury.menu.journey_kicker') }}</p>
+                        <h2 id="menu-journeys-title" class="section-title">{{ __('luxury.menu.journey_title') }}</h2>
+                        <p class="section-lead">{{ __('luxury.menu.journey_text') }}</p>
+                    </div>
+
+                    <div class="menu-journey-grid">
+                        @foreach ($menuJourneys as $journey)
+                            <article class="menu-journey">
+                                <div class="menu-journey-header">
+                                    <span>{{ $journey['tag'] ?? '' }}</span>
+                                    <h3>{{ $journey['name'] ?? '' }}</h3>
+                                </div>
+
+                                <p>{{ $journey['summary'] ?? '' }}</p>
+
+                                @if (! empty($journey['details']) && is_array($journey['details']))
+                                    <ul class="clean-list clean-list-compact">
+                                        @foreach ($journey['details'] as $detail)
+                                            <li>{{ $detail }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </article>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
+
+            <section class="grid menu-category-grid" aria-label="{{ __('pages.menu_page.title') }}">
+                @forelse ($categories as $category)
+                    <article class="card menu-category-card">
                         <h2 class="menu-category-title">
                             {{ $category->name }}
                         </h2>
 
-                        {{-- Elenco piatti della categoria --}}
                         <div class="menu-dishes">
                             @foreach ($category->dishes as $dish)
                                 <div class="menu-dish-row">
-                                    {{-- Testo piatto: nome + descrizione --}}
                                     <div class="menu-dish-text">
                                         <p class="menu-dish-name">
                                             {{ $dish->name }}
@@ -69,7 +74,6 @@
                                         @endif
                                     </div>
 
-                                    {{-- Prezzo piatto (se presente) --}}
                                     @if ($dish->formatted_price)
                                         <div class="menu-dish-price">
                                             {{ $dish->formatted_price }}
@@ -79,17 +83,35 @@
                             @endforeach
                         </div>
                     </article>
-                @endforeach
+                @empty
+                    <article class="card menu-category-card">
+                        <p class="menu-note">{{ __('luxury.menu.empty') }}</p>
+                    </article>
+                @endforelse
             </section>
 
-            {{-- 
-                BLOCCO NOTA FINALE DEL MENU
-                - Mostrata solo se la traduzione esiste davvero
-                - Utile per note tipo: "Coperto non incluso" o "Prodotti surgelati"
-            --}}
-            @if ($menuNote !== 'pages.menu_page.note')
+            @if ($pairings !== [])
+                <section class="menu-pairing-band" aria-labelledby="menu-pairing-title">
+                    <div class="section-header section-header-left">
+                        <p class="section-kicker">{{ __('luxury.menu.pairing_kicker') }}</p>
+                        <h2 id="menu-pairing-title" class="section-title">{{ __('luxury.menu.pairing_title') }}</h2>
+                        <p class="section-lead">{{ __('luxury.menu.pairing_text') }}</p>
+                    </div>
+
+                    <div class="menu-pairing-grid">
+                        @foreach ($pairings as $pairing)
+                            <article class="menu-pairing-item">
+                                <h3>{{ $pairing['title'] ?? '' }}</h3>
+                                <p>{{ $pairing['text'] ?? '' }}</p>
+                            </article>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
+
+            @if (Lang::has('pages.menu_page.note'))
                 <p class="muted menu-note">
-                    {{ $menuNote }}
+                    {{ __('pages.menu_page.note') }}
                 </p>
             @endif
         </div>

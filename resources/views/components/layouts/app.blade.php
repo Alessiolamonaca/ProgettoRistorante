@@ -17,12 +17,12 @@
         $locales = config('locales.supported', ['it']);
         $defaultLocale = config('locales.default', 'it');
 
-        $pageTitle = $title ?? config('restaurant.name', 'Ristorante');
+        $pageTitle = $title ?? config('restaurant.name', 'RISTORANTE');
         $currentUrl = request()->fullUrl();
         $metaDesc = $metaDescription ?? null;
 
         $ogImage = config('restaurant.og_image');
-        $siteName = config('restaurant.site_name', config('restaurant.name', 'Ristorante'));
+        $siteName = config('restaurant.site_name', config('restaurant.name', 'RISTORANTE'));
         $ogLocale = str_replace('-', '_', $locale) . '_' . strtoupper($locale);
     @endphp
 
@@ -236,16 +236,10 @@
             align-items: center;
         }
 
-        .brand img {
-            display: block;
-            width: auto;
-            height: 70px;
-        }
-
         .brand-text {
             font-size: 13px;
             font-weight: 600;
-            letter-spacing: 0.08em;
+            letter-spacing: 0;
             text-transform: uppercase;
         }
 
@@ -1340,7 +1334,7 @@
         }
 
         /* =========================
-        PAGINA RISTORANTE: HEADER CENTRATO + PIÃ™ SPAZIO TRA CARD
+        PAGINA RISTORANTE: HEADER CENTRATO + PIU SPAZIO TRA CARD
         ======================== */
         .page-restaurant .page-header {
             text-align: center;
@@ -1430,18 +1424,6 @@
             text-align: left;
         }
 
-        .footer-logo-wrap {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 6px;
-        }
-
-        .footer-logo {
-            display: block;
-            width: auto;
-            height: 60px;
-        }
-
         .footer-right {
             display: flex;
             flex: 1 1 0;
@@ -1503,10 +1485,6 @@
 
             nav {
                 min-height: 64px;
-            }
-
-            .brand img {
-                height: 100px;
             }
 
             .nav-center .nav-main-link {
@@ -1806,15 +1784,6 @@
                 text-align: center;
             }
 
-            .footer-logo-wrap {
-                display: block;
-                margin-bottom: 6px;
-            }
-
-            .footer-logo {
-                margin: 0 auto;
-            }
-
             .footer-social,
             .footer-meta {
                 justify-content: center;
@@ -1822,7 +1791,7 @@
         }
 
         /* =========================
-        TEMA AGRITURISMO SCURO REFINED
+        TEMA RISTORANTE SCURO
            ========================= */
         :root {
             --agri-bg: #14110d;
@@ -2475,6 +2444,574 @@
                 margin-bottom: 2.75rem;
             }
         }
+
+        /* =========================
+        PREMIUM RISTORANTE EXPERIENCE
+        ========================= */
+        :root {
+            --premium-ink: #120f0b;
+            --premium-panel: rgba(31, 25, 19, 0.82);
+            --premium-panel-strong: rgba(42, 33, 24, 0.92);
+            --premium-gold: #c4a46a;
+            --premium-gold-soft: rgba(196, 164, 106, 0.18);
+            --premium-sage: #7b855c;
+            --premium-wine: #743f3b;
+            --premium-line: rgba(224, 198, 151, 0.20);
+        }
+
+        body {
+            background:
+                linear-gradient(180deg, #0f0c09 0%, #18120d 38%, #10100d 72%, #15100c 100%);
+        }
+
+        .card,
+        .home-feature-copy,
+        .home-feature-shot,
+        .restaurant-feature-text,
+        .restaurant-feature-image,
+        .restaurant-fact,
+        .contact-card,
+        .contact-input,
+        .contact-textarea,
+        .premium-card,
+        .menu-journey,
+        .menu-pairing-item,
+        .restaurant-highlight,
+        .flow-step,
+        .booking-brief,
+        .booking-step,
+        .contact-occasion,
+        .mosaic-image {
+            border-radius: 8px !important;
+        }
+
+        .hero-home {
+            min-height: 92vh;
+            border-bottom: 0;
+        }
+
+        .hero-home::after {
+            background:
+                linear-gradient(90deg, rgba(8, 6, 4, 0.82) 0%, rgba(8, 6, 4, 0.32) 48%, rgba(8, 6, 4, 0.76) 100%),
+                linear-gradient(180deg, rgba(8, 6, 4, 0.14) 0%, rgba(8, 6, 4, 0.86) 100%);
+        }
+
+        .hero-content-center {
+            align-items: center;
+            padding-top: 0;
+        }
+
+        .hero-content-center .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 92vh;
+        }
+
+        .hero-kicker,
+        .section-kicker,
+        .premium-card-meta,
+        .menu-journey-header span,
+        .restaurant-highlight span,
+        .flow-step span,
+        .booking-step span {
+            margin: 0;
+            color: var(--premium-gold);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .hero-kicker {
+            margin-bottom: 1rem;
+            color: #e8d2a5;
+        }
+
+        .hero-heading-center {
+            font-size: clamp(3.3rem, 9vw, 8rem);
+            font-weight: 800;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: #fff8ed;
+            text-shadow: 0 22px 56px rgba(0, 0, 0, 0.70);
+        }
+
+        .hero-lead-center {
+            width: min(680px, 92vw);
+            margin: 1.1rem auto 0;
+            color: rgba(255, 247, 233, 0.88);
+            font-size: clamp(1.04rem, 1.5vw, 1.28rem);
+            line-height: 1.75;
+        }
+
+        .hero-actions-center {
+            justify-content: center;
+            margin-top: 1.8rem;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            border-radius: 999px !important;
+            font-weight: 700;
+        }
+
+        .pill.primary {
+            background: linear-gradient(135deg, var(--premium-gold), #9b7442);
+            color: #150f09;
+        }
+
+        .home-reservation-strip {
+            position: relative;
+            z-index: 5;
+            margin-top: -72px;
+            padding: 0 0 clamp(3rem, 6vw, 5rem);
+        }
+
+        .reservation-strip-inner {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0;
+            max-width: 1180px;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid var(--premium-line);
+            border-radius: 8px;
+            background: rgba(18, 14, 10, 0.86);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.44);
+            backdrop-filter: blur(10px);
+        }
+
+        .reservation-strip-item {
+            min-width: 0;
+            padding: clamp(1rem, 2vw, 1.35rem);
+            border-right: 1px solid var(--premium-line);
+        }
+
+        .reservation-strip-item:last-child {
+            border-right: 0;
+        }
+
+        .reservation-strip-item strong,
+        .reservation-strip-item span {
+            display: block;
+        }
+
+        .reservation-strip-item strong {
+            color: #fff4df;
+            font-size: 1rem;
+            line-height: 1.35;
+        }
+
+        .reservation-strip-item span {
+            margin-top: 0.35rem;
+            color: var(--agri-text-soft);
+            font-size: 0.88rem;
+            line-height: 1.55;
+        }
+
+        .section-header {
+            width: min(760px, 100%);
+            margin: 0 auto clamp(1.8rem, 4vw, 3rem);
+            text-align: center;
+        }
+
+        .section-header-left {
+            margin-left: 0;
+            text-align: left;
+        }
+
+        .section-title {
+            margin: 0.45rem 0 0;
+            color: #fff4e3;
+            font-size: clamp(2rem, 4vw, 3.35rem);
+            line-height: 1.05;
+        }
+
+        .section-lead,
+        .home-editorial-copy,
+        .premium-card p,
+        .menu-journey p,
+        .menu-pairing-item p,
+        .restaurant-highlight p,
+        .flow-step p,
+        .booking-brief p,
+        .booking-step p,
+        .contact-occasion p {
+            color: var(--agri-text-soft);
+            line-height: 1.75;
+        }
+
+        .section-lead {
+            max-width: 660px;
+            margin: 0.9rem auto 0;
+        }
+
+        .home-editorial,
+        .home-experiences,
+        .home-gallery-band,
+        .home-service-flow,
+        .restaurant-highlight-section,
+        .restaurant-gallery-band,
+        .restaurant-rituals,
+        .menu-journeys,
+        .menu-pairing-band {
+            position: relative;
+            padding: clamp(4rem, 7vw, 6rem) 0;
+        }
+
+        .home-editorial {
+            padding-top: clamp(1rem, 3vw, 2rem);
+            background: linear-gradient(180deg, #15100b 0%, #1a130e 100%);
+        }
+
+        .home-editorial-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: start;
+        }
+
+        .home-editorial-copy {
+            max-width: 620px;
+            font-size: 1.02rem;
+        }
+
+        .clean-list {
+            display: grid;
+            gap: 0.7rem;
+            margin: 1.25rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .clean-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            color: var(--agri-text-soft);
+            line-height: 1.6;
+        }
+
+        .clean-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.68rem;
+            width: 0.46rem;
+            height: 0.46rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--premium-gold), var(--premium-sage));
+        }
+
+        .clean-list-compact {
+            margin-top: 1rem;
+            gap: 0.5rem;
+        }
+
+        .home-info {
+            margin-top: 0;
+            background: linear-gradient(180deg, #1a130e 0%, #17120e 100%);
+        }
+
+        .home-feature-copy,
+        .restaurant-feature-text,
+        .premium-card,
+        .menu-journey,
+        .menu-pairing-item,
+        .restaurant-highlight,
+        .flow-step,
+        .booking-brief,
+        .booking-step,
+        .contact-occasion {
+            border: 1px solid var(--premium-line);
+            background:
+                linear-gradient(180deg, rgba(39, 31, 23, 0.92) 0%, rgba(22, 17, 13, 0.88) 100%);
+            box-shadow: 0 20px 46px rgba(0, 0, 0, 0.24);
+        }
+
+        .premium-grid,
+        .restaurant-highlight-grid,
+        .menu-journey-grid,
+        .menu-pairing-grid,
+        .flow-steps,
+        .booking-steps,
+        .contact-occasion-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .premium-grid,
+        .restaurant-highlight-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .premium-card,
+        .restaurant-highlight,
+        .flow-step,
+        .booking-step,
+        .contact-occasion {
+            padding: clamp(1.15rem, 2vw, 1.5rem);
+        }
+
+        .premium-card h3,
+        .menu-journey h3,
+        .menu-pairing-item h3,
+        .restaurant-highlight h3,
+        .flow-step h3,
+        .booking-step h3,
+        .contact-occasion h4 {
+            margin: 0.5rem 0 0;
+            color: #fff2de;
+            font-size: 1.12rem;
+            line-height: 1.3;
+        }
+
+        .premium-card p,
+        .menu-journey p,
+        .menu-pairing-item p,
+        .restaurant-highlight p,
+        .flow-step p,
+        .booking-step p,
+        .contact-occasion p {
+            margin: 0.75rem 0 0;
+            font-size: 0.94rem;
+        }
+
+        .home-gallery-band {
+            padding-top: 0;
+            background: #11100d;
+        }
+
+        .image-mosaic {
+            display: grid;
+            grid-template-columns: 1.25fr 0.85fr 0.85fr;
+            grid-auto-rows: minmax(180px, 18vw);
+            gap: 1rem;
+        }
+
+        .mosaic-image {
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid var(--premium-line);
+            background: rgba(18, 14, 10, 0.62);
+        }
+
+        .mosaic-image-large {
+            grid-row: span 2;
+        }
+
+        .mosaic-image-wide {
+            grid-column: span 2;
+        }
+
+        .mosaic-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.98) contrast(1.04) brightness(0.96);
+            transition: transform 0.45s ease, filter 0.45s ease;
+        }
+
+        .mosaic-image:hover img {
+            transform: scale(1.025);
+            filter: saturate(1.02) contrast(1.06) brightness(1);
+        }
+
+        .flow-steps {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .flow-steps-three {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .menu-journey-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .menu-journey {
+            padding: clamp(1.25rem, 2vw, 1.7rem);
+        }
+
+        .menu-journey-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .menu-pairing-band {
+            max-width: 980px;
+            margin: 0 auto;
+            padding-bottom: 0;
+        }
+
+        .menu-pairing-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .page-menu .menu-category-grid {
+            margin-top: clamp(3rem, 6vw, 5rem);
+        }
+
+        .page-menu .menu-category-card {
+            padding: clamp(1.15rem, 2vw, 1.55rem);
+            border-radius: 8px !important;
+        }
+
+        .menu-dish-row {
+            padding: 0.85rem 0;
+            border-top: 1px solid rgba(224, 198, 151, 0.10);
+        }
+
+        .menu-dish-row:first-child {
+            border-top: 0;
+        }
+
+        .restaurant-highlight-section {
+            padding-top: 0;
+        }
+
+        .restaurant-gallery-band {
+            margin-top: clamp(4rem, 6vw, 6rem);
+        }
+
+        .restaurant-image-mosaic {
+            margin-top: 2rem;
+        }
+
+        .restaurant-rituals {
+            padding-bottom: 0;
+        }
+
+        .booking-brief {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: clamp(1.25rem, 3vw, 2rem);
+            align-items: stretch;
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+            padding: clamp(1.25rem, 3vw, 2rem);
+        }
+
+        .booking-brief-main {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .booking-brief-main .section-title {
+            font-size: clamp(1.7rem, 3vw, 2.45rem);
+        }
+
+        .booking-steps {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .contact-occasion-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-occasion h4 {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 1100px) {
+            .reservation-strip-inner,
+            .premium-grid,
+            .restaurant-highlight-grid,
+            .flow-steps,
+            .flow-steps-three,
+            .menu-journey-grid,
+            .menu-pairing-grid,
+            .booking-brief,
+            .booking-steps {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .reservation-strip-item:nth-child(2n) {
+                border-right: 0;
+            }
+
+            .reservation-strip-item:nth-child(n+3) {
+                border-top: 1px solid var(--premium-line);
+            }
+
+            .home-editorial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-brief-main {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-home,
+            .hero-content-center .container {
+                min-height: 86vh;
+            }
+
+            .hero-heading-center {
+                font-size: clamp(2.65rem, 16vw, 4.4rem);
+            }
+
+            .hero-lead-center {
+                font-size: 1rem;
+            }
+
+            .hero-actions-center,
+            .hero-actions-center .pill {
+                width: 100%;
+            }
+
+            .home-reservation-strip {
+                margin-top: 0;
+                padding-top: 1rem;
+            }
+
+            .reservation-strip-inner,
+            .premium-grid,
+            .restaurant-highlight-grid,
+            .flow-steps,
+            .flow-steps-three,
+            .menu-journey-grid,
+            .menu-pairing-grid,
+            .booking-brief,
+            .booking-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-strip-item,
+            .reservation-strip-item:nth-child(2n),
+            .reservation-strip-item:nth-child(n+3) {
+                border-right: 0;
+                border-top: 1px solid var(--premium-line);
+            }
+
+            .reservation-strip-item:first-child {
+                border-top: 0;
+            }
+
+            .section-header,
+            .section-header-left {
+                text-align: left;
+            }
+
+            .image-mosaic {
+                grid-template-columns: 1fr;
+                grid-auto-rows: minmax(220px, 64vw);
+            }
+
+            .mosaic-image-large,
+            .mosaic-image-wide {
+                grid-row: auto;
+                grid-column: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2484,22 +3021,17 @@
             <nav>
                 @php
                     $currentRoute = Route::currentRouteName();
-                    $restaurantName = config('restaurant.name', 'Ristorante');
+                    $restaurantName = config('restaurant.name', 'RISTORANTE');
                     $restaurantPhone = config('restaurant.phone');
                     $phoneHref = $restaurantPhone
                         ? 'tel:' . preg_replace('/\D+/', '', $restaurantPhone)
                         : '/' . $locale . '/contatti';
-                    $logoPath = config('restaurant.logo');
                 @endphp
 
-                {{-- Logo a sinistra --}}
+                {{-- Brand testuale a sinistra --}}
                 <div class="nav-left">
                     <a class="brand" href="/{{ $locale }}" aria-label="{{ $restaurantName }}">
-                        @if($logoPath)
-                            <img src="{{ asset($logoPath) }}" alt="{{ $restaurantName }}">
-                        @else
-                            <span class="brand-text">{{ $restaurantName }}</span>
-                        @endif
+                        <span class="brand-text">{{ $restaurantName }}</span>
                     </a>
                 </div>
 
@@ -2577,13 +3109,12 @@
     <footer>
         <div class="container footer-layout">
             @php
-                $restaurantName = config('restaurant.name', 'Ristorante');
+                $restaurantName = config('restaurant.name', 'RISTORANTE');
                 $addressLine = config('restaurant.address_line');
                 $phone = config('restaurant.phone');
                 $email = config('restaurant.email');
 
                 $locale = request()->route('locale') ?? config('locales.default', 'it');
-                $logoPath = config('restaurant.logo');
 
                 $instagramUrl = config('restaurant.instagram');
                 $facebookUrl = config('restaurant.facebook');
@@ -2591,17 +3122,7 @@
 
             <div class="footer-left muted">
                 <div class="footer-contact">
-                    @if($logoPath)
-                        <span class="footer-logo-wrap">
-                            <img
-                                src="{{ asset($logoPath) }}"
-                                alt="{{ $restaurantName }}"
-                                class="footer-logo"
-                            >
-                        </span>
-                    @else
-                        <strong>{{ $restaurantName }}</strong>
-                    @endif
+                    <strong>{{ $restaurantName }}</strong>
 
                     @if($addressLine)
                         — {{ $addressLine }}

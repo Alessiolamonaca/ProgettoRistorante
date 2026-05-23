@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand' => 'Torre di Blaga',
+    'brand' => 'RISTORANTE',
 
     'nav' => [
         'restaurant' => 'Le Restaurant',
@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'title'    => 'Torre di Blaga',
+        'title'    => 'RISTORANTE',
         'subtitle' => 'Restaurant de campagne avec cuisine typique des Abruzzes : viandes grillees, arrosticini et pizza.',
 
         'info_title'  => 'Cuisine typique des Abruzzes',
@@ -39,7 +39,7 @@ return [
 
     'where' => [
         'title'       => 'Nous trouver',
-        'text'        => 'Le restaurant de campagne Torre di Blaga se trouve dans une zone rurale facilement accessible en voiture. Le lien ci-dessous ouvre directement Google Maps avec notre adresse deja renseignee.',
+        'text'        => 'Le restaurant de campagne RISTORANTE se trouve dans une zone rurale facilement accessible en voiture. Le lien ci-dessous ouvre directement Google Maps avec notre adresse deja renseignee.',
         'cta_maps'    => 'Ouvrir dans Google Maps',
         'cta_contact' => 'Contacts',
     ],
@@ -48,10 +48,10 @@ return [
         'title' => 'Le Restaurant',
 
         'hero_title' => 'Un restaurant de campagne, entre braise et tradition',
-        'intro'      => 'Torre di Blaga est un restaurant de campagne ou se rencontrent cuisine au gril, accueil chaleureux et terroir. Une salle intime, peu de tables et un service soigne, pense pour vous faire sentir comme chez vous.',
+        'intro'      => 'RISTORANTE est un restaurant de campagne ou se rencontrent cuisine au gril, accueil chaleureux et terroir. Une salle intime, peu de tables et un service soigne, pense pour vous faire sentir comme chez vous.',
 
         'story_title' => 'Notre histoire',
-        'story_text'  => 'Torre di Blaga est nee comme une petite trattoria familiale et est devenue avec le temps un restaurant de campagne qui associe tradition des Abruzzes, cuisson au gril et souci du detail, sans perdre la chaleur de la maison.',
+        'story_text'  => 'RISTORANTE est nee comme une petite trattoria familiale et est devenue avec le temps un restaurant de campagne qui associe tradition des Abruzzes, cuisson au gril et souci du detail, sans perdre la chaleur de la maison.',
 
         'kitchen_title'  => 'Notre cuisine',
         'kitchen_text'   => 'Nous selectionnons des ingredients frais et de saison, en privilegiant les producteurs locaux. Le menu evolue au fil de l annee, suivant le rythme des saisons : entrees rustiques, premiers plats maison, viandes grillees, arrosticini et desserts artisanaux.',
@@ -126,7 +126,7 @@ return [
 
     'menu_page' => [
         'title' => 'Le Menu',
-        'intro' => 'Le menu de Torre di Blaga comprend des entrees rustiques, des premiers plats maison, des viandes grillees, des arrosticini, des pizzas et des desserts. Les propositions evoluent selon la saison et la disponibilite des produits locaux.',
+        'intro' => 'Le menu de RISTORANTE comprend des entrees rustiques, des premiers plats maison, des viandes grillees, des arrosticini, des pizzas et des desserts. Les propositions evoluent selon la saison et la disponibilite des produits locaux.',
         'note'  => 'Les plats et les prix peuvent varier selon la saison et la disponibilite des produits. Demandez au personnel les suggestions du jour et les eventuels plats hors carte.',
     ],
 

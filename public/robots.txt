@@ -1,8 +1,5 @@
 User-agent: *
 Disallow:
 
-# Quando metterai il sito online, cambia il dominio qui sotto
+# Sitemap locale per lo sviluppo su host 127.0.0.1 e porta 8000.
 Sitemap: http://127.0.0.1:8000/sitemap.xml
-
-# Questo sarà quello da mettere
-Sitemap: https://www.torrediblaga.it/sitemap.xml

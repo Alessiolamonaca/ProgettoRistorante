@@ -3,12 +3,12 @@
     :meta-description="__('seo.where.description')"
 >
     @php
-        $restaurantName = config('restaurant.name', 'Ristorante');
+        $restaurantName = config('restaurant.name', 'RISTORANTE');
         $addressLine    = config('restaurant.address_line');
         $phone          = config('restaurant.phone');
         $email          = config('restaurant.email');
 
-        $mapsQuery = urlencode(config('restaurant.maps_query', 'Torre di Blaga, Italia'));
+        $mapsQuery = urlencode(config('restaurant.maps_query', 'RISTORANTE, Italia'));
         $mapsUrl   = "https://www.google.com/maps/search/?api=1&query={$mapsQuery}";
 
         $locale    = request()->route('locale') ?? config('locales.default', 'it');

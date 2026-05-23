@@ -26,6 +26,11 @@ class Dish extends Model
         'description_fr',
     ];
 
+    protected $casts = [
+        'price'     => 'decimal:2',
+        'is_active' => 'boolean',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -33,26 +38,26 @@ class Dish extends Model
 
     public function getNameAttribute(): string
     {
-        $locale = app()->getLocale() ?? 'it';
+        $locale = app()->getLocale();
         $column = 'name_' . $locale;
 
         if (!empty($this->{$column})) {
             return $this->{$column};
         }
 
-        return $this->name_it;
+        return $this->name_it ?? '';
     }
 
     public function getDescriptionAttribute(): ?string
     {
-        $locale = app()->getLocale() ?? 'it';
+        $locale = app()->getLocale();
         $column = 'description_' . $locale;
 
         if (!empty($this->{$column})) {
             return $this->{$column};
         }
 
-        return $this->description_it;
+        return $this->description_it ?: null;
     }
 
     public function getFormattedPriceAttribute(): ?string
@@ -62,6 +67,6 @@ class Dish extends Model
         }
 
         // Formato europeo: 12,50
-        return number_format($this->price, 2, ',', ' ');
+        return number_format((float) $this->price, 2, ',', ' ');
     }
 }
