@@ -109,6 +109,7 @@ return [
         'form_submit'     => 'Envoyer la demande',
         'form_kicker'     => 'Ecrivez-nous depuis le site',
         'form_intro'      => 'Le formulaire est pratique si vous souhaitez laisser tous les details dans un seul message.',
+        'honeypot_label'  => 'Societe',
         'form_tips_title' => 'Informations utiles a indiquer',
         'form_tips_list'  => [
             'jour et plage horaire preferes',

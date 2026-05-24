@@ -109,6 +109,7 @@ return [
         'form_submit'     => 'Invia richiesta',
         'form_kicker'     => 'Scrivici dal sito',
         'form_intro'      => 'Il modulo è comodo se vuoi lasciare tutti i dettagli in un unico messaggio.',
+        'honeypot_label'  => 'Azienda',
         'form_tips_title' => 'Cosa conviene scrivere',
         'form_tips_list'  => [
             'giorno e fascia oraria preferita',

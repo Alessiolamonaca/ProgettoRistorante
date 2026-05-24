@@ -1,3 +1,100 @@
 <?php
 
-return include __DIR__ . '/../en/luxury.php';
+return [
+    'home' => [
+        'hero_kicker' => 'Cocina de Abruzos contemporanea',
+        'hero_subtitle' => 'Brasa viva, productos de temporada, vinos elegidos y una sala cuidada para veladas largas y memorables.',
+        'hero_primary' => 'Reservar una mesa',
+        'hero_secondary' => 'Descubrir el menu',
+        'strip_label' => 'Servicios principales',
+        'strip' => [
+            ['value' => 'Degustacion', 'label' => 'recorridos entre la brasa, la pasta casera y los sabores del territorio'],
+            ['value' => 'Bodega', 'label' => 'vinos de Abruzos, etiquetas italianas y maridajes por copa'],
+            ['value' => 'Sala privada', 'label' => 'cenas de grupo, celebraciones y eventos a medida bajo peticion'],
+            ['value' => 'Reserva', 'label' => 'contacto directo para horarios, disponibilidad y solicitudes especiales'],
+        ],
+        'intro_kicker' => 'La experiencia',
+        'intro_title' => 'Una mesa mas cuidada, pero todavia unida al fuego y a la tierra.',
+        'intro_text' => 'RISTORANTE lleva la calidez de Abruzos a un servicio mas cuidado: pasos claros, ingredientes reconocibles, vinos elegidos con criterio y una sala pensada para comidas importantes, cenas romanticas y veladas entre amigos.',
+        'intro_points' => [
+            'menu de temporada con platos simbolo de la tradicion',
+            'brasa y arrosticini servidos con atencion al ritmo',
+            'propuestas personalizadas para grupos y eventos privados',
+        ],
+        'experiences_kicker' => 'Recorridos',
+        'experiences_title' => 'Experiencias RISTORANTE',
+        'experiences_text' => 'Cuatro formas distintas de vivir la sala, desde un menu completo hasta una cena mas informal.',
+        'experiences' => [
+            ['title' => 'Recorrido degustacion', 'text' => 'Una secuencia de entrantes, pasta, brasa y postre para conocer la identidad del restaurante en una sola noche.', 'meta' => 'Con reserva'],
+            ['title' => 'Brasa y arrosticini', 'text' => 'Piezas seleccionadas, coccion al carbon y guarniciones de temporada servidas con el ritmo de una mesa especial.', 'meta' => 'Especialidad de la casa'],
+            ['title' => 'Maridajes de bodega', 'text' => 'Vinos de Abruzos e italianos, tintos para la carne, espumosos para empezar y copas elegidas para el menu.', 'meta' => 'Por copa o botella'],
+            ['title' => 'Eventos privados', 'text' => 'Menus dedicados para cumpleanos, grupos, cenas de empresa y ocasiones preparadas con cuidado.', 'meta' => 'Solicitud dedicada'],
+        ],
+        'flow_kicker' => 'La velada',
+        'flow_title' => 'Desde la bienvenida hasta despues de cenar',
+        'flow_steps' => [
+            ['label' => 'Bienvenida', 'text' => 'Reserva confirmada, mesa preparada y primeras sugerencias sobre menu y vinos.'],
+            ['label' => 'Cocina', 'text' => 'Los platos llegan en secuencia, con atencion al ritmo, la coccion y el compartir.'],
+            ['label' => 'Bodega', 'text' => 'Maridajes sencillos o mas estructurados, elegidos segun el tipo de velada.'],
+            ['label' => 'Final', 'text' => 'Postre, digestivos, cafe y todo el tiempo necesario para terminar sin prisas.'],
+        ],
+    ],
+    'menu' => [
+        'intro' => 'El menu de RISTORANTE une platos de Abruzos, brasa, pizza y propuestas de temporada. Puedes pedir a la carta o construir un recorrido mas completo con el equipo.',
+        'journey_kicker' => 'Menus especiales',
+        'journey_title' => 'Recorridos degustacion y propuestas de la casa',
+        'journey_text' => 'Estos recorridos estan pensados para quien quiere una cena mas guiada, con platos compartidos, tiempos medidos y maridajes recomendados.',
+        'journeys' => [
+            ['name' => 'Recorrido RISTORANTE', 'summary' => 'Entrantes de la casa, pasta de temporada, brasa, postre y un pequeno cierre.', 'details' => ['Ideal para una primera visita', 'Se sirve para toda la mesa', 'Adaptable bajo peticion'], 'tag' => 'Completo'],
+            ['name' => 'Brasa y bodega', 'summary' => 'Cortes a la brasa, arrosticini, guarniciones y copas elegidas para acompanar el fuego.', 'details' => ['Carnes seleccionadas', 'Tintos y espumosos', 'Ritmo de servicio dedicado'], 'tag' => 'Firma'],
+            ['name' => 'Pizza de la casa', 'summary' => 'Masas de larga fermentacion, sabores de temporada y una propuesta pensada para compartir.', 'details' => ['Clasicas y especiales', 'Perfecta para grupos', 'Disponible por la noche'], 'tag' => 'Convivial'],
+        ],
+        'pairing_kicker' => 'Bodega',
+        'pairing_title' => 'Vinos, aperitivos y despues de cenar',
+        'pairing_text' => 'El equipo puede aconsejar copas y botellas segun el menu elegido, desde Montepulciano d Abruzzo hasta espumosos para empezar.',
+        'pairings' => [
+            ['title' => 'Aperitivo', 'text' => 'Espumosos, cocteles sencillos y pequenos bocados para abrir la velada.'],
+            ['title' => 'Maridajes', 'text' => 'Copas pensadas para pasta, brasa, pizza y platos de temporada.'],
+            ['title' => 'Despues de cenar', 'text' => 'Postres caseros, digestivos, destilados y cafe servidos con calma.'],
+        ],
+        'empty' => 'El menu se esta actualizando. Contactanos para conocer las propuestas de hoy.',
+    ],
+    'restaurant' => [
+        'hero_intro' => 'RISTORANTE es una sala intima y cuidada donde la brasa, los productos de temporada y la hospitalidad de Abruzos se convierten en una experiencia mas refinada.',
+        'highlights_kicker' => 'Identidad',
+        'highlights_title' => 'Que hace especial a RISTORANTE',
+        'highlights' => [
+            ['label' => 'Cocina', 'title' => 'Fuego, pasta y estaciones', 'text' => 'Una linea clara: platos de Abruzos, coccion a la brasa, pasta casera e ingredientes elegidos en su mejor momento.'],
+            ['label' => 'Sala', 'title' => 'Ambiente calido y ordenado', 'text' => 'Luz suave, mesas cuidadas y un servicio directo que deja espacio para conversar.'],
+            ['label' => 'Bodega', 'title' => 'Copas con caracter', 'text' => 'Vinos locales y selecciones italianas para acompanar platos rusticos, brasa y menus mas estructurados.'],
+            ['label' => 'Eventos', 'title' => 'Mesas a medida', 'text' => 'Menus dedicados para ocasiones, grupos, cenas privadas y veladas organizadas antes de la llegada.'],
+        ],
+        'gallery_kicker' => 'Detalles',
+        'gallery_title' => 'Sala, cocina y mesa',
+        'gallery_text' => 'Imagenes reales del restaurante y de los platos: la web debe mostrar enseguida ambiente, producto y cuidado.',
+        'rituals_kicker' => 'Metodo',
+        'rituals_title' => 'Un servicio mas completo',
+        'rituals' => [
+            ['title' => 'Antes de cenar', 'text' => 'La reserva recoge horario, numero de invitados y posibles necesidades.'],
+            ['title' => 'Durante el servicio', 'text' => 'La sala acompana la eleccion de platos, vinos y ritmo de salida.'],
+            ['title' => 'Para eventos', 'text' => 'El menu puede acordarse con antelacion con una propuesta clara para el grupo.'],
+        ],
+    ],
+    'contacts' => [
+        'intro' => 'Reserva una mesa, pregunta por la disponibilidad para un evento privado o cuentanos que tipo de velada quieres organizar: te responderemos con una propuesta clara.',
+        'booking_kicker' => 'Reservas',
+        'booking_title' => 'Para organizar bien una cena bastan unos pocos detalles.',
+        'booking_text' => 'Envianos la fecha, la hora, el numero de personas y la ocasion. Si quieres un menu dedicado o una zona mas reservada, indicalo directamente en el mensaje.',
+        'steps' => [
+            ['title' => 'Detalles', 'text' => 'Fecha, hora, numero de personas, telefono y solicitud principal.'],
+            ['title' => 'Confirmacion', 'text' => 'Comprobamos la disponibilidad y te contactamos para confirmar.'],
+            ['title' => 'Bienvenida', 'text' => 'Preparamos la mesa y, si hace falta, un menu adecuado para la velada.'],
+        ],
+        'occasions_title' => 'Ocasiones especiales',
+        'occasions' => [
+            ['title' => 'Cenas romanticas', 'text' => 'Una mesa cuidada, un ritmo tranquilo y sugerencias sobre menu y vinos.'],
+            ['title' => 'Celebraciones', 'text' => 'Cumpleanos, aniversarios y menus compartidos para mesas grandes.'],
+            ['title' => 'Cenas de empresa', 'text' => 'Una propuesta ordenada, un servicio puntual y buena gestion de grupos.'],
+        ],
+    ],
+];

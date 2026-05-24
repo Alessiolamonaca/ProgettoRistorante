@@ -1,3 +1,100 @@
 <?php
 
-return include __DIR__ . '/../en/luxury.php';
+return [
+    'home' => [
+        'hero_kicker' => 'Zeitgemaesse Kuche aus den Abruzzen',
+        'hero_subtitle' => 'Lebendige Holzkohle, saisonale Produkte, ausgewaehlte Weine und ein gepflegter Gastraum fuer lange, besondere Abende.',
+        'hero_primary' => 'Einen Tisch reservieren',
+        'hero_secondary' => 'Die Speisekarte entdecken',
+        'strip_label' => 'Wichtige Angebote',
+        'strip' => [
+            ['value' => 'Degustation', 'label' => 'gefuehrte Wege durch Holzkohle, hausgemachte Pasta und den Geschmack der Region'],
+            ['value' => 'Weinkeller', 'label' => 'Weine aus den Abruzzen, italienische Etiketten und passende Glaeser'],
+            ['value' => 'Separater Raum', 'label' => 'Gruppenabende, Feiern und massgeschneiderte Veranstaltungen auf Anfrage'],
+            ['value' => 'Reservierung', 'label' => 'direkter Kontakt fuer Uhrzeiten, Verfugbarkeit und besondere Wuensche'],
+        ],
+        'intro_kicker' => 'Das Erlebnis',
+        'intro_title' => 'Ein eleganterer Tisch, der trotzdem mit Feuer und Landschaft verbunden bleibt.',
+        'intro_text' => 'RISTORANTE verbindet die Waerme der Abruzzen mit einem sorgfaeltigeren Service: klare Gange, erkennbare Zutaten, bewusst gewaehlte Weine und ein Raum fuer wichtige Mittagessen, romantische Abendessen und gesellige Abende.',
+        'intro_points' => [
+            'saisonale Karte mit typischen Gerichten der Tradition',
+            'Holzkohlegrill und Arrosticini mit aufmerksamem Service',
+            'individuelle Vorschlaege fuer Gruppen und private Veranstaltungen',
+        ],
+        'experiences_kicker' => 'Erlebnisse',
+        'experiences_title' => 'RISTORANTE Erlebnisse',
+        'experiences_text' => 'Vier verschiedene Arten, den Abend zu erleben, vom kompletten Menue bis zum lockereren Dinner.',
+        'experiences' => [
+            ['title' => 'Degustationsweg', 'text' => 'Eine Folge aus Vorspeisen, Pasta, Grill und Dessert, um die Identitaet des Hauses an einem Abend kennenzulernen.', 'meta' => 'Mit Reservierung'],
+            ['title' => 'Grill und Arrosticini', 'text' => 'Ausgewaehlte Fleischstuecke, Holzkohlegarung und saisonale Beilagen mit dem Rhythmus eines besonderen Tisches.', 'meta' => 'Spezialitaet des Hauses'],
+            ['title' => 'Weinbegleitung', 'text' => 'Weine aus den Abruzzen und aus Italien, rote Weine fuer Fleisch, Schaumweine zum Auftakt und Glaeser passend zum Menue.', 'meta' => 'Glas oder Flasche'],
+            ['title' => 'Private Veranstaltungen', 'text' => 'Eigene Menues fuer Geburtstage, Gruppen, Firmenessen und Anlaesse, die sorgfaeltig geplant werden.', 'meta' => 'Individuelle Anfrage'],
+        ],
+        'flow_kicker' => 'Der Abend',
+        'flow_title' => 'Vom Empfang bis nach dem Dessert',
+        'flow_steps' => [
+            ['label' => 'Empfang', 'text' => 'Reservierung bestaetigt, Tisch vorbereitet und erste Hinweise zu Menue und Weinen.'],
+            ['label' => 'Kueche', 'text' => 'Die Gerichte kommen in klarer Reihenfolge, mit Aufmerksamkeit fuer Timing, Garung und Teilen am Tisch.'],
+            ['label' => 'Weinkeller', 'text' => 'Einfache oder strukturiertere Begleitungen, passend zur Art des Abends.'],
+            ['label' => 'Abschluss', 'text' => 'Dessert, Digestifs, Kaffee und die Zeit, ohne Eile abzuschliessen.'],
+        ],
+    ],
+    'menu' => [
+        'intro' => 'Die Karte von RISTORANTE verbindet Gerichte aus den Abruzzen, Holzkohle, Pizza und saisonale Vorschlaege. Sie koennen frei bestellen oder mit dem Team einen vollstaendigeren Weg zusammenstellen.',
+        'journey_kicker' => 'Besondere Menues',
+        'journey_title' => 'Degustationswege und Vorschlaege des Hauses',
+        'journey_text' => 'Diese Wege sind fuer Gaeste gedacht, die ein gefuehrteres Abendessen mit geteilten Tellern, klaren Zeiten und empfohlenen Begleitungen wuenschen.',
+        'journeys' => [
+            ['name' => 'RISTORANTE Weg', 'summary' => 'Vorspeisen des Hauses, saisonale Pasta, Grill, Dessert und ein kleiner Abschluss.', 'details' => ['Ideal fuer den ersten Besuch', 'Wird fuer den ganzen Tisch serviert', 'Auf Anfrage anpassbar'], 'tag' => 'Komplett'],
+            ['name' => 'Grill und Weinkeller', 'summary' => 'Gegrillte Fleischstuecke, Arrosticini, Beilagen und Glaeser, die das Feuer begleiten.', 'details' => ['Ausgewaehlte Fleischqualitaet', 'Rotweine und Schaumweine', 'Eigener Servicerhythmus'], 'tag' => 'Signatur'],
+            ['name' => 'Pizza des Hauses', 'summary' => 'Lang gefuehrte Teige, saisonale Belage und gemeinsames Geniessen in der Mitte des Tisches.', 'details' => ['Klassisch und besonders', 'Perfekt fuer Gruppen', 'Abends verfuegbar'], 'tag' => 'Gesellig'],
+        ],
+        'pairing_kicker' => 'Weinkeller',
+        'pairing_title' => 'Weine, Aperitifs und nach dem Essen',
+        'pairing_text' => 'Das Team kann passende Glaeser und Flaschen zum gewaehlten Menue empfehlen, vom Montepulciano d Abruzzo bis zu Schaumweinen zum Einstieg.',
+        'pairings' => [
+            ['title' => 'Aperitif', 'text' => 'Schaumweine, einfache Cocktails und kleine Happen fuer den Start des Abends.'],
+            ['title' => 'Begleitungen', 'text' => 'Glaeser passend zu Pasta, Grill, Pizza und saisonalen Gerichten.'],
+            ['title' => 'Nach dem Essen', 'text' => 'Hausgemachte Desserts, Digestifs, Destillate und Kaffee, ruhig serviert.'],
+        ],
+        'empty' => 'Die Speisekarte wird gerade aktualisiert. Kontaktieren Sie uns, um die heutigen Vorschlaege zu erfahren.',
+    ],
+    'restaurant' => [
+        'hero_intro' => 'RISTORANTE ist ein intimer und gepflegter Raum, in dem Holzkohle, saisonale Produkte und Gastfreundschaft aus den Abruzzen zu einem sorgfaeltigeren Erlebnis werden.',
+        'highlights_kicker' => 'Identitaet',
+        'highlights_title' => 'Was RISTORANTE besonders macht',
+        'highlights' => [
+            ['label' => 'Kueche', 'title' => 'Feuer, Pasta und Jahreszeiten', 'text' => 'Eine klare Linie: Gerichte aus den Abruzzen, Holzkohle, hausgemachte Pasta und Zutaten, die im richtigen Moment gewaehlt werden.'],
+            ['label' => 'Raum', 'title' => 'Warme und geordnete Atmosphaere', 'text' => 'Gedimmtes Licht, sorgfaeltig vorbereitete Tische und ein direkter Service, der Raum fuer Gesprache laesst.'],
+            ['label' => 'Weinkeller', 'title' => 'Glaeser mit Charakter', 'text' => 'Lokale Weine und italienische Auswahlen zu rustikalen Gerichten, Grill und strukturierteren Menues.'],
+            ['label' => 'Veranstaltungen', 'title' => 'Tische nach Mass', 'text' => 'Eigene Menues fuer Anlaesse, Gruppen, private Abendessen und Abende, die vorab geplant werden.'],
+        ],
+        'gallery_kicker' => 'Details',
+        'gallery_title' => 'Raum, Kueche und Tisch',
+        'gallery_text' => 'Echte Bilder des Restaurants und der Gerichte: Die Website soll sofort Atmosphaere, Produkt und Sorgfalt zeigen.',
+        'rituals_kicker' => 'Methode',
+        'rituals_title' => 'Ein vollstaendigerer Service',
+        'rituals' => [
+            ['title' => 'Vor dem Abendessen', 'text' => 'Bei der Reservierung werden Uhrzeit, Anzahl der Gaeste und eventuelle Bedurfnisse gesammelt.'],
+            ['title' => 'Waehrend des Service', 'text' => 'Der Raum begleitet die Auswahl von Gerichten, Weinen und Servicerhythmus.'],
+            ['title' => 'Fuer Veranstaltungen', 'text' => 'Das Menue kann im Voraus mit einem klaren Vorschlag fuer die Gruppe abgestimmt werden.'],
+        ],
+    ],
+    'contacts' => [
+        'intro' => 'Reservieren Sie einen Tisch, fragen Sie nach einer privaten Veranstaltung oder sagen Sie uns, welche Art von Abend Sie planen moechten: Wir antworten mit einem klaren Vorschlag.',
+        'booking_kicker' => 'Reservierungen',
+        'booking_title' => 'Fuer ein gut organisiertes Abendessen reichen wenige Angaben.',
+        'booking_text' => 'Senden Sie uns Datum, Uhrzeit, Anzahl der Gaeste und den Anlass. Wenn Sie ein eigenes Menue oder einen ruhigeren Bereich wuenschen, schreiben Sie es direkt in die Nachricht.',
+        'steps' => [
+            ['title' => 'Angaben', 'text' => 'Datum, Uhrzeit, Gaestezahl, Telefonnummer und wichtigste Anfrage.'],
+            ['title' => 'Bestaetigung', 'text' => 'Wir pruefen die Verfugbarkeit und melden uns zur Bestaetigung.'],
+            ['title' => 'Empfang', 'text' => 'Wir bereiten den Tisch vor und, falls noetig, ein Menue fuer den Abend.'],
+        ],
+        'occasions_title' => 'Besondere Anlaesse',
+        'occasions' => [
+            ['title' => 'Romantische Abendessen', 'text' => 'Ein gepflegter Tisch, ruhiges Tempo und Hinweise zu Menue und Weinen.'],
+            ['title' => 'Feiern', 'text' => 'Geburtstage, Jahrestage und geteilte Menues fuer groessere Tische.'],
+            ['title' => 'Geschaeftsessen', 'text' => 'Ein geordneter Vorschlag, puenktlicher Service und gute Organisation fuer Gruppen.'],
+        ],
+    ],
+];

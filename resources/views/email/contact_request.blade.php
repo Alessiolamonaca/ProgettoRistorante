@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="it">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <title>Nuova richiesta dal sito</title>
+    <title>{{ __('mail.contact_request.subject', ['name' => config('restaurant.name', 'RISTORANTE')]) }}</title>
 </head>
 <body>
-    <h2>Nuova richiesta dal sito {{ config('restaurant.name', 'RISTORANTE') }}</h2>
+    <h2>{{ __('mail.contact_request.heading', ['name' => config('restaurant.name', 'RISTORANTE')]) }}</h2>
 
-    <p><strong>Nome:</strong> {{ $contactRequest->name }}</p>
-    <p><strong>Email:</strong> {{ $contactRequest->email }}</p>
+    <p><strong>{{ __('mail.contact_request.name_label') }}:</strong> {{ $contactRequest->name }}</p>
+    <p><strong>{{ __('mail.contact_request.email_label') }}:</strong> {{ $contactRequest->email }}</p>
 
-    <p><strong>Messaggio:</strong></p>
+    <p><strong>{{ __('mail.contact_request.message_label') }}:</strong></p>
     <p style="white-space: pre-line;">
         {{ $contactRequest->message }}
     </p>
 
     <hr>
     <p style="font-size:12px; color:#666;">
-        Messaggio inviato dal form contatti del sito {{ config('restaurant.name', 'RISTORANTE') }}.
+        {{ __('mail.contact_request.footer', ['name' => config('restaurant.name', 'RISTORANTE')]) }}
     </p>
 </body>
 </html>

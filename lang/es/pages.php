@@ -109,6 +109,7 @@ return [
         'form_submit'     => 'Enviar solicitud',
         'form_kicker'     => 'Escribenos desde la web',
         'form_intro'      => 'El formulario es util si quieres dejar todos los detalles en un solo mensaje.',
+        'honeypot_label'  => 'Empresa',
         'form_tips_title' => 'Que conviene indicar',
         'form_tips_list'  => [
             'dia y franja horaria preferida',

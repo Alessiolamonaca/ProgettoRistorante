@@ -27,6 +27,7 @@ class SetLocale
         }
 
         app()->setLocale($locale);
+        app()->setFallbackLocale($default);
 
         return $next($request);
     }

@@ -36,12 +36,12 @@
                         @endif
 
                         @if ($phone)
-                            <strong>Tel:</strong>
+                            <strong>{{ __('pages.contacts.phone_label') }}:</strong>
                             <a href="{{ $phoneHref ?? '#' }}">{{ $phone }}</a><br>
                         @endif
 
                         @if ($email)
-                            <strong>Email:</strong>
+                            <strong>{{ __('pages.contacts.email_label') }}:</strong>
                             <a href="mailto:{{ $email }}">{{ $email }}</a>
                         @endif
                     </p>

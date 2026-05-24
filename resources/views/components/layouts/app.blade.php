@@ -3128,10 +3128,10 @@
                         — {{ $addressLine }}
                     @endif
                     @if($phone)
-                        — Tel: {{ $phone }}
+                        — {{ __('pages.contacts.phone_label') }}: {{ $phone }}
                     @endif
                     @if($email)
-                        — Email: {{ $email }}
+                        — {{ __('pages.contacts.email_label') }}: {{ $email }}
                     @endif
                 </div>
             </div>

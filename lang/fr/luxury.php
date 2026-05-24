@@ -1,3 +1,100 @@
 <?php
 
-return include __DIR__ . '/../en/luxury.php';
+return [
+    'home' => [
+        'hero_kicker' => 'Cuisine des Abruzzes contemporaine',
+        'hero_subtitle' => 'Braise vive, produits de saison, vins choisis et une salle soignee pour des soirees longues et memorables.',
+        'hero_primary' => 'Reserver une table',
+        'hero_secondary' => 'Decouvrir le menu',
+        'strip_label' => 'Services principaux',
+        'strip' => [
+            ['value' => 'Degustation', 'label' => 'parcours autour de la braise, des pates maison et du territoire'],
+            ['value' => 'Cave', 'label' => 'vins des Abruzzes, etiquettes italiennes et accords au verre'],
+            ['value' => 'Salle privee', 'label' => 'diners de groupe, celebrations et evenements sur demande'],
+            ['value' => 'Reservation', 'label' => 'contact direct pour les horaires, disponibilites et demandes speciales'],
+        ],
+        'intro_kicker' => 'L experience',
+        'intro_title' => 'Une table plus soignee, toujours liee au feu et a la terre.',
+        'intro_text' => 'RISTORANTE apporte la chaleur des Abruzzes dans un service plus soigne : parcours clairs, ingredients reconnaissables, vins choisis avec attention et une salle adaptee aux dejeuners importants, diners romantiques et soirees entre amis.',
+        'intro_points' => [
+            'menu de saison avec plats symboles de la tradition',
+            'braise et arrosticini servis avec attention',
+            'propositions personnalisees pour groupes et evenements prives',
+        ],
+        'experiences_kicker' => 'Parcours',
+        'experiences_title' => 'Experiences RISTORANTE',
+        'experiences_text' => 'Quatre facons de vivre la salle, du menu complet au diner plus informel.',
+        'experiences' => [
+            ['title' => 'Parcours degustation', 'text' => 'Une suite d entrees, pates, braise et dessert pour decouvrir l identite du restaurant en une seule soiree.', 'meta' => 'Sur reservation'],
+            ['title' => 'Braise et arrosticini', 'text' => 'Pieces selectionnees, cuisson au charbon et accompagnements de saison servis avec le rythme d une belle table.', 'meta' => 'Signature de la maison'],
+            ['title' => 'Accords de cave', 'text' => 'Vins des Abruzzes et d Italie, rouges pour les viandes, bulles pour commencer et verres choisis pour le menu.', 'meta' => 'Au verre ou a la bouteille'],
+            ['title' => 'Evenements prives', 'text' => 'Menus dedies pour anniversaires, groupes, diners d entreprise et occasions a preparer avec soin.', 'meta' => 'Demande dediee'],
+        ],
+        'flow_kicker' => 'La soiree',
+        'flow_title' => 'De l accueil a l apres diner',
+        'flow_steps' => [
+            ['label' => 'Accueil', 'text' => 'Reservation confirmee, table preparee et premiers conseils sur le menu et les vins.'],
+            ['label' => 'Cuisine', 'text' => 'Les plats arrivent dans un ordre clair, avec attention au rythme, a la cuisson et au partage.'],
+            ['label' => 'Cave', 'text' => 'Accords simples ou plus construits, choisis selon le type de soiree.'],
+            ['label' => 'Final', 'text' => 'Dessert, digestifs, cafe et tout le temps necessaire pour terminer sans se presser.'],
+        ],
+    ],
+    'menu' => [
+        'intro' => 'Le menu de RISTORANTE reunit cuisine des Abruzzes, braise, pizza et propositions de saison. Vous pouvez commander a la carte ou construire un parcours plus complet avec l equipe.',
+        'journey_kicker' => 'Menus speciaux',
+        'journey_title' => 'Parcours degustation et propositions de la maison',
+        'journey_text' => 'Ces parcours s adressent aux clients qui souhaitent un diner plus guide, avec des plats a partager, un rythme bien mesure et des accords conseilles.',
+        'journeys' => [
+            ['name' => 'Parcours RISTORANTE', 'summary' => 'Entrees de la maison, pates de saison, braise, dessert et petite finale.', 'details' => ['Ideal pour une premiere visite', 'Servi pour toute la table', 'Adaptable sur demande'], 'tag' => 'Complet'],
+            ['name' => 'Braise et cave', 'summary' => 'Pieces grillees, arrosticini, accompagnements et verres choisis pour accompagner le feu.', 'details' => ['Viandes selectionnees', 'Rouges et bulles', 'Rythme de service dedie'], 'tag' => 'Signature'],
+            ['name' => 'Pizza de la maison', 'summary' => 'Pates a longue levee, garnitures de saison et partage au centre de la table.', 'details' => ['Classiques et speciales', 'Parfait pour les groupes', 'Disponible le soir'], 'tag' => 'Convivial'],
+        ],
+        'pairing_kicker' => 'Cave',
+        'pairing_title' => 'Vins, aperitifs et apres repas',
+        'pairing_text' => 'L equipe peut vous conseiller des verres et des bouteilles selon le menu choisi, du Montepulciano d Abruzzo aux bulles pour commencer.',
+        'pairings' => [
+            ['title' => 'Aperitif', 'text' => 'Bulles, cocktails simples et petites bouchees pour ouvrir la soiree.'],
+            ['title' => 'Accords', 'text' => 'Verres choisis pour les pates, la braise, la pizza et les plats de saison.'],
+            ['title' => 'Apres diner', 'text' => 'Desserts maison, digestifs, spiritueux et cafe servis avec calme.'],
+        ],
+        'empty' => 'Le menu est en cours de mise a jour. Contactez-nous pour connaitre les propositions du moment.',
+    ],
+    'restaurant' => [
+        'hero_intro' => 'RISTORANTE est une salle intime et soignee, ou la braise, les produits de saison et l accueil des Abruzzes deviennent une experience plus raffinee.',
+        'highlights_kicker' => 'Identite',
+        'highlights_title' => 'Ce qui rend RISTORANTE special',
+        'highlights' => [
+            ['label' => 'Cuisine', 'title' => 'Feu, pates et saisons', 'text' => 'Une ligne claire : cuisine des Abruzzes, cuisson a la braise, pates maison et ingredients choisis au bon moment.'],
+            ['label' => 'Salle', 'title' => 'Atmosphere chaleureuse et ordonnee', 'text' => 'Lumiere douce, tables soignees et service direct qui laisse de la place a la conversation.'],
+            ['label' => 'Cave', 'title' => 'Des verres avec du caractere', 'text' => 'Vins locaux et selections italiennes pour accompagner plats rustiques, braise et menus plus structures.'],
+            ['label' => 'Evenements', 'title' => 'Tables sur mesure', 'text' => 'Menus dedies pour occasions, groupes, diners prives et soirees preparees avant l arrivee.'],
+        ],
+        'gallery_kicker' => 'Details',
+        'gallery_title' => 'Salle, cuisine et table',
+        'gallery_text' => 'Images reelles du restaurant et des plats : le site doit montrer tout de suite l atmosphere, le produit et le soin apporte.',
+        'rituals_kicker' => 'Methode',
+        'rituals_title' => 'Un service plus complet',
+        'rituals' => [
+            ['title' => 'Avant le diner', 'text' => 'La reservation rassemble horaire, nombre de clients et besoins eventuels.'],
+            ['title' => 'Pendant le service', 'text' => 'La salle accompagne le choix des plats, des vins et le rythme des sorties.'],
+            ['title' => 'Pour les evenements', 'text' => 'Le menu peut etre defini a l avance avec une proposition claire pour le groupe.'],
+        ],
+    ],
+    'contacts' => [
+        'intro' => 'Reservez une table, demandez la disponibilite pour un evenement prive ou expliquez-nous le type de soiree que vous souhaitez organiser : nous vous repondrons avec une proposition claire.',
+        'booking_kicker' => 'Reservations',
+        'booking_title' => 'Pour bien organiser un diner, quelques details suffisent.',
+        'booking_text' => 'Indiquez-nous la date, l heure, le nombre de personnes et l occasion. Si vous souhaitez un menu dedie ou un espace plus reserve, precisez-le tout de suite dans le message.',
+        'steps' => [
+            ['title' => 'Details', 'text' => 'Date, heure, nombre de personnes, telephone et demande principale.'],
+            ['title' => 'Confirmation', 'text' => 'Nous verifions la disponibilite et vous recontactons pour confirmer.'],
+            ['title' => 'Accueil', 'text' => 'Nous preparons la table et, si besoin, un menu adapte a la soiree.'],
+        ],
+        'occasions_title' => 'Occasions speciales',
+        'occasions' => [
+            ['title' => 'Diners romantiques', 'text' => 'Une table soignee, un rythme lent et des conseils sur le menu et les vins.'],
+            ['title' => 'Celebrations', 'text' => 'Anniversaires, fetes et menus a partager pour les grandes tables.'],
+            ['title' => 'Diners d entreprise', 'text' => 'Une proposition ordonnee, un service ponctuel et une bonne gestion des groupes.'],
+        ],
+    ],
+];

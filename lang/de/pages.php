@@ -109,6 +109,7 @@ return [
         'form_submit'     => 'Anfrage senden',
         'form_kicker'     => 'Uber die Website schreiben',
         'form_intro'      => 'Das Formular ist praktisch, wenn Sie alle Details in einer einzigen Nachricht hinterlassen mochten.',
+        'honeypot_label'  => 'Unternehmen',
         'form_tips_title' => 'Sinnvolle Angaben in der Nachricht',
         'form_tips_list'  => [
             'bevorzugter Tag und Zeitfenster',

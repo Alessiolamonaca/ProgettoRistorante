@@ -109,6 +109,7 @@ return [
         'form_submit'     => 'Send request',
         'form_kicker'     => 'Write from the website',
         'form_intro'      => 'The form is handy if you want to leave all the details in a single message.',
+        'honeypot_label'  => 'Company',
         'form_tips_title' => 'Useful details to include',
         'form_tips_list'  => [
             'preferred day and time slot',

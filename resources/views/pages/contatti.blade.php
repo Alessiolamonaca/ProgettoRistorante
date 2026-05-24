@@ -220,7 +220,7 @@
                         @csrf
 
                         <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
-                            <label for="company">Company</label>
+                            <label for="company">{{ __('pages.contacts.honeypot_label') }}</label>
                             <input
                                 id="company"
                                 name="company"

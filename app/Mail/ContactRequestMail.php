@@ -21,8 +21,10 @@ class ContactRequestMail extends Mailable
 
     public function envelope(): Envelope
     {
+        $restaurantName = config('restaurant.name', 'RISTORANTE');
+
         return new Envelope(
-            subject: 'Nuova richiesta dal sito '.config('restaurant.name', 'RISTORANTE'),
+            subject: __('mail.contact_request.subject', ['name' => $restaurantName]),
             replyTo: [
                 new Address($this->contactRequest->email, $this->contactRequest->name),
             ],
